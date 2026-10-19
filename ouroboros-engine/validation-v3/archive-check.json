@@ -1,0 +1,43 @@
+{
+  "checkpoint_matches_validation": true,
+  "module_count": 16,
+  "source_export_matches": true,
+  "upstream": [
+    {
+      "commit": "536985ab1d6b50973e9e9e11a0f8303a7754aecf",
+      "files": 30,
+      "license": "BSD-3-Clause",
+      "mismatched": [],
+      "missing": [],
+      "name": "neat-python",
+      "ok": true,
+      "repository": "https://github.com/CodeReclaimers/neat-python",
+      "version": "1.0.0"
+    },
+    {
+      "commit": "695ec22d7d1831f2ced67346ef7d2f08c525bd47",
+      "files": 39,
+      "license": "Apache-2.0",
+      "mismatched": [],
+      "missing": [],
+      "name": "ncps",
+      "ok": true,
+      "repository": "https://github.com/mlech26l/ncps",
+      "version": "1.0.1"
+    },
+    {
+      "commit": "4467a6e73ab587751942d6efc311268f094fdc5f",
+      "files": 321,
+      "license": "MIT",
+      "mismatched": [],
+      "missing": [],
+      "name": "pettingzoo",
+      "ok": true,
+      "repository": "https://github.com/Farama-Foundation/PettingZoo",
+      "version": "1.25.0"
+    }
+  ],
+  "vm_sum": [
+    55.0
+  ]
+}
