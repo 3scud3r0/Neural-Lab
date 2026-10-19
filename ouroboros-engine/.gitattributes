@@ -1,0 +1,7 @@
+# Fontes upstream preservam os bytes originais registrados em UPSTREAM_LOCK.json.
+third_party/** linguist-vendored whitespace=-blank-at-eol,-blank-at-eof,-space-before-tab
+# Exportações/evidências são derivadas e não devem duplicar a revisão dos fontes.
+CODIGO_COMPLETO.txt linguist-generated whitespace=-blank-at-eol,-blank-at-eof,-space-before-tab
+validation-v2/** linguist-generated
+*.pt binary
+*.png binary

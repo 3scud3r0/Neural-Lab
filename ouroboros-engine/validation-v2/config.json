@@ -1,0 +1,10 @@
+{
+  "profile": "full",
+  "seed": 42,
+  "device": "cpu",
+  "program_epochs": 400,
+  "communication_steps": 1500,
+  "world_episodes": 24,
+  "genetic_generations": 120,
+  "neat_generations": 25
+}

@@ -1,0 +1,26 @@
+{
+  "name": "new_numeric_contract",
+  "description": "Descobrir uma função a partir destes exemplos; nenhum programa de solução é fornecido.",
+  "train": [
+    {"inputs": [-2, 1], "expected": -5},
+    {"inputs": [0, 0], "expected": -1},
+    {"inputs": [1, 1], "expected": 4},
+    {"inputs": [2, -1], "expected": 3},
+    {"inputs": [3, 2], "expected": 12},
+    {"inputs": [-1, -2], "expected": -8},
+    {"inputs": [4, 0], "expected": 11},
+    {"inputs": [0, 5], "expected": 9}
+  ],
+  "validation": [
+    {"inputs": [10, 3], "expected": 35},
+    {"inputs": [-7, 2], "expected": -18},
+    {"inputs": [6, -4], "expected": 9},
+    {"inputs": [8, 8], "expected": 39}
+  ],
+  "test": [
+    {"inputs": [-10, -10], "expected": -51},
+    {"inputs": [12, 9], "expected": 53},
+    {"inputs": [-4, 13], "expected": 13},
+    {"inputs": [15, -6], "expected": 32}
+  ]
+}

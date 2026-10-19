@@ -1,0 +1,10 @@
+{
+  "event": "neat",
+  "elapsed": 0.41695918000004895,
+  "generation": 24,
+  "fitness": 0.8389815284816862,
+  "winner_nodes": 5,
+  "winner_edges": 13,
+  "population_max_nodes": 8,
+  "population_min_nodes": 5
+}

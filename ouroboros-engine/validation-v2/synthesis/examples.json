@@ -1,0 +1,232 @@
+{
+  "public_training": [
+    {
+      "inputs": [
+        8,
+        -9
+      ],
+      "expected": 5.0,
+      "array": []
+    },
+    {
+      "inputs": [
+        -12,
+        11
+      ],
+      "expected": -15.0,
+      "array": []
+    },
+    {
+      "inputs": [
+        -4,
+        -5
+      ],
+      "expected": -23.0,
+      "array": []
+    },
+    {
+      "inputs": [
+        -5,
+        -8
+      ],
+      "expected": -32.0,
+      "array": []
+    },
+    {
+      "inputs": [
+        11,
+        -9
+      ],
+      "expected": 14.0,
+      "array": []
+    },
+    {
+      "inputs": [
+        9,
+        11
+      ],
+      "expected": 48.0,
+      "array": []
+    },
+    {
+      "inputs": [
+        5,
+        -10
+      ],
+      "expected": -6.0,
+      "array": []
+    },
+    {
+      "inputs": [
+        6,
+        1
+      ],
+      "expected": 19.0,
+      "array": []
+    }
+  ],
+  "validation": [
+    {
+      "inputs": [
+        -11,
+        -12
+      ],
+      "expected": -58.0,
+      "array": []
+    },
+    {
+      "inputs": [
+        -10,
+        -6
+      ],
+      "expected": -43.0,
+      "array": []
+    },
+    {
+      "inputs": [
+        -5,
+        4
+      ],
+      "expected": -8.0,
+      "array": []
+    },
+    {
+      "inputs": [
+        7,
+        -12
+      ],
+      "expected": -4.0,
+      "array": []
+    },
+    {
+      "inputs": [
+        5,
+        -6
+      ],
+      "expected": 2.0,
+      "array": []
+    },
+    {
+      "inputs": [
+        10,
+        8
+      ],
+      "expected": 45.0,
+      "array": []
+    },
+    {
+      "inputs": [
+        10,
+        5
+      ],
+      "expected": 39.0,
+      "array": []
+    },
+    {
+      "inputs": [
+        1,
+        -5
+      ],
+      "expected": -8.0,
+      "array": []
+    }
+  ],
+  "test": [
+    {
+      "inputs": [
+        2,
+        6
+      ],
+      "expected": 17.0,
+      "array": []
+    },
+    {
+      "inputs": [
+        -4,
+        -12
+      ],
+      "expected": -37.0,
+      "array": []
+    },
+    {
+      "inputs": [
+        12,
+        -7
+      ],
+      "expected": 21.0,
+      "array": []
+    },
+    {
+      "inputs": [
+        10,
+        1
+      ],
+      "expected": 31.0,
+      "array": []
+    },
+    {
+      "inputs": [
+        -2,
+        -4
+      ],
+      "expected": -15.0,
+      "array": []
+    },
+    {
+      "inputs": [
+        -8,
+        -6
+      ],
+      "expected": -37.0,
+      "array": []
+    },
+    {
+      "inputs": [
+        12,
+        -2
+      ],
+      "expected": 31.0,
+      "array": []
+    },
+    {
+      "inputs": [
+        -9,
+        -10
+      ],
+      "expected": -48.0,
+      "array": []
+    },
+    {
+      "inputs": [
+        0,
+        -9
+      ],
+      "expected": -19.0,
+      "array": []
+    },
+    {
+      "inputs": [
+        -1,
+        -1
+      ],
+      "expected": -6.0,
+      "array": []
+    },
+    {
+      "inputs": [
+        7,
+        -4
+      ],
+      "expected": 12.0,
+      "array": []
+    },
+    {
+      "inputs": [
+        -11,
+        11
+      ],
+      "expected": -12.0,
+      "array": []
+    }
+  ]
+}

@@ -1,0 +1,7 @@
+{
+  "event": "program_bootstrap",
+  "elapsed": 9.952993917000185,
+  "epoch": 300,
+  "loss": 0.012914715334773064,
+  "validation_families_solved": 11
+}

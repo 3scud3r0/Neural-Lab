@@ -1,0 +1,57 @@
+{
+  "name": "genetic_generated",
+  "code": [
+    [
+      "PUSH",
+      -1
+    ],
+    [
+      "INPUT",
+      0
+    ],
+    [
+      "INPUT",
+      1
+    ],
+    [
+      "INPUT",
+      1
+    ],
+    [
+      "INPUT",
+      0
+    ],
+    [
+      "ADD",
+      null
+    ],
+    [
+      "ADD",
+      null
+    ],
+    [
+      "ADD",
+      null
+    ],
+    [
+      "ADD",
+      null
+    ],
+    [
+      "INPUT",
+      0
+    ],
+    [
+      "ADD",
+      null
+    ],
+    [
+      "OUTPUT",
+      null
+    ],
+    [
+      "HALT",
+      null
+    ]
+  ]
+}

@@ -1,0 +1,29 @@
+{
+  "name": "neural_generated",
+  "code": [
+    [
+      "INPUT",
+      0
+    ],
+    [
+      "INPUT",
+      1
+    ],
+    [
+      "MUL",
+      null
+    ],
+    [
+      "OUTPUT",
+      null
+    ],
+    [
+      "HALT",
+      null
+    ],
+    [
+      "HALT",
+      null
+    ]
+  ]
+}

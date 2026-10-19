@@ -1,0 +1,520 @@
+{
+  "history": [
+    {
+      "epoch": 1,
+      "loss": 5.7700066566467285,
+      "validation_families_solved": 0
+    },
+    {
+      "epoch": 25,
+      "loss": 1.0315515995025635,
+      "validation_families_solved": 0
+    },
+    {
+      "epoch": 50,
+      "loss": 0.38054969906806946,
+      "validation_families_solved": 1
+    },
+    {
+      "epoch": 75,
+      "loss": 0.148473858833313,
+      "validation_families_solved": 2
+    },
+    {
+      "epoch": 100,
+      "loss": 0.08624027669429779,
+      "validation_families_solved": 3
+    },
+    {
+      "epoch": 125,
+      "loss": 0.06331879645586014,
+      "validation_families_solved": 5
+    },
+    {
+      "epoch": 150,
+      "loss": 0.05389956757426262,
+      "validation_families_solved": 8
+    },
+    {
+      "epoch": 175,
+      "loss": 0.03927788883447647,
+      "validation_families_solved": 7
+    },
+    {
+      "epoch": 200,
+      "loss": 0.025228824466466904,
+      "validation_families_solved": 9
+    },
+    {
+      "epoch": 225,
+      "loss": 0.03381894528865814,
+      "validation_families_solved": 6
+    },
+    {
+      "epoch": 250,
+      "loss": 0.016930976882576942,
+      "validation_families_solved": 9
+    },
+    {
+      "epoch": 275,
+      "loss": 0.018290771171450615,
+      "validation_families_solved": 9
+    },
+    {
+      "epoch": 300,
+      "loss": 0.012914715334773064,
+      "validation_families_solved": 11
+    }
+  ],
+  "tasks": [
+    {
+      "task": "sum",
+      "valid": true,
+      "test": {
+        "passed": 12,
+        "total": 12,
+        "error": 0.0,
+        "faults": {},
+        "mean_steps": 5.0
+      },
+      "solved": true,
+      "tokens": 10,
+      "test_unique_inputs": 12,
+      "instructions": 6
+    },
+    {
+      "task": "product",
+      "valid": true,
+      "test": {
+        "passed": 12,
+        "total": 12,
+        "error": 0.0,
+        "faults": {},
+        "mean_steps": 5.0
+      },
+      "solved": true,
+      "tokens": 10,
+      "test_unique_inputs": 12,
+      "instructions": 6
+    },
+    {
+      "task": "difference",
+      "valid": true,
+      "test": {
+        "passed": 12,
+        "total": 12,
+        "error": 0.0,
+        "faults": {},
+        "mean_steps": 5.0
+      },
+      "solved": true,
+      "tokens": 10,
+      "test_unique_inputs": 12,
+      "instructions": 6
+    },
+    {
+      "task": "absolute_difference",
+      "valid": true,
+      "test": {
+        "passed": 12,
+        "total": 12,
+        "error": 0.0,
+        "faults": {},
+        "mean_steps": 6.0
+      },
+      "solved": true,
+      "tokens": 11,
+      "test_unique_inputs": 12,
+      "instructions": 7
+    },
+    {
+      "task": "sum_range",
+      "valid": true,
+      "test": {
+        "passed": 2,
+        "total": 2,
+        "error": 0.0,
+        "faults": {},
+        "mean_steps": 151.5
+      },
+      "solved": true,
+      "tokens": 45,
+      "test_unique_inputs": 2,
+      "instructions": 25
+    },
+    {
+      "task": "factorial",
+      "valid": true,
+      "test": {
+        "passed": 2,
+        "total": 2,
+        "error": 0.0,
+        "faults": {},
+        "mean_steps": 138.5
+      },
+      "solved": true,
+      "tokens": 45,
+      "test_unique_inputs": 2,
+      "instructions": 25
+    },
+    {
+      "task": "array_sum",
+      "valid": true,
+      "test": {
+        "passed": 12,
+        "total": 12,
+        "error": 0.0,
+        "faults": {},
+        "mean_steps": 133.16666666666666
+      },
+      "solved": true,
+      "tokens": 42,
+      "test_unique_inputs": 12,
+      "instructions": 24
+    },
+    {
+      "task": "count_positive",
+      "valid": true,
+      "test": {
+        "passed": 12,
+        "total": 12,
+        "error": 0.0,
+        "faults": {},
+        "mean_steps": 158.41666666666666
+      },
+      "solved": true,
+      "tokens": 51,
+      "test_unique_inputs": 12,
+      "instructions": 29
+    },
+    {
+      "task": "array_max",
+      "valid": true,
+      "test": {
+        "passed": 12,
+        "total": 12,
+        "error": 0.0,
+        "faults": {},
+        "mean_steps": 133.0
+      },
+      "solved": true,
+      "tokens": 43,
+      "test_unique_inputs": 12,
+      "instructions": 25
+    },
+    {
+      "task": "gcd",
+      "valid": true,
+      "test": {
+        "passed": 12,
+        "total": 12,
+        "error": 0.0,
+        "faults": {},
+        "mean_steps": 59.75
+      },
+      "solved": true,
+      "tokens": 39,
+      "test_unique_inputs": 12,
+      "instructions": 21
+    },
+    {
+      "task": "branch",
+      "valid": true,
+      "test": {
+        "passed": 12,
+        "total": 12,
+        "error": 0.0,
+        "faults": {},
+        "mean_steps": 9.0
+      },
+      "solved": true,
+      "tokens": 26,
+      "test_unique_inputs": 12,
+      "instructions": 16
+    }
+  ],
+  "solved": 11,
+  "total": 11,
+  "heldout_scope": "Novas entradas e comprimentos para famílias de algoritmos demonstradas",
+  "public_context_generalization": {
+    "solved": 53,
+    "total": 55,
+    "checks": [
+      {
+        "task": "sum",
+        "context_seed": 50042,
+        "solved": true
+      },
+      {
+        "task": "sum",
+        "context_seed": 50043,
+        "solved": true
+      },
+      {
+        "task": "sum",
+        "context_seed": 50044,
+        "solved": true
+      },
+      {
+        "task": "sum",
+        "context_seed": 50045,
+        "solved": true
+      },
+      {
+        "task": "sum",
+        "context_seed": 50046,
+        "solved": true
+      },
+      {
+        "task": "product",
+        "context_seed": 50042,
+        "solved": true
+      },
+      {
+        "task": "product",
+        "context_seed": 50043,
+        "solved": false
+      },
+      {
+        "task": "product",
+        "context_seed": 50044,
+        "solved": true
+      },
+      {
+        "task": "product",
+        "context_seed": 50045,
+        "solved": true
+      },
+      {
+        "task": "product",
+        "context_seed": 50046,
+        "solved": true
+      },
+      {
+        "task": "difference",
+        "context_seed": 50042,
+        "solved": true
+      },
+      {
+        "task": "difference",
+        "context_seed": 50043,
+        "solved": true
+      },
+      {
+        "task": "difference",
+        "context_seed": 50044,
+        "solved": true
+      },
+      {
+        "task": "difference",
+        "context_seed": 50045,
+        "solved": true
+      },
+      {
+        "task": "difference",
+        "context_seed": 50046,
+        "solved": true
+      },
+      {
+        "task": "absolute_difference",
+        "context_seed": 50042,
+        "solved": true
+      },
+      {
+        "task": "absolute_difference",
+        "context_seed": 50043,
+        "solved": true
+      },
+      {
+        "task": "absolute_difference",
+        "context_seed": 50044,
+        "solved": true
+      },
+      {
+        "task": "absolute_difference",
+        "context_seed": 50045,
+        "solved": true
+      },
+      {
+        "task": "absolute_difference",
+        "context_seed": 50046,
+        "solved": true
+      },
+      {
+        "task": "sum_range",
+        "context_seed": 50042,
+        "solved": true
+      },
+      {
+        "task": "sum_range",
+        "context_seed": 50043,
+        "solved": true
+      },
+      {
+        "task": "sum_range",
+        "context_seed": 50044,
+        "solved": true
+      },
+      {
+        "task": "sum_range",
+        "context_seed": 50045,
+        "solved": true
+      },
+      {
+        "task": "sum_range",
+        "context_seed": 50046,
+        "solved": true
+      },
+      {
+        "task": "factorial",
+        "context_seed": 50042,
+        "solved": true
+      },
+      {
+        "task": "factorial",
+        "context_seed": 50043,
+        "solved": true
+      },
+      {
+        "task": "factorial",
+        "context_seed": 50044,
+        "solved": true
+      },
+      {
+        "task": "factorial",
+        "context_seed": 50045,
+        "solved": true
+      },
+      {
+        "task": "factorial",
+        "context_seed": 50046,
+        "solved": true
+      },
+      {
+        "task": "array_sum",
+        "context_seed": 50042,
+        "solved": true
+      },
+      {
+        "task": "array_sum",
+        "context_seed": 50043,
+        "solved": true
+      },
+      {
+        "task": "array_sum",
+        "context_seed": 50044,
+        "solved": true
+      },
+      {
+        "task": "array_sum",
+        "context_seed": 50045,
+        "solved": true
+      },
+      {
+        "task": "array_sum",
+        "context_seed": 50046,
+        "solved": true
+      },
+      {
+        "task": "count_positive",
+        "context_seed": 50042,
+        "solved": true
+      },
+      {
+        "task": "count_positive",
+        "context_seed": 50043,
+        "solved": true
+      },
+      {
+        "task": "count_positive",
+        "context_seed": 50044,
+        "solved": true
+      },
+      {
+        "task": "count_positive",
+        "context_seed": 50045,
+        "solved": true
+      },
+      {
+        "task": "count_positive",
+        "context_seed": 50046,
+        "solved": true
+      },
+      {
+        "task": "array_max",
+        "context_seed": 50042,
+        "solved": true
+      },
+      {
+        "task": "array_max",
+        "context_seed": 50043,
+        "solved": true
+      },
+      {
+        "task": "array_max",
+        "context_seed": 50044,
+        "solved": false
+      },
+      {
+        "task": "array_max",
+        "context_seed": 50045,
+        "solved": true
+      },
+      {
+        "task": "array_max",
+        "context_seed": 50046,
+        "solved": true
+      },
+      {
+        "task": "gcd",
+        "context_seed": 50042,
+        "solved": true
+      },
+      {
+        "task": "gcd",
+        "context_seed": 50043,
+        "solved": true
+      },
+      {
+        "task": "gcd",
+        "context_seed": 50044,
+        "solved": true
+      },
+      {
+        "task": "gcd",
+        "context_seed": 50045,
+        "solved": true
+      },
+      {
+        "task": "gcd",
+        "context_seed": 50046,
+        "solved": true
+      },
+      {
+        "task": "branch",
+        "context_seed": 50042,
+        "solved": true
+      },
+      {
+        "task": "branch",
+        "context_seed": 50043,
+        "solved": true
+      },
+      {
+        "task": "branch",
+        "context_seed": 50044,
+        "solved": true
+      },
+      {
+        "task": "branch",
+        "context_seed": 50045,
+        "solved": true
+      },
+      {
+        "task": "branch",
+        "context_seed": 50046,
+        "solved": true
+      }
+    ]
+  }
+}

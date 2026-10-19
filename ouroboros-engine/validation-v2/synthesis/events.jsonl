@@ -1,0 +1,11 @@
+{"event": "genetics", "elapsed": 0.008235251000314747, "generation": 0, "error": 0.6968125987523156, "solved_training": false, "nodes": 3, "expression": "(y + x)"}
+{"event": "genetics", "elapsed": 0.012898903999939648, "generation": 1, "error": 0.6968125987523156, "solved_training": false, "nodes": 3, "expression": "(y + x)"}
+{"event": "genetics", "elapsed": 0.018226339000193548, "generation": 2, "error": 0.6155827748719624, "solved_training": false, "nodes": 3, "expression": "(-3 + x)"}
+{"event": "genetics", "elapsed": 0.022401956000067003, "generation": 3, "error": 0.5850417483927209, "solved_training": false, "nodes": 7, "expression": "(max(x, y) + (y + x))"}
+{"event": "genetics", "elapsed": 0.026516011000239814, "generation": 4, "error": 0.3985834150593876, "solved_training": false, "nodes": 5, "expression": "((y + x) + x)"}
+{"event": "genetics", "elapsed": 0.03149182600009226, "generation": 5, "error": 0.3985834150593876, "solved_training": false, "nodes": 5, "expression": "((y + x) + x)"}
+{"event": "genetics", "elapsed": 0.037884407000092324, "generation": 6, "error": 0.08161938473902147, "solved_training": false, "nodes": 9, "expression": "((y + x) + (x + (y + x)))"}
+{"event": "genetics", "elapsed": 0.045372130000032485, "generation": 7, "error": 0.08161938473902147, "solved_training": false, "nodes": 9, "expression": "((y + x) + (x + (y + x)))"}
+{"event": "genetics", "elapsed": 0.05486459600024318, "generation": 8, "error": 0.08161938473902147, "solved_training": false, "nodes": 9, "expression": "((y + x) + (x + (y + x)))"}
+{"event": "genetics", "elapsed": 0.06602729199994428, "generation": 9, "error": 0.08161938473902147, "solved_training": false, "nodes": 9, "expression": "((y + x) + (x + (y + x)))"}
+{"event": "genetics", "elapsed": 0.07717765799998233, "generation": 10, "error": 0.0, "solved_training": true, "nodes": 15, "expression": "((((y + -1) * (3 + -2)) + x) + ((y + x) + x))"}

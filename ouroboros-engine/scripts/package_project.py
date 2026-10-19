@@ -9,7 +9,7 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--output", type=Path, default=root.parent / "ouroboros-engine.zip")
     args = parser.parse_args()
-    excluded = {".venv", "venv", "__pycache__", ".git", "outputs", "build", "dist", ".pytest_cache"}
+    excluded = {".venv", "venv", "__pycache__", ".git", "outputs", "outputs-v2", "build", "dist", ".pytest_cache", ".cache"}
     destination = args.output.resolve()
     destination.parent.mkdir(parents=True, exist_ok=True)
     with zipfile.ZipFile(destination, "w", zipfile.ZIP_DEFLATED) as archive:

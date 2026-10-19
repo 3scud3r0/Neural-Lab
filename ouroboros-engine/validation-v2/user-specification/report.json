@@ -1,0 +1,156 @@
+{
+  "coefficients": null,
+  "task": "new_numeric_contract",
+  "history": [
+    {
+      "generation": 0,
+      "error": 0.6569760101010101,
+      "solved_training": false,
+      "nodes": 3,
+      "expression": "(y + x)"
+    },
+    {
+      "generation": 1,
+      "error": 0.5695075757575757,
+      "solved_training": false,
+      "nodes": 3,
+      "expression": "(x + x)"
+    },
+    {
+      "generation": 2,
+      "error": 0.5695075757575757,
+      "solved_training": false,
+      "nodes": 3,
+      "expression": "(x + x)"
+    },
+    {
+      "generation": 3,
+      "error": 0.4000631313131313,
+      "solved_training": false,
+      "nodes": 5,
+      "expression": "((x + y) + x)"
+    },
+    {
+      "generation": 4,
+      "error": 0.34172979797979797,
+      "solved_training": false,
+      "nodes": 7,
+      "expression": "(((y + y) + x) + x)"
+    },
+    {
+      "generation": 5,
+      "error": 0.2742108585858586,
+      "solved_training": false,
+      "nodes": 9,
+      "expression": "(x + (y + (x + (y + x))))"
+    },
+    {
+      "generation": 6,
+      "error": 0.19649621212121213,
+      "solved_training": false,
+      "nodes": 13,
+      "expression": "((-1 + (x + max(y, x))) + (x + (y + x)))"
+    },
+    {
+      "generation": 7,
+      "error": 0.19649621212121213,
+      "solved_training": false,
+      "nodes": 13,
+      "expression": "((-1 + (x + max(y, x))) + (x + (y + x)))"
+    },
+    {
+      "generation": 8,
+      "error": 0.175,
+      "solved_training": false,
+      "nodes": 11,
+      "expression": "((-1 + (x + max(y, x))) + (x + y))"
+    },
+    {
+      "generation": 9,
+      "error": 0.175,
+      "solved_training": false,
+      "nodes": 11,
+      "expression": "((-1 + (x + max(y, x))) + (x + y))"
+    },
+    {
+      "generation": 10,
+      "error": 0.0,
+      "solved_training": true,
+      "nodes": 11,
+      "expression": "((-1 + (x + (y + (y + x)))) + x)"
+    }
+  ],
+  "validation": {
+    "passed": 4,
+    "total": 4,
+    "error": 0.0,
+    "faults": {},
+    "mean_steps": 13.0
+  },
+  "test": {
+    "passed": 4,
+    "total": 4,
+    "error": 0.0,
+    "faults": {},
+    "mean_steps": 13.0
+  },
+  "solved_test": true,
+  "candidate": {
+    "name": "genetic_generated",
+    "code": [
+      [
+        "PUSH",
+        -1
+      ],
+      [
+        "INPUT",
+        0
+      ],
+      [
+        "INPUT",
+        1
+      ],
+      [
+        "INPUT",
+        1
+      ],
+      [
+        "INPUT",
+        0
+      ],
+      [
+        "ADD",
+        null
+      ],
+      [
+        "ADD",
+        null
+      ],
+      [
+        "ADD",
+        null
+      ],
+      [
+        "ADD",
+        null
+      ],
+      [
+        "INPUT",
+        0
+      ],
+      [
+        "ADD",
+        null
+      ],
+      [
+        "OUTPUT",
+        null
+      ],
+      [
+        "HALT",
+        null
+      ]
+    ]
+  },
+  "scope": "Síntese de composição afim sem seed de solução; não prova novidade científica"
+}

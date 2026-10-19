@@ -1,0 +1,65 @@
+{
+  "task": "sum_contract",
+  "selected": 0,
+  "validation": {
+    "passed": 8,
+    "total": 8,
+    "error": 0.0,
+    "faults": {},
+    "mean_steps": 5.0
+  },
+  "test": {
+    "passed": 12,
+    "total": 12,
+    "error": 0.0,
+    "faults": {},
+    "mean_steps": 5.0
+  },
+  "solved": true,
+  "candidates": [
+    {
+      "candidate": 0,
+      "valid": true,
+      "validation": {
+        "passed": 8,
+        "total": 8,
+        "error": 0.0,
+        "faults": {},
+        "mean_steps": 5.0
+      }
+    },
+    {
+      "candidate": 1,
+      "valid": true,
+      "validation": {
+        "passed": 8,
+        "total": 8,
+        "error": 0.0,
+        "faults": {},
+        "mean_steps": 5.0
+      }
+    },
+    {
+      "candidate": 2,
+      "valid": true,
+      "validation": {
+        "passed": 8,
+        "total": 8,
+        "error": 0.0,
+        "faults": {},
+        "mean_steps": 5.0
+      }
+    },
+    {
+      "candidate": 3,
+      "valid": true,
+      "validation": {
+        "passed": 8,
+        "total": 8,
+        "error": 0.0,
+        "faults": {},
+        "mean_steps": 5.0
+      }
+    }
+  ]
+}
