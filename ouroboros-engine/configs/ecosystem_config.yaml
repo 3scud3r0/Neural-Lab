@@ -1,0 +1,29 @@
+seed: 42
+device: auto
+population: 24
+hidden_size: 32
+signal_size: 4
+steps: 300
+dt: 0.1
+learning_rate: 0.001
+world:
+  size: 10.0
+  speed: 0.7
+  friction: 0.2
+  resource_count: 6
+  harvest_radius: 0.8
+  resource_regeneration: 0.025
+  communication_radius: 3.0
+  obstacle_count: 3
+  obstacle_radius: 0.35
+physiology:
+  initial_energy: 0.8
+  basal_cost: 0.002
+  movement_cost: 0.003
+  signal_cost: 0.002
+  harvest_gain: 0.10
+programmer:
+  interval: 25
+  timeout_seconds: 2.0
+  memory_mb: 256
+output_dir: outputs/demo

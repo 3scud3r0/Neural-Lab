@@ -1,0 +1,27 @@
+{
+  "python": "3.12.14",
+  "torch": "2.6.0+cpu",
+  "PyYAML": "6.0.3",
+  "device": "cpu",
+  "unit_and_integration_tests": {
+    "passed": 13,
+    "failed": 0
+  },
+  "bootstrap": {
+    "known_tasks_passed": 6,
+    "total": 6,
+    "note": "New numeric inputs on known tasks, not new algorithm generalization"
+  },
+  "ecosystem": {
+    "steps": 300,
+    "population": 24,
+    "program_attempts": 12,
+    "program_correct": 12
+  },
+  "browser": {
+    "desktop": "passed",
+    "mobile": "passed",
+    "javascript_errors": []
+  },
+  "cuda": "not tested: no CUDA hardware in delivery environment"
+}

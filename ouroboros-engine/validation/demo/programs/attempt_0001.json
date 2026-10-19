@@ -1,0 +1,1 @@
+{"task": "soma", "expression": "x + y", "reward": 1.0, "solved": true, "error": 0.0, "message": "", "elapsed_ms": 0.08659899992835562, "wall_ms": 79.8522889999731, "memory_kb": 9672, "returncode": 0, "energy": 0.8179169297218323, "stress": 0.036416616290807724, "attempts": 1, "solved_total": 1}

@@ -1,0 +1,1 @@
+{"task": "diferenca", "expression": "x - y", "reward": 1.0, "solved": true, "error": 0.0, "message": "", "elapsed_ms": 0.06573699999989913, "wall_ms": 30.812182999966353, "memory_kb": 9672, "returncode": 0, "energy": 0.8356756567955017, "stress": 0.0619981624186039, "attempts": 2, "solved_total": 2}

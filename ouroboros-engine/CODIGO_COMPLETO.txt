@@ -1,0 +1,1728 @@
+OUROBOROS ENGINE — FONTES CONSOLIDADAS
+Arquivos de texto incluídos: 58
+Formato: fontes, configurações, dados e documentação em UTF-8.
+Os pesos .pt e as capturas PNG são artefatos binários separados.
+Esta exportação reúne fontes; não é um executável compilado.
+
+========================================================================================
+ARQUIVO: .gitignore
+========================================================================================
+.venv/
+__pycache__/
+*.pyc
+*.egg-info/
+build/
+dist/
+outputs/
+.pytest_cache/
+
+========================================================================================
+ARQUIVO: README.md
+========================================================================================
+# Ouroboros Engine
+
+Laboratório experimental de agentes adaptativos em **PyTorch**, baseado na arquitetura da conversa fornecida. Inclui ecossistema 2D, recorrência temporal, plasticidade local, memória rápida inspirada em TTT, homeostase numérica, comunicação e uma programadora de expressões aritméticas com feedback de execução.
+
+**É um protótipo funcional de pesquisa.** Não é uma inteligência geral, não demonstra consciência, não inventa linguagens e não promete superar Rust ou acelerar ray tracing. A implementação e suas medições permitem investigar hipóteses concretas antes de ampliar o projeto.
+
+## Começar no Linux
+
+Requisitos: Python 3.10 ou superior, `venv`, acesso aos índices oficiais de pacotes. Testado com Python 3.12.14, PyTorch 2.6.0+cpu e PyYAML 6.0.3. CUDA é opcional. O executor utiliza `resource` do Linux; Windows nativo não é suportado. Use WSL2 no Windows.
+
+Na pasta `ouroboros-engine`:
+
+```bash
+python3 -m venv .venv
+source .venv/bin/activate
+python -m pip install --upgrade pip
+python -m pip install 'torch==2.6.0' --index-url https://download.pytorch.org/whl/cpu
+python -m pip install -e .
+python -m unittest discover -s tests -v
+```
+
+O índice de CPU evita baixar bibliotecas CUDA desnecessárias. Para GPU, instale primeiro a distribuição PyTorch compatível com seu driver, seguindo o seletor oficial em <https://pytorch.org/get-started/locally/>, e depois execute `pip install -e .`. Este projeto não contém extensões CUDA próprias. `--device auto` usa CUDA quando disponível; `--device cuda` falha explicitamente se não houver GPU utilizável.
+
+### Treinar e executar
+
+```bash
+# Ensina seis tarefas ao seletor de expressões; grava pesos e relatório.
+python scripts/bootstrap_programmer.py
+
+# Executa 300 passos. --pace torna a observação ao vivo mais confortável.
+python scripts/run_ecosystem.py --steps 300 --checkpoint outputs/programmer.pt --output outputs/demo --pace 0.05
+
+# Em outro terminal, com o mesmo ambiente virtual ativado:
+python scripts/dashboard.py --output outputs/demo --port 8080
+```
+
+O painel atende na porta 8080, na interface local por padrão. Em uma máquina própria, abra essa porta no navegador; em um serviço de nuvem, utilize o mecanismo de acesso a portas da plataforma, quando disponível. O painel também consegue apresentar uma execução já concluída. Não exige Streamlit, CDN, APIs pagas ou chaves de acesso.
+
+Para repetir a simulação, escolha uma nova pasta, por exemplo `--output outputs/demo-2`, e aponte o painel para ela. A simulação **recusa diretórios não vazios**, para preservar resultados anteriores. Sem `--checkpoint`, a programadora começa com pesos aleatórios e recebe reforço durante a execução. Com bootstrap, começa já treinada nas seis tarefas.
+
+Os mesmos comandos estão disponíveis como `ouroboros-bootstrap`, `ouroboros-run` e `ouroboros-dashboard` após a instalação editável. Execute os comandos de exemplo na raiz desta pasta. Em tarefas na nuvem, use o checkout existente: não é necessário criar um Git worktree.
+
+## O que está implementado
+
+| Componente | Funcionamento real |
+|---|---|
+| `primitives/liquid_cell.py` | Relaxação exponencial em tempo contínuo com constante de tempo aprendida; inspirada em células líquidas, não implementação canônica de CfC. |
+| `primitives/plastic_synapse.py` | Pesos treináveis mais traço Hebbiano individual, com decaimento, modulação e limites. |
+| `primitives/spiking_gate.py` | Gate de limiar com gradiente substituto; fração de disparos medida. |
+| `primitives/ttt_layer.py` | Atualização analítica por SGD de preditor linear rápido, separado por organismo. |
+| `physiology/` | Energia, custos de movimento/sinal, estresse, entropia de ativações e modulação da plasticidade. |
+| `core/dynamic_brain.py` | Integração recorrente das primitivas, previsão sensorial, ação e emissão de sinais. |
+| `core/meta_plasticity.py` | Operações PyTorch em lote, compatíveis com CPU/CUDA; sem kernels personalizados. |
+| `agents/social_agent.py` | Organismos sociais vetorizados: pesos lentos compartilhados e memórias rápidas individuais. |
+| `agents/programmer_agent.py` | Organismo individual com decoder de ASTs aritméticas, seleção estocástica e REINFORCE. |
+| `environment/` | Recursos limitados, competição, reposição de estoque, atrito, obstáculos móveis e sinais atenuados por distância. |
+| `sandbox/` | Interpretação de DSL restrita em subprocesso, limites de CPU/RAM/tempo e retorno de correção. |
+| `scripts/` | Bootstrap supervisionado, simulação com aprendizado online e painel HTTP de métricas reais. |
+
+O loop do ecossistema é sequencial e determinístico na CPU com a mesma semente; o painel pode rodar em um processo independente e consultar snapshots atômicos. CUDA pode introduzir diferenças numéricas. A interface usa HTTP com atualização periódica, não WebSockets.
+
+### Aprendizado
+
+1. Os agentes observam sua posição, direção/distância ao recurso mais próximo, energia, estresse e mensagens recebidas.
+2. O cérebro produz previsão da próxima observação, ações estocásticas e sinais contínuos.
+3. O mundo recompensa colheita e aproximação dos recursos; movimento e colisões têm custo.
+4. Adam otimiza previsão, política motora com REINFORCE, política de comunicação com recompensa coletiva imediata e regularização metabólica. Não há garantia de que essa recompensa ensine comunicação útil.
+5. A plasticidade Hebbiana e a memória rápida TTT atualizam estados locais durante cada passo.
+6. Quando a energia acaba, o organismo é contado como perdido e reposto, com memória rápida limpa. Os pesos lentos compartilhados permanecem.
+
+As perdas estão explícitas em `ouroboros/simulation.py`. O módulo `free_energy.py` calcula erro preditivo com regularização; **não implementa uma ELBO nem comprova o Princípio da Energia Livre**. A entropia mostrada é das ativações, não uma medida validada de entropia sináptica. Energia/estresse são variáveis numéricas, sem alegação de sentimentos.
+
+### Escopo da programadora
+
+O bootstrap treina um classificador de **11 expressões predefinidas** para seis tarefas identificadas por vetores de contexto. O estado do cérebro modula a entrada desse decoder; o feedback altera a política e a homeostase. Não há modelo de linguagem pré-treinado, geração livre de tokens, compreensão de instruções em linguagem natural nem autoalteração do código do projeto.
+
+O dataset em `data/bootstrap_code/tasks.json` separa casos de treino e de validação numérica. A avaliação verifica novos números nas mesmas tarefas conhecidas: **não testa generalização para algoritmos inéditos**. A execução online usa os casos de validação para recompensa, portanto esses casos deixam de ser um conjunto independente de avaliação após o aprendizado online.
+
+Cada tentativa gera um pequeno arquivo `solve(x, y)` e um JSON com expressão, recompensa, correção, tempo e memória. A correção tem prioridade: uma saída vazia, erro ou função constante incorreta não ganha recompensa por ser rápida. Ainda não há objetivo de otimização de tempo de execução nem comparação de desempenho entre algoritmos.
+
+### Limites do executor
+
+A DSL aceita somente números limitados, `x`, `y`, `+`, `-`, `*`, `/`, sinais unários e chamadas `abs`, `min`, `max` com aridade fixa. Não utiliza `eval` ou `exec`. Imports, atributos, arquivos, rede, loops, comprehensions e potência são rejeitados. Há limites de tamanho da AST, profundidade e quantidade de casos.
+
+O subprocesso recebe um ambiente mínimo sem credenciais herdadas e limites Linux de memória, CPU e arquivos. O tempo total é limitado pelo processo pai. `elapsed_ms` mede interpretação; `wall_ms` inclui inicialização do processo; `memory_kb` é o pico RSS pós-exec do worker, medido por `VmHWM` em `/proc/self/status` (e não pelo pico eventualmente herdado do processo pai). Esses valores não são benchmarks de algoritmos.
+
+**Isto não é um sandbox para Python arbitrário, C ou assembly.** Não use o executor como serviço público para código livre. Para ampliar esse escopo, será preciso isolamento de SO apropriado, como contêineres com seccomp, filesystem e rede restritos. Os exemplos C/ASM são apenas referências e não são executados pelo sistema.
+
+## Resultados gravados
+
+```text
+outputs/
+  programmer.pt             # Pesos do bootstrap
+  programmer.json           # Avaliação das seis tarefas
+  demo/
+    config.json             # Configuração efetiva e versões
+    metrics.jsonl           # Um registro por passo
+    latest.json             # Snapshot atômico para o painel
+    summary.json            # Métricas finais
+    ecosystem.pt            # Pesos/estados finais para análise
+    programs/
+      attempt_0001.py        # Função gerada a partir da DSL
+      attempt_0001.json      # Resultado da tentativa
+```
+
+`ecosystem.pt` é um snapshot de análise, **não um checkpoint de retomada exata**: não inclui todos os estados do mundo, RNGs e otimizadores. A retomada de simulação não está implementada. Carregue checkpoints locais confiáveis com `weights_only=True`, como fazem os scripts.
+
+O ZIP inclui `validation/` com resultados de uma execução real em CPU, relatório de testes, bootstrap treinado e amostras de programas. A pasta `outputs/` não é necessária para começar. Os pesos de bootstrap entregues podem ser utilizados com `--checkpoint validation/programmer.pt`.
+
+Para visualizar a execução entregue, use `python scripts/dashboard.py --output validation/demo`. Para criar novamente o ZIP com os fontes e as evidências, use `python scripts/package_project.py`.
+
+## Configuração e extensão
+
+- `configs/ecosystem_config.yaml`: população, dispositivo, passos, geometria, recursos, metabolismo e frequência da programadora.
+- `configs/neuron_primitives.yaml`: constantes de tempo, limiar de disparo, taxas e decaimento das memórias rápidas.
+- `configs/programmer_bootstrap.yaml`: semente, épocas, taxa e dataset de bootstrap. O contexto de seis dimensões é fixo neste protótipo; `syntax_penalty` documenta a penalidade padrão de falha do executor.
+
+Para mudar a gramática, atualize `EXPRESSIONS`, os exemplos e os testes e treine um novo checkpoint. Para avaliar emergência ou desempenho, defina baselines, tarefas não vistas, métricas independentes e várias sementes. A topologia atual é fixa: as conexões mudam de peso, mas a rede não cria/remove neurônios. O gate esparso continua usando operações densas e não garante economia de GPU ou 90% de esparsidade.
+
+## Testes
+
+```bash
+python -m unittest discover -s tests -v
+```
+
+A suíte verifica gradientes e dinâmica temporal, memórias individuais, comunicação por distância, conservação de recursos, obstáculos, rejeição de construções proibidas, timeout, feedback, repetibilidade e artefatos do ciclo integrado, além dos endpoints HTTP do painel. A validação CUDA depende de hardware disponível e não foi realizada no ambiente de entrega.
+
+## Exportação de código-fonte
+
+`CODIGO_COMPLETO.txt` contém as fontes, configurações e documentação reunidas num único arquivo UTF-8. Gere novamente com `python scripts/export_source_txt.py`. Os pesos PyTorch e as capturas PNG são binários separados incluídos na distribuição ZIP e nos artefatos de validação.
+
+========================================================================================
+ARQUIVO: configs/ecosystem_config.yaml
+========================================================================================
+seed: 42
+device: auto
+population: 24
+hidden_size: 32
+signal_size: 4
+steps: 300
+dt: 0.1
+learning_rate: 0.001
+world:
+  size: 10.0
+  speed: 0.7
+  friction: 0.2
+  resource_count: 6
+  harvest_radius: 0.8
+  resource_regeneration: 0.025
+  communication_radius: 3.0
+  obstacle_count: 3
+  obstacle_radius: 0.35
+physiology:
+  initial_energy: 0.8
+  basal_cost: 0.002
+  movement_cost: 0.003
+  signal_cost: 0.002
+  harvest_gain: 0.10
+programmer:
+  interval: 25
+  timeout_seconds: 2.0
+  memory_mb: 256
+output_dir: outputs/demo
+
+========================================================================================
+ARQUIVO: configs/neuron_primitives.yaml
+========================================================================================
+liquid:
+  tau_min: 0.1
+  tau_max: 2.0
+plastic:
+  learning_rate: 0.025
+  decay: 0.03
+  clip: 1.0
+spiking:
+  threshold: 0.12
+  surrogate_slope: 5.0
+ttt:
+  learning_rate: 0.03
+  decay: 0.01
+
+========================================================================================
+ARQUIVO: configs/programmer_bootstrap.yaml
+========================================================================================
+seed: 42
+epochs: 150
+learning_rate: 0.03
+context_size: 6
+syntax_penalty: 1.0
+task_file: data/bootstrap_code/tasks.json
+checkpoint: outputs/programmer.pt
+
+========================================================================================
+ARQUIVO: data/bootstrap_code/examples.py
+========================================================================================
+"""Referência humana: as tarefas são carregadas do JSON, nunca deste arquivo."""
+
+
+def soma(x, y):
+    return x + y
+
+
+def media(x, y):
+    return (x + y) / 2
+
+========================================================================================
+ARQUIVO: data/bootstrap_code/sum.c
+========================================================================================
+/* Referência didática. Não executada pela DSL. */
+double sum(double x, double y) { return x + y; }
+
+========================================================================================
+ARQUIVO: data/bootstrap_code/sum_x86_64.s
+========================================================================================
+# Referência didática, System V ABI x86-64 Linux, sintaxe AT&T.
+# Não executada pelo protótipo. double sum(double x, double y).
+.text
+.globl sum
+.type sum, @function
+sum:
+    addsd %xmm1, %xmm0
+    ret
+.size sum, .-sum
+.section .note.GNU-stack,"",@progbits
+
+========================================================================================
+ARQUIVO: data/bootstrap_code/tasks.json
+========================================================================================
+[
+  {"name":"soma", "description":"Somar x e y", "features":[1,0,0,0,0,0], "expression":"x + y", "cases":[[2,3,5],[-4,7,3],[0,0,0]], "validation_cases":[[13,-8,5],[-9,-2,-11],[0.25,0.75,1]]},
+  {"name":"diferenca", "description":"Subtrair y de x", "features":[0,1,0,0,0,0], "expression":"x - y", "cases":[[2,3,-1],[-4,7,-11],[0,0,0]], "validation_cases":[[13,-8,21],[-9,-2,-7],[0.25,0.75,-0.5]]},
+  {"name":"produto", "description":"Multiplicar x e y", "features":[0,0,1,0,0,0], "expression":"x * y", "cases":[[2,3,6],[-4,7,-28],[0,3,0]], "validation_cases":[[13,-8,-104],[-9,-2,18],[0.25,0.75,0.1875]]},
+  {"name":"quadrado", "description":"Elevar x ao quadrado", "features":[0,0,0,1,0,0], "expression":"x * x", "cases":[[2,3,4],[-4,7,16],[0,3,0]], "validation_cases":[[13,-8,169],[-9,-2,81],[0.25,0.75,0.0625]]},
+  {"name":"media", "description":"Media aritmetica de x e y", "features":[0,0,0,0,1,0], "expression":"(x + y) / 2", "cases":[[2,4,3],[-4,8,2],[0,0,0]], "validation_cases":[[13,-8,2.5],[-9,-2,-5.5],[0.25,0.75,0.5]]},
+  {"name":"distancia", "description":"Distancia absoluta entre x e y", "features":[0,0,0,0,0,1], "expression":"abs(x - y)", "cases":[[2,3,1],[-4,7,11],[0,0,0]], "validation_cases":[[13,-8,21],[-9,-2,7],[0.25,0.75,0.5]]}
+]
+
+========================================================================================
+ARQUIVO: ouroboros/__init__.py
+========================================================================================
+"""Ouroboros: protótipo experimental, sem alegação de consciência."""
+
+__version__ = "0.1.0"
+
+========================================================================================
+ARQUIVO: ouroboros/agents/__init__.py
+========================================================================================
+"""Organismos sociais em lote e política de programação delimitada."""
+
+========================================================================================
+ARQUIVO: ouroboros/agents/base_organism.py
+========================================================================================
+from abc import ABC, abstractmethod
+import torch
+from ouroboros.core.dynamic_brain import DynamicBrain
+from ouroboros.physiology.homeostasis import Homeostasis
+from ouroboros.physiology.neuromodulation import Neuromodulation
+
+
+class BaseOrganism(ABC):
+    """Uma instância contém a população vetorizada para evitar loops na GPU."""
+
+    def __init__(self, config, primitives, device):
+        count = config["population"]
+        self.brain = DynamicBrain(7 + config["signal_size"], config["hidden_size"],
+                                  config["signal_size"], count, primitives).to(device)
+        self.physiology = Homeostasis(count, device, config["physiology"])
+        self.modulation = Neuromodulation(count, device)
+        self.last = None
+
+    @abstractmethod
+    def perceive(self, world):
+        raise NotImplementedError
+
+    def think(self, observation, dt):
+        self.last = self.brain(observation, dt, self.modulation.plasticity())
+        return self.last
+
+    def act(self, world, dt):
+        return world.step(self.last["action"].detach(), dt)
+
+    def metabolize(self, harvest, reward, shock):
+        dead = self.physiology.update(self.last["action"].detach(), self.last["signal"].detach(),
+                                     self.last["activity"].detach(), harvest, shock)
+        self.modulation.update(reward, self.physiology.stress)
+        return dead
+
+========================================================================================
+ARQUIVO: ouroboros/agents/programmer_agent.py
+========================================================================================
+import json
+from pathlib import Path
+import torch
+from torch import nn
+from torch.distributions import Categorical
+from .base_organism import BaseOrganism
+from ouroboros.sandbox import SafeExecutor
+from ouroboros.sandbox.feedback_bridge import feedback_from_result
+
+
+# Gramática finita e pública: o agente escolhe ASTs válidas, não inventa Python.
+EXPRESSIONS = ["x", "y", "0", "x + y", "x - y", "x * y", "x * x",
+               "(x + y) / 2", "abs(x - y)", "min(x, y)", "max(x, y)"]
+
+
+class CodePolicy(nn.Module):
+    def __init__(self, context_size=6):
+        super().__init__()
+        self.decoder = nn.Sequential(nn.Linear(context_size, 32), nn.Tanh(), nn.Linear(32, len(EXPRESSIONS)))
+
+    def forward(self, features, activity=None):
+        if activity is not None:
+            features = features + 0.05 * activity.detach().mean()
+        return self.decoder(features)
+
+
+def load_tasks(path):
+    tasks = json.loads(Path(path).read_text(encoding="utf-8"))
+    if not tasks:
+        raise ValueError("Dataset vazio")
+    for task in tasks:
+        if task["expression"] not in EXPRESSIONS or len(task["features"]) != 6:
+            raise ValueError("Tarefa incompatível com a gramática/contexto do protótipo")
+        if not task.get("cases") or not task.get("validation_cases"):
+            raise ValueError("Cada tarefa precisa de treino e validação separados")
+    return tasks
+
+
+class ProgrammerAgent(BaseOrganism):
+    """Organismo com decoder de ASTs e reforço online a partir de testes.
+
+    O ciclo ecológico usa SocialAgent em lote; esta subclasse fornece um
+    organismo individual de programação e converte feedback em fisiologia.
+    """
+
+    def __init__(self, config, primitives, device, checkpoint=None, syntax_penalty=1.0):
+        individual = dict(config, population=1)
+        super().__init__(individual, primitives, device)
+        self.device = device
+        self.policy = CodePolicy().to(device)
+        self.syntax_penalty = syntax_penalty
+        if checkpoint and not Path(checkpoint).is_file():
+            raise FileNotFoundError(f"Checkpoint não encontrado: {checkpoint}")
+        if checkpoint:
+            saved = torch.load(checkpoint, map_location=device, weights_only=True)
+            if saved["expressions"] != EXPRESSIONS:
+                raise ValueError("Checkpoint usa outra gramática")
+            self.policy.load_state_dict(saved["policy"])
+            self.syntax_penalty = saved.get("config", {}).get("syntax_penalty", syntax_penalty)
+        self.optimizer = torch.optim.Adam(self.policy.parameters(), lr=0.003)
+        self.executor = SafeExecutor(config["programmer"]["timeout_seconds"], config["programmer"]["memory_mb"])
+        self.count, self.solved = 0, 0
+
+    def perceive(self, world=None):
+        return torch.zeros(1, self.brain.predictor.out_features, device=self.device)
+
+    def attempt(self, task):
+        observation = self.perceive()
+        observation[0, 5] = self.physiology.energy[0]
+        observation[0, 6] = self.physiology.stress[0]
+        self.think(observation, 0.1)
+        features = torch.tensor(task["features"], device=self.device, dtype=torch.float32)
+        distribution = Categorical(logits=self.policy(features, self.last["activity"]))
+        choice = distribution.sample()
+        expression = EXPRESSIONS[int(choice.item())]
+        result = self.executor.execute(expression, task["validation_cases"])
+        feedback = feedback_from_result(result, self.syntax_penalty)
+        loss = -distribution.log_prob(choice) * feedback.reward - 0.01 * distribution.entropy()
+        self.optimizer.zero_grad()
+        loss.backward()
+        self.optimizer.step()
+        reward = torch.tensor([feedback.reward], device=self.device)
+        shock = torch.tensor([feedback.shock], device=self.device)
+        harvest = torch.tensor([max(0, feedback.reward) * 0.2], device=self.device)
+        dead = self.metabolize(harvest, reward, shock)
+        if bool(dead.any()):
+            self.physiology.respawn(dead)
+            self.brain.reset_agents(dead)
+        self.count += 1
+        self.solved += int(feedback.solved)
+        return {"task": task["name"], "expression": expression, "reward": feedback.reward,
+                "solved": feedback.solved, "error": result.error, "message": result.message,
+                "elapsed_ms": result.elapsed_ms, "wall_ms": result.wall_ms, "memory_kb": result.memory_kb,
+                "returncode": result.returncode, "energy": float(self.physiology.energy[0]),
+                "stress": float(self.physiology.stress[0]), "attempts": self.count, "solved_total": self.solved}
+
+========================================================================================
+ARQUIVO: ouroboros/agents/social_agent.py
+========================================================================================
+import torch
+from .base_organism import BaseOrganism
+from ouroboros.environment.signal_bus import SignalBus
+
+
+class SocialAgent(BaseOrganism):
+    def __init__(self, config, primitives, device):
+        super().__init__(config, primitives, device)
+        self.bus = SignalBus(config["world"]["communication_radius"])
+        self.signals = torch.zeros(config["population"], config["signal_size"], device=device)
+
+    def perceive(self, world):
+        incoming = self.bus.receive(world.positions, self.signals)
+        return world.observe(self.physiology.energy, self.physiology.stress, incoming)
+
+    def broadcast(self):
+        self.signals = self.last["signal"].detach()
+
+========================================================================================
+ARQUIVO: ouroboros/cli.py
+========================================================================================
+import argparse
+import json
+from pathlib import Path
+import torch
+from torch.nn import functional as F
+from ouroboros.config import ROOT, read_yaml, resolve_device
+
+
+def run():
+    from ouroboros.simulation import simulate
+    parser = argparse.ArgumentParser(description="Executa o ecossistema experimental Ouroboros")
+    parser.add_argument("--config", type=Path, default=ROOT / "configs/ecosystem_config.yaml")
+    parser.add_argument("--primitives", type=Path, default=ROOT / "configs/neuron_primitives.yaml")
+    parser.add_argument("--steps", type=int)
+    parser.add_argument("--device", choices=["auto", "cpu", "cuda"])
+    parser.add_argument("--output", type=Path)
+    parser.add_argument("--checkpoint", type=Path)
+    parser.add_argument("--tasks", type=Path, default=ROOT / "data/bootstrap_code/tasks.json")
+    parser.add_argument("--pace", type=float, default=0, help="Pausa por passo, em segundos, para observação ao vivo")
+    args = parser.parse_args()
+    config = read_yaml(args.config)
+    for key in ("steps", "device"):
+        if getattr(args, key) is not None:
+            config[key] = getattr(args, key)
+    if args.output:
+        config["output_dir"] = str(args.output)
+    if args.pace < 0:
+        parser.error("--pace não pode ser negativo")
+    simulate(config, read_yaml(args.primitives), args.tasks, args.checkpoint, args.pace)
+
+
+def bootstrap():
+    from ouroboros.agents.programmer_agent import CodePolicy, EXPRESSIONS, load_tasks
+    from ouroboros.sandbox import SafeExecutor
+    from ouroboros.simulation import atomic_json
+    parser = argparse.ArgumentParser(description="Treina o seletor de expressões aritméticas")
+    parser.add_argument("--config", type=Path, default=ROOT / "configs/programmer_bootstrap.yaml")
+    parser.add_argument("--epochs", type=int)
+    parser.add_argument("--output", type=Path)
+    parser.add_argument("--device", choices=["auto", "cpu", "cuda"], default="auto")
+    args = parser.parse_args()
+    config = read_yaml(args.config)
+    epochs = args.epochs if args.epochs is not None else config["epochs"]
+    if epochs < 1 or config["context_size"] != 6:
+        parser.error("É necessário epochs >= 1 e context_size = 6")
+    device = resolve_device(args.device)
+    torch.set_num_threads(1)
+    torch.manual_seed(config["seed"])
+    tasks = load_tasks(ROOT / config["task_file"])
+    executor = SafeExecutor()
+    for task in tasks:
+        reference = executor.execute(task["expression"], task["cases"] + task["validation_cases"])
+        if not reference.ok or reference.error > 1e-6:
+            raise ValueError(f"Referência inválida no dataset: {task['name']}")
+    model = CodePolicy(config["context_size"]).to(device)
+    optimizer = torch.optim.Adam(model.parameters(), lr=config["learning_rate"])
+    features = torch.tensor([t["features"] for t in tasks], dtype=torch.float32, device=device)
+    labels = torch.tensor([EXPRESSIONS.index(t["expression"]) for t in tasks], device=device)
+    for _ in range(epochs):
+        loss = F.cross_entropy(model(features), labels)
+        optimizer.zero_grad()
+        loss.backward()
+        optimizer.step()
+    with torch.no_grad():
+        choices = model(features).argmax(-1).tolist()
+    checks = []
+    for task, choice in zip(tasks, choices):
+        expression = EXPRESSIONS[choice]
+        result = executor.execute(expression, task["validation_cases"])
+        checks.append({"task": task["name"], "expression": expression,
+                       "passed": result.ok and result.error < 1e-6, "error": result.error})
+    output = args.output or ROOT / config["checkpoint"]
+    output.parent.mkdir(parents=True, exist_ok=True)
+    torch.save({"policy": model.state_dict(), "expressions": EXPRESSIONS, "config": config}, output)
+    report = {"epochs": epochs, "loss": loss.item(), "passed": sum(c["passed"] for c in checks),
+              "total": len(checks), "checks": checks,
+              "scope": "Mesmas seis tarefas, novos valores numéricos; não mede generalização para novas tarefas."}
+    atomic_json(output.with_suffix(".json"), report)
+    print(json.dumps(report, ensure_ascii=False, indent=2))
+    if report["passed"] != report["total"]:
+        raise SystemExit(1)
+
+
+def dashboard():
+    from ouroboros.dashboard import serve
+    parser = argparse.ArgumentParser(description="Painel de métricas sem dependências web adicionais")
+    parser.add_argument("--output", type=Path, default=ROOT / "outputs/demo")
+    parser.add_argument("--host", default="127.0.0.1")
+    parser.add_argument("--port", type=int, default=8080)
+    args = parser.parse_args()
+    serve(args.output, args.host, args.port)
+
+========================================================================================
+ARQUIVO: ouroboros/config.py
+========================================================================================
+import math
+from pathlib import Path
+import torch
+import yaml
+
+
+ROOT = Path(__file__).resolve().parent.parent
+
+
+def read_yaml(path):
+    with Path(path).open(encoding="utf-8") as stream:
+        value = yaml.safe_load(stream)
+    if not isinstance(value, dict):
+        raise ValueError(f"Configuração inválida: {path}")
+    return value
+
+
+def validate(config, primitives):
+    for name in ("population", "hidden_size", "signal_size", "steps"):
+        if type(config[name]) is not int or config[name] < 1:
+            raise ValueError(f"{name} precisa ser inteiro positivo")
+    if config["device"] not in ("auto", "cpu", "cuda"):
+        raise ValueError("device deve ser auto, cpu ou cuda")
+    for value in (config["dt"], config["learning_rate"], config["world"]["size"],
+                  config["world"]["communication_radius"], config["world"]["harvest_radius"]):
+        if not math.isfinite(value) or value <= 0:
+            raise ValueError("Tempos, taxas e dimensões precisam ser positivos e finitos")
+    if not 0 <= config["world"]["friction"] <= 1:
+        raise ValueError("friction precisa estar entre 0 e 1")
+    if type(config["world"]["resource_count"]) is not int or config["world"]["resource_count"] < 1:
+        raise ValueError("resource_count precisa ser inteiro positivo")
+    if type(config["programmer"]["interval"]) is not int or config["programmer"]["interval"] < 1:
+        raise ValueError("interval precisa ser inteiro positivo")
+    if not 0 < config["physiology"]["initial_energy"] <= 1:
+        raise ValueError("initial_energy precisa estar entre 0 (exclusivo) e 1")
+    if not 0 < primitives["liquid"]["tau_min"] <= primitives["liquid"]["tau_max"]:
+        raise ValueError("Constantes de tempo inválidas")
+    for name in ("plastic", "ttt"):
+        if not 0 <= primitives[name]["decay"] <= 1 or primitives[name]["learning_rate"] < 0:
+            raise ValueError("Taxas de plasticidade inválidas")
+
+
+def resolve_device(request):
+    if request == "cuda" and not torch.cuda.is_available():
+        raise RuntimeError("CUDA solicitada, mas indisponível. Use --device cpu ou auto.")
+    return torch.device("cuda" if request == "auto" and torch.cuda.is_available() else
+                        "cpu" if request == "auto" else request)
+
+========================================================================================
+ARQUIVO: ouroboros/core/__init__.py
+========================================================================================
+"""Cérebro recorrente vetorizado e regras de plasticidade."""
+
+========================================================================================
+ARQUIVO: ouroboros/core/dynamic_brain.py
+========================================================================================
+import torch
+from torch import nn
+from torch.distributions import Normal
+from ouroboros.primitives import LiquidCell, PlasticSynapse, SpikingGate, TTTLayer
+
+
+class DynamicBrain(nn.Module):
+    """Pesos lentos compartilhados, estados e memórias rápidos individuais."""
+
+    def __init__(self, input_size, hidden_size, signal_size, population, primitives):
+        super().__init__()
+        self.liquid = LiquidCell(input_size, hidden_size, **primitives["liquid"])
+        self.spiking = SpikingGate(**primitives["spiking"])
+        self.plastic = PlasticSynapse(hidden_size, population, **primitives["plastic"])
+        self.ttt = TTTLayer(hidden_size, population, **primitives["ttt"])
+        self.motor = nn.Linear(hidden_size, 2)
+        self.voice = nn.Linear(hidden_size, signal_size)
+        self.predictor = nn.Linear(hidden_size, input_size)
+        self.register_buffer("hidden", torch.zeros(population, hidden_size))
+
+    def forward(self, observation, dt, modulation):
+        liquid = self.liquid(observation, self.hidden.detach().clone(), dt)
+        gated, spikes = self.spiking(liquid)
+        memory = self.ttt(self.plastic(gated, modulation))
+        # Via residual mantém informações quando poucos neurônios disparam.
+        activity = torch.tanh(liquid + memory)
+        distribution = Normal(self.motor(activity).tanh(), 0.25)
+        raw_action = distribution.sample()
+        action = raw_action.clamp(-1, 1)
+        voice_distribution = Normal(self.voice(activity).tanh(), 0.15)
+        raw_signal = voice_distribution.sample()
+        with torch.no_grad():
+            self.hidden.copy_(liquid.detach())
+        return {"action": action, "log_prob": distribution.log_prob(raw_action).sum(-1),
+                "signal_log_prob": voice_distribution.log_prob(raw_signal).sum(-1),
+                "signal": raw_signal.clamp(-1, 1), "prediction": self.predictor(activity),
+                "activity": activity, "spikes": spikes}
+
+    @torch.no_grad()
+    def reset_agents(self, mask):
+        self.hidden[mask] = 0
+        self.plastic.trace[mask] = 0
+        self.ttt.fast[mask] = 0
+        self.ttt.previous[mask] = 0
+
+========================================================================================
+ARQUIVO: ouroboros/core/meta_plasticity.py
+========================================================================================
+import torch
+
+
+@torch.no_grad()
+def hebbian_update(trace, pre, post, rate, decay, limit, modulation):
+    """Atualização por lote [agentes, saída, entrada], CPU ou CUDA nativo."""
+    outer = post.unsqueeze(-1) * pre.unsqueeze(-2)
+    trace.mul_(1 - decay).add_(rate * modulation[:, None, None] * outer)
+    trace.clamp_(-limit, limit)
+
+========================================================================================
+ARQUIVO: ouroboros/dashboard.html
+========================================================================================
+<!doctype html>
+<html lang="pt-BR">
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Ouroboros · Laboratório de agentes</title>
+<style>
+:root{color-scheme:dark;font-family:system-ui,sans-serif;background:#0c111b;color:#e0e8f7}*{box-sizing:border-box}body{margin:0;padding:32px;max-width:1450px;margin:auto}header{display:flex;justify-content:space-between;align-items:center;gap:20px;margin-bottom:24px}h1{font-size:30px;margin:8px 0}h2{font-size:16px;font-weight:600;margin:0 0 18px}p{color:#9aaac3;font-size:14px}.tag{font-size:11px;letter-spacing:2px;color:#62e2b5}.status{background:#1b2940;padding:9px 14px;border-radius:24px;font-size:13px}.cards{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:20px}.card,.panel{background:#131d2d;border:1px solid #263349;border-radius:14px;padding:20px}.card small{color:#9aaac3}.value{font-size:28px;margin-top:10px;font-variant-numeric:tabular-nums}.grid{display:grid;grid-template-columns:1.2fr 1fr;gap:20px}.panel{min-width:0;margin-bottom:20px}canvas{display:block;width:100%;border-radius:8px;background:#0d1523}.legend{display:flex;gap:16px;font-size:12px;color:#9aaac3;margin-top:14px}code{color:#62e2b5;font-size:19px;display:block;padding:18px;background:#0d1523;border-radius:8px;overflow-wrap:anywhere}#program-detail{line-height:1.7}footer{color:#788ba9;font-size:12px;line-height:1.6}.bar-row{display:flex;gap:4px;align-items:center;height:80px}.bar{flex:1;background:#62e2b5;min-height:2px;opacity:.8}@media(max-width:850px){body{padding:18px}.grid{grid-template-columns:1fr}.cards{grid-template-columns:repeat(2,1fr)}header{align-items:flex-start;flex-direction:column}}
+</style>
+<header><div><div class="tag">NEURAL LAB / EXPERIMENTO 001</div><h1>Ouroboros Engine</h1><p>Observe o ecossistema. Meça o aprendizado.</p></div><span id="status" class="status" role="status" aria-live="polite">Aguardando dados…</span></header>
+<div class="cards"><div class="card"><small>ENERGIA MÉDIA</small><div class="value" id="energy">—</div></div><div class="card"><small>ERRO PREDITIVO</small><div class="value" id="loss">—</div></div><div class="card"><small>NEURÔNIOS ATIVOS</small><div class="value" id="spikes">—</div></div><div class="card"><small>PASSOS / DISPOSITIVO</small><div class="value" id="step">—</div></div></div>
+<div class="grid"><section><div class="panel"><h2>Mundo compartilhado</h2><canvas id="world" width="640" height="440" role="img" aria-label="Posições dos agentes e recursos no mundo simulado"></canvas><div class="legend"><span>● Agentes: cor indica energia</span><span style="color:#f4bd65">◆ Recursos</span><span style="color:#f28086">○ Obstáculos móveis</span></div></div><div class="panel"><h2>Estado interno · primeiro organismo</h2><div class="bar-row" id="activations" aria-label="Magnitude das ativações neurais"></div><p>Ativações medidas. A topologia da rede é fixa neste protótipo.</p></div></section>
+<section><div class="panel"><h2>Homeostase ao longo do tempo</h2><canvas id="chart" width="600" height="230" role="img" aria-label="Histórico de energia em verde e estresse em laranja"></canvas><div class="legend"><span style="color:#62e2b5">Energia</span><span style="color:#f4bd65">Estresse</span></div></div><div class="panel"><h2>Laboratório da programadora</h2><code id="expression">Aguardando primeira tentativa</code><p id="program-detail">O agente seleciona expressões de uma gramática limitada e recebe recompensa pela correção.</p></div><div class="panel"><h2>Comunicação e sobrevivência</h2><p id="social">—</p><p>Vetores de sinal com atenuação por distância. A presença de comunicação não demonstra linguagem emergente.</p></div></section></div>
+<footer>Protótipo de pesquisa · atualização a cada segundo · sem serviços externos ou telemetria · métricas reais da simulação.<br>Energia, estresse e neuromodulação são mecanismos numéricos; não representam consciência ou sofrimento.</footer>
+<script>
+const $=id=>document.getElementById(id), fmt=x=>Number(x).toFixed(3);
+function drawWorld(s){const c=$('world'),g=c.getContext('2d'),w=c.width,h=c.height;g.clearRect(0,0,w,h);g.strokeStyle='#1a2940';for(let i=0;i<=10;i++){g.beginPath();g.moveTo(i*w/10,0);g.lineTo(i*w/10,h);g.stroke();g.beginPath();g.moveTo(0,i*h/10);g.lineTo(w,i*h/10);g.stroke()}const pos=p=>[12+p[0]/s.world_size*(w-24),12+p[1]/s.world_size*(h-24)];s.resources.forEach((p,i)=>{let[x,y]=pos(p),r=4+10*s.stock[i];g.fillStyle='#f4bd65';g.beginPath();g.moveTo(x,y-r);g.lineTo(x+r,y);g.lineTo(x,y+r);g.lineTo(x-r,y);g.closePath();g.fill()});s.positions.forEach((p,i)=>{const[x,y]=pos(p);g.fillStyle=`hsl(${s.energies[i]*155},70%,65%)`;g.beginPath();g.arc(x,y,5,0,Math.PI*2);g.fill()})}
+function drawObstacles(s){const c=$('world'),g=c.getContext('2d');g.strokeStyle='#f28086';g.lineWidth=2;for(const p of s.obstacles||[]){g.beginPath();g.ellipse(12+p[0]/s.world_size*(c.width-24),12+p[1]/s.world_size*(c.height-24),s.obstacle_radius/s.world_size*(c.width-24),s.obstacle_radius/s.world_size*(c.height-24),0,0,Math.PI*2);g.stroke()}}
+function drawHistory(rows){const c=$('chart'),g=c.getContext('2d');g.clearRect(0,0,c.width,c.height);for(const[key,color]of [['energy','#62e2b5'],['stress','#f4bd65']]){g.strokeStyle=color;g.lineWidth=2;g.beginPath();rows.forEach((r,i)=>{const x=12+i/Math.max(rows.length-1,1)*(c.width-24),y=c.height-12-Math.min(2,r[key])/2*(c.height-24);i?g.lineTo(x,y):g.moveTo(x,y)});g.stroke()}g.fillStyle='#788ba9';g.font='11px system-ui';g.fillText('2.0',2,12);g.fillText('0',2,c.height-2)}
+async function refresh(){try{const r=await fetch('/api/latest');if(!r.ok)throw new Error('Aguardando simulação');const s=await r.json();$('status').textContent=s.completed?'Execução concluída':'Simulação em andamento';$('energy').textContent=fmt(s.energy);$('loss').textContent=fmt(s.prediction_error);$('spikes').textContent=(100*s.spike_fraction).toFixed(1)+'%';$('step').textContent=s.step+' / '+s.device;drawWorld(s);drawObstacles(s);$('activations').replaceChildren(...s.activations.map(v=>{const e=document.createElement('div');e.className='bar';e.style.height=(Math.min(1,Math.abs(v))*100)+'%';e.style.background=v<0?'#799fff':'#62e2b5';e.title=fmt(v);return e}));const p=s.programmer;if(p){$('expression').textContent=p.expression;$('program-detail').textContent=`Tarefa: ${p.task} · ${p.solved?'Correta':'Ainda incorreta'} · Recompensa: ${fmt(p.reward)} · Erro: ${fmt(p.error)}\n${p.solved_total}/${p.attempts} tentativas corretas · ${p.wall_ms.toFixed(1)} ms com subprocesso · ${p.memory_kb} KB pico RSS`}$('social').textContent=`${s.population} organismos · ${s.deaths} reposições por falta de energia · entropia de ativação ${fmt(s.entropy)} · recompensa média ${fmt(s.reward)}`;const history=await fetch('/api/history');if(history.ok)drawHistory(await history.json())}catch(e){$('status').textContent=e.message==='Aguardando simulação'?e.message:'Sem conexão com o painel'}}refresh();setInterval(refresh,1000);
+</script>
+</html>
+
+========================================================================================
+ARQUIVO: ouroboros/dashboard.py
+========================================================================================
+from collections import deque
+from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
+import json
+from pathlib import Path
+from urllib.parse import urlsplit
+
+
+PAGE = Path(__file__).with_name("dashboard.html")
+
+
+def handler_for(output):
+    output = Path(output).resolve()
+
+    class Handler(BaseHTTPRequestHandler):
+        def log_message(self, *args):
+            pass
+
+        def do_GET(self):
+            path = urlsplit(self.path).path
+            status = 200
+            if path == "/":
+                content, mime = PAGE.read_bytes(), "text/html; charset=utf-8"
+            elif path in ("/api/latest", "/api/history"):
+                try:
+                    if path == "/api/latest":
+                        value = json.loads((output / "latest.json").read_text(encoding="utf-8"))
+                    else:
+                        with (output / "metrics.jsonl").open(encoding="utf-8") as stream:
+                            lines = deque(stream, maxlen=300)
+                        value = []
+                        for line in lines:
+                            try:
+                                value.append(json.loads(line))
+                            except json.JSONDecodeError:
+                                pass  # Última linha pode estar sendo gravada.
+                    content = json.dumps(value, ensure_ascii=False, allow_nan=False).encode()
+                except (FileNotFoundError, json.JSONDecodeError):
+                    status, content = 503, b'{"message":"Aguardando a simulacao"}'
+                mime = "application/json; charset=utf-8"
+            else:
+                status, content, mime = 404, b"Not found", "text/plain"
+            self.send_response(status)
+            self.send_header("Content-Type", mime)
+            self.send_header("Content-Length", str(len(content)))
+            self.send_header("Cache-Control", "no-store")
+            self.send_header("X-Content-Type-Options", "nosniff")
+            self.end_headers()
+            self.wfile.write(content)
+
+    return Handler
+
+
+def serve(output, host="127.0.0.1", port=8080):
+    server = ThreadingHTTPServer((host, port), handler_for(output))
+    print(f"Painel ouvindo na porta {server.server_port}; dados: {Path(output).resolve()}", flush=True)
+    try:
+        server.serve_forever()
+    except KeyboardInterrupt:
+        pass
+    finally:
+        server.server_close()
+
+========================================================================================
+ARQUIVO: ouroboros/environment/__init__.py
+========================================================================================
+from .shared_world import SharedWorld
+from .signal_bus import SignalBus
+
+__all__ = ["SharedWorld", "SignalBus"]
+
+========================================================================================
+ARQUIVO: ouroboros/environment/shared_world.py
+========================================================================================
+import torch
+
+
+class SharedWorld:
+    """Mundo 2D limitado, recursos esgotáveis e competição proporcional."""
+
+    def __init__(self, population, device, config):
+        self.config, self.device = config, device
+        self.positions = torch.rand(population, 2, device=device) * config["size"]
+        self.velocity = torch.zeros_like(self.positions)
+        self.sources = torch.rand(config["resource_count"], 2, device=device) * config["size"]
+        self.stock = torch.ones(config["resource_count"], device=device)
+        self.obstacles = torch.rand(config.get("obstacle_count", 0), 2, device=device) * config["size"]
+        self.obstacle_phase = self.obstacles.clone()
+        self.time = 0.0
+
+    def nearest(self):
+        distances = torch.cdist(self.positions, self.sources)
+        distance, index = distances.min(-1)
+        return distance, index
+
+    def observe(self, energy, stress, incoming):
+        distance, index = self.nearest()
+        direction = (self.sources[index] - self.positions) / self.config["size"]
+        return torch.cat((self.positions / self.config["size"], direction,
+                          distance[:, None] / self.config["size"], energy[:, None],
+                          stress[:, None], incoming), dim=-1)
+
+    @torch.no_grad()
+    def step(self, actions, dt):
+        before, _ = self.nearest()
+        c = self.config
+        previous = self.positions.clone()
+        self.velocity = c["friction"] * self.velocity + (1 - c["friction"]) * actions
+        self.positions.add_(self.velocity * c["speed"] * dt).clamp_(0, c["size"])
+        self.time += dt
+        collision = torch.zeros(len(self.positions), device=self.device, dtype=torch.bool)
+        if len(self.obstacles):
+            self.obstacles = (self.obstacle_phase + 0.2 * torch.sin(self.obstacle_phase + self.time)).clamp(0, c["size"])
+            collision = (torch.cdist(self.positions, self.obstacles) < c.get("obstacle_radius", 0.35)).any(-1)
+            self.positions[collision] = previous[collision]
+            self.velocity[collision] = 0
+        after, index = self.nearest()
+        eligible = (after < c["harvest_radius"]).float()
+        demand = torch.zeros_like(self.stock).scatter_add_(0, index, eligible)
+        share = torch.minimum(self.stock / demand.clamp_min(1), torch.ones_like(self.stock))
+        harvest = eligible * share[index]
+        consumed = torch.zeros_like(self.stock).scatter_add_(0, index, harvest)
+        self.stock.sub_(consumed).add_(c["resource_regeneration"]).clamp_(0, 1)
+        # Recompensa explícita de aproximação, além da colheita.
+        reward = harvest + 2 * (before - after) - 0.002 * actions.square().sum(-1) - 0.05 * collision.float()
+        return harvest, reward
+
+    @torch.no_grad()
+    def respawn(self, mask):
+        self.positions[mask] = torch.rand(int(mask.sum().item()), 2, device=self.device) * self.config["size"]
+        self.velocity[mask] = 0
+
+========================================================================================
+ARQUIVO: ouroboros/environment/signal_bus.py
+========================================================================================
+import torch
+
+
+class SignalBus:
+    def __init__(self, radius):
+        self.radius = radius
+
+    def receive(self, positions, signals):
+        distance = torch.cdist(positions, positions)
+        weights = (1 - distance / self.radius).clamp_min(0)
+        weights.fill_diagonal_(0)
+        return weights @ signals / weights.sum(-1, keepdim=True).clamp_min(1)
+
+========================================================================================
+ARQUIVO: ouroboros/physiology/__init__.py
+========================================================================================
+"""Energia e estresse são variáveis numéricas, não sensações."""
+
+========================================================================================
+ARQUIVO: ouroboros/physiology/free_energy.py
+========================================================================================
+import torch
+from torch.nn import functional as F
+
+
+def predictive_loss(prediction, observation, activations):
+    """Erro quadrático e regularização de atividade; não ELBO variacional."""
+    accuracy_error = F.mse_loss(prediction, observation)
+    complexity = activations.square().mean()
+    return accuracy_error + 0.001 * complexity
+
+
+def activation_entropy(activations):
+    probabilities = torch.softmax(activations.detach(), dim=-1)
+    return -(probabilities * probabilities.clamp_min(1e-8).log()).sum(-1)
+
+========================================================================================
+ARQUIVO: ouroboros/physiology/homeostasis.py
+========================================================================================
+import torch
+from .free_energy import activation_entropy
+
+
+class Homeostasis:
+    def __init__(self, population, device, config):
+        self.config = config
+        self.energy = torch.full((population,), config["initial_energy"], device=device)
+        self.stress = torch.zeros_like(self.energy)
+        self.entropy = torch.zeros_like(self.energy)
+        self.deaths = 0
+
+    @torch.no_grad()
+    def update(self, actions, signals, activations, harvest, shock):
+        c = self.config
+        cost = c["basal_cost"] + c["movement_cost"] * actions.square().mean(-1)
+        cost = cost + c["signal_cost"] * signals.square().mean(-1)
+        self.energy.add_(harvest * c["harvest_gain"] - cost - 0.01 * shock).clamp_(0, 1)
+        overload = (activations.abs().mean(-1) - 0.6).clamp_min(0)
+        self.stress = (0.8 * self.stress + 0.2 * (1 - self.energy + overload + shock)).clamp(0, 2)
+        self.entropy = activation_entropy(activations)
+        dead = self.energy <= 0
+        self.deaths += int(dead.sum().item())
+        return dead
+
+    def metabolic_loss(self, activations):
+        # Gradiente sobre a atividade, com intensidade modulada pelo estresse.
+        return (self.stress.detach() * activations.square().mean(-1)).mean()
+
+    @torch.no_grad()
+    def respawn(self, mask):
+        self.energy[mask] = self.config["initial_energy"]
+        self.stress[mask] = 0
+
+========================================================================================
+ARQUIVO: ouroboros/physiology/neuromodulation.py
+========================================================================================
+import torch
+
+
+class Neuromodulation:
+    def __init__(self, population, device):
+        self.baseline = torch.zeros(population, device=device)
+        self.dopamine = torch.zeros_like(self.baseline)
+        self.attention = torch.ones_like(self.baseline)
+
+    @torch.no_grad()
+    def update(self, reward, stress):
+        self.dopamine = (reward - self.baseline).tanh()
+        self.baseline.lerp_(reward, 0.05)
+        self.attention = 1 + stress.clamp(0, 1)
+
+    def plasticity(self):
+        return ((1 + self.dopamine) * self.attention).clamp(0.1, 3)
+
+========================================================================================
+ARQUIVO: ouroboros/primitives/__init__.py
+========================================================================================
+from .liquid_cell import LiquidCell
+from .plastic_synapse import PlasticSynapse
+from .spiking_gate import SpikingGate
+from .ttt_layer import TTTLayer
+
+__all__ = ["LiquidCell", "PlasticSynapse", "SpikingGate", "TTTLayer"]
+
+========================================================================================
+ARQUIVO: ouroboros/primitives/liquid_cell.py
+========================================================================================
+import torch
+from torch import nn
+
+
+class LiquidCell(nn.Module):
+    """Relaxação exponencial com tau condicionado ao estado (não CfC canônica)."""
+
+    def __init__(self, input_size, hidden_size, tau_min=0.1, tau_max=2.0):
+        super().__init__()
+        self.target = nn.Linear(input_size + hidden_size, hidden_size)
+        self.tau = nn.Linear(input_size + hidden_size, hidden_size)
+        self.tau_min, self.tau_max = tau_min, tau_max
+
+    def forward(self, x, hidden, dt):
+        if dt <= 0:
+            raise ValueError("dt precisa ser positivo")
+        joined = torch.cat((x, hidden), dim=-1)
+        tau = self.tau_min + (self.tau_max - self.tau_min) * self.tau(joined).sigmoid()
+        alpha = -torch.expm1(-dt / tau)
+        return hidden + alpha * (self.target(joined).tanh() - hidden)
+
+========================================================================================
+ARQUIVO: ouroboros/primitives/plastic_synapse.py
+========================================================================================
+import torch
+from torch import nn
+from ouroboros.core.meta_plasticity import hebbian_update
+
+
+class PlasticSynapse(nn.Module):
+    def __init__(self, size, population, learning_rate=0.025, decay=0.03, clip=1.0):
+        super().__init__()
+        self.fixed = nn.Linear(size, size, bias=False)
+        self.register_buffer("trace", torch.zeros(population, size, size))
+        self.rate, self.decay, self.limit = learning_rate, decay, clip
+
+    def forward(self, x, modulation):
+        # clone separa memória mutável dos tensores usados pelo autograd.
+        y = torch.tanh(self.fixed(x) + torch.bmm(self.trace.detach().clone(), x.unsqueeze(-1)).squeeze(-1))
+        hebbian_update(self.trace, x.detach(), y.detach(), self.rate, self.decay, self.limit, modulation)
+        return y
+
+========================================================================================
+ARQUIVO: ouroboros/primitives/spiking_gate.py
+========================================================================================
+import torch
+from torch import nn
+
+
+class _Spike(torch.autograd.Function):
+    @staticmethod
+    def forward(ctx, x, slope):
+        ctx.save_for_backward(x)
+        ctx.slope = slope
+        return (x > 0).to(x.dtype)
+
+    @staticmethod
+    def backward(ctx, grad):
+        (x,) = ctx.saved_tensors
+        return grad / (1 + ctx.slope * x.abs()).square(), None
+
+
+class SpikingGate(nn.Module):
+    """Gate binário com gradiente substituto; operações continuam densas."""
+
+    def __init__(self, threshold=0.35, surrogate_slope=5.0):
+        super().__init__()
+        self.threshold, self.slope = threshold, surrogate_slope
+
+    def forward(self, x):
+        spikes = _Spike.apply(x.abs() - self.threshold, self.slope)
+        return x * spikes, spikes
+
+========================================================================================
+ARQUIVO: ouroboros/primitives/ttt_layer.py
+========================================================================================
+import torch
+from torch import nn
+from torch.nn import functional as F
+
+
+class TTTLayer(nn.Module):
+    """Memória rápida: SGD analítico de um preditor linear por organismo.
+
+    Aprende a prever a ativação seguinte; implementação inspirada em TTT,
+    sem equivalência aos modelos publicados de larga escala.
+    """
+
+    def __init__(self, size, population, learning_rate=0.03, decay=0.01):
+        super().__init__()
+        self.register_buffer("fast", torch.zeros(population, size, size))
+        self.register_buffer("previous", torch.zeros(population, size))
+        self.rate, self.decay = learning_rate, decay
+
+    def forward(self, x):
+        with torch.no_grad():
+            previous = F.normalize(self.previous, dim=-1)
+            prediction = torch.bmm(self.fast, previous.unsqueeze(-1)).squeeze(-1)
+            error = x.detach() - prediction
+            self.fast.mul_(1 - self.decay).add_(self.rate * error.unsqueeze(-1) * previous.unsqueeze(-2))
+            self.fast.clamp_(-2, 2)
+            self.previous.copy_(x.detach())
+        readout = torch.bmm(self.fast.detach().clone(), F.normalize(x, dim=-1).unsqueeze(-1)).squeeze(-1)
+        return torch.tanh(x + readout)
+
+========================================================================================
+ARQUIVO: ouroboros/sandbox/__init__.py
+========================================================================================
+from .safe_executor import SafeExecutor, ExecutionResult
+
+__all__ = ["SafeExecutor", "ExecutionResult"]
+
+========================================================================================
+ARQUIVO: ouroboros/sandbox/feedback_bridge.py
+========================================================================================
+from dataclasses import dataclass
+import math
+
+
+@dataclass
+class Feedback:
+    reward: float
+    shock: float
+    solved: bool
+
+
+def feedback_from_result(result, syntax_penalty=1.0):
+    if not result.ok:
+        return Feedback(-syntax_penalty, 1.0, False)
+    solved = result.error < 1e-6
+    # Correção determina recompensa; uma saída vazia nunca é sucesso.
+    quality = math.exp(-min(result.error, 100))
+    reward = 2 * quality - 1 if result.values else -1.0
+    return Feedback(reward, min(1.0, result.error), solved and bool(result.values))
+
+========================================================================================
+ARQUIVO: ouroboros/sandbox/safe_executor.py
+========================================================================================
+from dataclasses import dataclass, field
+import json
+from pathlib import Path
+import subprocess
+import sys
+import time
+
+
+@dataclass
+class ExecutionResult:
+    ok: bool
+    error: float = 1.0
+    values: list = field(default_factory=list)
+    message: str = ""
+    elapsed_ms: float = 0.0
+    wall_ms: float = 0.0
+    memory_kb: int = 0
+    returncode: int = 0
+
+
+class SafeExecutor:
+    """Executor Linux de DSL aritmética; não é sandbox de Python/C/ASM geral."""
+
+    def __init__(self, timeout_seconds=2.0, memory_mb=256):
+        if timeout_seconds <= 0 or memory_mb < 64:
+            raise ValueError("Timeout positivo e pelo menos 64 MB são necessários")
+        self.timeout, self.memory_mb = timeout_seconds, memory_mb
+
+    def execute(self, expression, cases):
+        payload = json.dumps({"expression": expression, "cases": cases, "memory_mb": self.memory_mb}, allow_nan=False)
+        if len(payload.encode()) > 60000:
+            return ExecutionResult(False, message="Entrada excede o limite de 60 KB")
+        started = time.perf_counter()
+        try:
+            process = subprocess.run([sys.executable, "-I", str(Path(__file__).with_name("worker.py"))],
+                                     input=payload, text=True, capture_output=True, timeout=self.timeout,
+                                     env={"LANG": "C.UTF-8"}, cwd="/tmp")
+            wall = (time.perf_counter() - started) * 1000
+            if process.returncode:
+                return ExecutionResult(False, message="Worker encerrado ou limite de recursos atingido",
+                                       returncode=process.returncode, wall_ms=wall)
+            return ExecutionResult(**json.loads(process.stdout), wall_ms=wall)
+        except subprocess.TimeoutExpired:
+            return ExecutionResult(False, message="Tempo limite excedido", returncode=-1,
+                                   wall_ms=(time.perf_counter() - started) * 1000)
+        except (OSError, ValueError) as exc:
+            return ExecutionResult(False, message=str(exc)[:200], returncode=-1)
+
+========================================================================================
+ARQUIVO: ouroboros/sandbox/worker.py
+========================================================================================
+"""Worker independente: interpreta somente uma AST aritmética restrita.
+
+Não usa eval/exec, imports do usuário, acesso a atributos ou chamadas livres.
+Limites de processo são defesa adicional; isto não executa Python arbitrário.
+"""
+import ast
+import json
+import math
+import operator
+import resource
+import sys
+import time
+
+
+OPS = {ast.Add: operator.add, ast.Sub: operator.sub, ast.Mult: operator.mul,
+       ast.Div: operator.truediv}
+
+
+def bounded(value):
+    if type(value) not in (int, float) or not math.isfinite(value) or abs(value) > 1e12:
+        raise ValueError("Número fora do limite permitido")
+    return float(value)
+
+
+def interpret(node, variables, depth=0):
+    if depth > 12:
+        raise ValueError("Expressão profunda demais")
+    if isinstance(node, ast.Constant):
+        return bounded(node.value)
+    if isinstance(node, ast.Name) and node.id in ("x", "y"):
+        return bounded(variables[node.id])
+    if isinstance(node, ast.BinOp) and type(node.op) in OPS:
+        return bounded(OPS[type(node.op)](interpret(node.left, variables, depth + 1),
+                                         interpret(node.right, variables, depth + 1)))
+    if isinstance(node, ast.UnaryOp) and isinstance(node.op, (ast.UAdd, ast.USub)):
+        return bounded((1 if isinstance(node.op, ast.UAdd) else -1) * interpret(node.operand, variables, depth + 1))
+    if isinstance(node, ast.Call) and isinstance(node.func, ast.Name) and not node.keywords:
+        functions = {"abs": (abs, 1), "min": (min, 2), "max": (max, 2)}
+        if node.func.id in functions:
+            function, count = functions[node.func.id]
+            if len(node.args) == count:
+                return bounded(function(*(interpret(arg, variables, depth + 1) for arg in node.args)))
+    raise ValueError("Construção não permitida na linguagem aritmética")
+
+
+def main():
+    request = json.loads(sys.stdin.read(65536))
+    limit = int(request["memory_mb"]) * 1024 * 1024
+    resource.setrlimit(resource.RLIMIT_AS, (limit, limit))
+    resource.setrlimit(resource.RLIMIT_CPU, (1, 1))
+    resource.setrlimit(resource.RLIMIT_FSIZE, (0, 0))
+    resource.setrlimit(resource.RLIMIT_NOFILE, (16, 16))
+    started = time.perf_counter()
+    try:
+        source, cases = request["expression"], request["cases"]
+        if not isinstance(source, str) or len(source) > 256:
+            raise ValueError("Expressão deve ter até 256 caracteres")
+        if not isinstance(cases, list) or not 1 <= len(cases) <= 64:
+            raise ValueError("Informe de 1 a 64 casos")
+        tree = ast.parse(source, mode="eval")
+        if sum(1 for _ in ast.walk(tree)) > 64:
+            raise ValueError("AST excede 64 nós")
+        values, errors = [], []
+        for x, y, expected in cases:
+            value = interpret(tree.body, {"x": bounded(x), "y": bounded(y)})
+            expected = bounded(expected)
+            values.append(value)
+            errors.append(abs(value - expected) / max(1, abs(expected)))
+        result = {"ok": True, "values": values, "error": sum(errors) / len(errors), "message": ""}
+    except (ValueError, TypeError, SyntaxError, ZeroDivisionError, OverflowError, RecursionError) as exc:
+        result = {"ok": False, "values": [], "error": 1.0, "message": str(exc)[:200]}
+    elapsed_ms = (time.perf_counter() - started) * 1000
+    # ru_maxrss pode carregar o pico do pai PyTorch através de fork/exec.
+    # VmHWM mede o espaço do worker após exec, sem atribuir a memória do pai.
+    with open("/proc/self/status", encoding="ascii") as status:
+        memory_kb = next(int(line.split()[1]) for line in status if line.startswith("VmHWM:"))
+    result.update(elapsed_ms=elapsed_ms, memory_kb=memory_kb)
+    print(json.dumps(result, allow_nan=False))
+
+
+if __name__ == "__main__":
+    main()
+
+========================================================================================
+ARQUIVO: ouroboros/simulation.py
+========================================================================================
+import json
+import os
+from pathlib import Path
+import random
+import time
+import torch
+from ouroboros.agents.social_agent import SocialAgent
+from ouroboros.agents.programmer_agent import ProgrammerAgent, load_tasks
+from ouroboros.config import resolve_device, validate
+from ouroboros.environment import SharedWorld
+from ouroboros.physiology.free_energy import predictive_loss
+
+
+def atomic_json(path, value):
+    path = Path(path)
+    temporary = path.with_suffix(path.suffix + ".tmp")
+    temporary.write_text(json.dumps(value, ensure_ascii=False, allow_nan=False), encoding="utf-8")
+    os.replace(temporary, path)
+
+
+def simulate(config, primitives, task_file, checkpoint=None, pace=0.0, quiet=False):
+    validate(config, primitives)
+    device = resolve_device(config["device"])
+    random.seed(config["seed"])
+    torch.manual_seed(config["seed"])
+    # Matrizes pequenas não se beneficiam de dezenas de threads na CPU.
+    torch.set_num_threads(1)
+    tasks = load_tasks(task_file)
+    world = SharedWorld(config["population"], device, config["world"])
+    agents = SocialAgent(config, primitives, device)
+    programmer = ProgrammerAgent(config, primitives, device, checkpoint)
+    optimizer = torch.optim.Adam(agents.brain.parameters(), lr=config["learning_rate"])
+    output = Path(config["output_dir"])
+    output.mkdir(parents=True, exist_ok=True)
+    # Evita misturar medições e checkpoints de execuções diferentes.
+    if any(output.iterdir()):
+        raise ValueError(f"Diretório de saída deve estar vazio: {output}")
+    atomic_json(output / "config.json", {"ecosystem": config, "primitives": primitives,
+                                        "task_file": str(task_file), "checkpoint": str(checkpoint),
+                                        "torch": torch.__version__, "device": str(device)})
+    baseline = torch.zeros(config["population"], device=device)
+    latest_program = None
+    started = time.perf_counter()
+    with (output / "metrics.jsonl").open("w", encoding="utf-8") as log:
+        for step in range(1, config["steps"] + 1):
+            observation = agents.perceive(world)
+            state = agents.think(observation, config["dt"])
+            harvest, reward = agents.act(world, config["dt"])
+            agents.broadcast()
+            shock = torch.zeros_like(reward)
+            if step % config["programmer"]["interval"] == 0:
+                task = tasks[(step // config["programmer"]["interval"] - 1) % len(tasks)]
+                latest_program = programmer.attempt(task)
+                programs = output / "programs"
+                programs.mkdir(exist_ok=True)
+                stem = f"attempt_{programmer.count:04d}"
+                atomic_json(programs / (stem + ".json"), latest_program)
+                (programs / (stem + ".py")).write_text(
+                    f"# Tarefa: {task['name']} | DSL aritmética; gerado pelo seletor de ASTs.\n"
+                    f"def solve(x, y):\n    return {latest_program['expression']}\n", encoding="utf-8")
+            dead = agents.metabolize(harvest, reward, shock)
+            target = agents.perceive(world).detach()
+            prediction_error = predictive_loss(state["prediction"], target, state["activity"])
+            advantage = (reward - baseline).detach()
+            loss = prediction_error - 0.1 * (state["log_prob"] * advantage).mean()
+            signal_cost = config["physiology"]["signal_cost"] * state["signal"].detach().square().mean(-1)
+            communication_advantage = (advantage.mean() - signal_cost).detach()
+            loss = loss - 0.02 * (state["signal_log_prob"] * communication_advantage).mean()
+            loss = loss + 0.01 * agents.physiology.metabolic_loss(state["activity"])
+            if not bool(torch.isfinite(loss)):
+                raise FloatingPointError("Perda não finita; interrompendo a simulação")
+            optimizer.zero_grad()
+            loss.backward()
+            torch.nn.utils.clip_grad_norm_(agents.brain.parameters(), 1.0)
+            optimizer.step()
+            with torch.no_grad():
+                baseline.lerp_(reward, 0.05)
+                if bool(dead.any()):
+                    world.respawn(dead)
+                    agents.physiology.respawn(dead)
+                    agents.brain.reset_agents(dead)
+                    agents.signals[dead] = 0
+                    baseline[dead] = 0
+            metrics = {"step": step, "device": str(device), "population": config["population"],
+                       "energy": agents.physiology.energy.mean().item(),
+                       "stress": agents.physiology.stress.mean().item(),
+                       "entropy": agents.physiology.entropy.mean().item(),
+                       "spike_fraction": state["spikes"].detach().mean().item(),
+                       "reward": reward.mean().item(), "loss": loss.item(),
+                       "prediction_error": prediction_error.item(),
+                       "deaths": agents.physiology.deaths, "programmer": latest_program,
+                       "elapsed_seconds": time.perf_counter() - started}
+            log.write(json.dumps(metrics, ensure_ascii=False, allow_nan=False) + "\n")
+            log.flush()
+            snapshot = dict(metrics, positions=world.positions.tolist(), resources=world.sources.tolist(),
+                            obstacles=world.obstacles.tolist(), obstacle_radius=config["world"].get("obstacle_radius", 0.35),
+                            stock=world.stock.tolist(), energies=agents.physiology.energy.tolist(),
+                            signals=agents.signals.tolist(), world_size=config["world"]["size"],
+                            activations=state["activity"][0].detach().tolist(),
+                            completed=(step == config["steps"]))
+            atomic_json(output / "latest.json", snapshot)
+            if not quiet and (step == 1 or step % 25 == 0 or step == config["steps"]):
+                print(f"step={step} energy={metrics['energy']:.3f} loss={metrics['loss']:.4f} device={device}", flush=True)
+            if pace > 0:
+                time.sleep(pace)
+    torch.save({"brain": agents.brain.state_dict(), "programmer": programmer.policy.state_dict(),
+                "config": config, "step": config["steps"]}, output / "ecosystem.pt")
+    atomic_json(output / "summary.json", metrics)
+    return metrics
+
+========================================================================================
+ARQUIVO: pyproject.toml
+========================================================================================
+[build-system]
+requires = ["setuptools>=69"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ouroboros-engine"
+version = "0.1.0"
+description = "Laboratório experimental de agentes adaptativos em PyTorch"
+requires-python = ">=3.10"
+dependencies = ["torch>=2.6,<3", "PyYAML>=6,<7"]
+
+[project.scripts]
+ouroboros-run = "ouroboros.cli:run"
+ouroboros-bootstrap = "ouroboros.cli:bootstrap"
+ouroboros-dashboard = "ouroboros.cli:dashboard"
+
+[tool.setuptools.packages.find]
+include = ["ouroboros*"]
+
+[tool.setuptools.package-data]
+ouroboros = ["dashboard.html"]
+
+========================================================================================
+ARQUIVO: requirements.txt
+========================================================================================
+# CPU: instale torch primeiro pelo índice oficial; veja README.md.
+torch>=2.6,<3
+PyYAML>=6,<7
+
+========================================================================================
+ARQUIVO: scripts/bootstrap_programmer.py
+========================================================================================
+from pathlib import Path
+import sys
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+from ouroboros.cli import bootstrap
+
+if __name__ == "__main__":
+    bootstrap()
+
+========================================================================================
+ARQUIVO: scripts/dashboard.py
+========================================================================================
+from pathlib import Path
+import sys
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+from ouroboros.cli import dashboard
+
+if __name__ == "__main__":
+    dashboard()
+
+========================================================================================
+ARQUIVO: scripts/export_source_txt.py
+========================================================================================
+"""Concatena fontes, configurações e documentação em um único TXT legível."""
+from pathlib import Path
+import argparse
+
+
+ROOT = Path(__file__).resolve().parents[1]
+INCLUDED_DIRS = ("configs", "data/bootstrap_code", "ouroboros", "scripts", "tests")
+INCLUDED_ROOT_FILES = (".gitignore", "README.md", "pyproject.toml", "requirements.txt")
+INCLUDED_EXTENSIONS = {".py", ".html", ".js", ".ts", ".css", ".c", ".h", ".s",
+                       ".toml", ".yaml", ".yml", ".json", ".md", ".sh"}
+
+
+def source_files():
+    paths = {ROOT / name for name in INCLUDED_ROOT_FILES}
+    for directory in INCLUDED_DIRS:
+        paths.update(path for path in (ROOT / directory).rglob("*")
+                     if path.is_file() and path.suffix.lower() in INCLUDED_EXTENSIONS)
+    # Exemplos de código que a programadora produziu na execução validada.
+    paths.update(path for path in (ROOT / "validation/demo/programs").glob("*.py") if path.is_file())
+    return sorted((path for path in paths if path.is_file()), key=lambda p: p.relative_to(ROOT).as_posix())
+
+
+def export(destination):
+    destination = Path(destination)
+    if not destination.is_absolute():
+        destination = ROOT / destination
+    destination.parent.mkdir(parents=True, exist_ok=True)
+    files = source_files()
+    if destination.resolve() in {path.resolve() for path in files}:
+        raise ValueError("O TXT de saída não pode sobrescrever um arquivo-fonte")
+    with destination.open("w", encoding="utf-8", newline="\n") as output:
+        output.write("OUROBOROS ENGINE — FONTES CONSOLIDADAS\n")
+        output.write(f"Arquivos de texto incluídos: {len(files)}\n")
+        output.write("Formato: fontes, configurações, dados e documentação em UTF-8.\n")
+        output.write("Os pesos .pt e as capturas PNG são artefatos binários separados.\n")
+        output.write("Esta exportação reúne fontes; não é um executável compilado.\n")
+        for path in files:
+            relative = path.relative_to(ROOT).as_posix()
+            output.write("\n" + "=" * 88 + "\n")
+            output.write(f"ARQUIVO: {relative}\n")
+            output.write("=" * 88 + "\n")
+            output.write(path.read_text(encoding="utf-8"))
+            if not output.tell() or not path.read_bytes().endswith(b"\n"):
+                output.write("\n")
+    print(f"{destination}: {len(files)} fontes concatenadas, {destination.stat().st_size} bytes")
+
+
+def main():
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--output", default="CODIGO_COMPLETO.txt")
+    args = parser.parse_args()
+    export(args.output)
+
+
+if __name__ == "__main__":
+    main()
+
+========================================================================================
+ARQUIVO: scripts/package_project.py
+========================================================================================
+"""Empacota fontes e evidências; exclui ambientes, caches e saídas locais."""
+import argparse
+from pathlib import Path
+import zipfile
+
+
+def main():
+    root = Path(__file__).resolve().parents[1]
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--output", type=Path, default=root.parent / "ouroboros-engine.zip")
+    args = parser.parse_args()
+    excluded = {".venv", "venv", "__pycache__", ".git", "outputs", "build", "dist", ".pytest_cache"}
+    destination = args.output.resolve()
+    destination.parent.mkdir(parents=True, exist_ok=True)
+    with zipfile.ZipFile(destination, "w", zipfile.ZIP_DEFLATED) as archive:
+        for path in sorted(root.rglob("*")):
+            relative = path.relative_to(root)
+            if any(part in excluded or part.endswith(".egg-info") for part in relative.parts):
+                continue
+            if path.is_file() and not path.is_symlink() and path.resolve() != destination and path.suffix != ".pyc":
+                archive.write(path, Path(root.name) / relative)
+    with zipfile.ZipFile(destination) as archive:
+        corrupted = archive.testzip()
+        if corrupted:
+            raise RuntimeError(f"Arquivo corrompido: {corrupted}")
+        print(f"{destination}: {len(archive.namelist())} arquivos, {destination.stat().st_size} bytes")
+
+
+if __name__ == "__main__":
+    main()
+
+========================================================================================
+ARQUIVO: scripts/run_ecosystem.py
+========================================================================================
+from pathlib import Path
+import sys
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+from ouroboros.cli import run
+
+if __name__ == "__main__":
+    run()
+
+========================================================================================
+ARQUIVO: tests/test_engine.py
+========================================================================================
+from http.server import ThreadingHTTPServer
+import json
+import math
+from pathlib import Path
+import tempfile
+import threading
+import unittest
+from urllib.error import HTTPError
+from urllib.request import urlopen
+
+import torch
+from ouroboros.config import ROOT, read_yaml, resolve_device, validate
+from ouroboros.primitives import LiquidCell, PlasticSynapse, SpikingGate, TTTLayer
+from ouroboros.environment import SharedWorld, SignalBus
+from ouroboros.dashboard import handler_for
+from ouroboros.sandbox import ExecutionResult, SafeExecutor
+from ouroboros.sandbox.feedback_bridge import feedback_from_result
+from ouroboros.simulation import simulate
+from ouroboros.agents.social_agent import SocialAgent
+
+
+class PrimitiveTests(unittest.TestCase):
+    def setUp(self):
+        torch.manual_seed(7)
+        torch.set_num_threads(1)
+
+    def test_liquid_time_and_gradient(self):
+        cell = LiquidCell(3, 5)
+        x, h = torch.ones(2, 3), torch.zeros(2, 5)
+        short, long = cell(x, h, 0.01), cell(x, h, 0.5)
+        self.assertGreater(long.abs().sum(), short.abs().sum())
+        long.square().mean().backward()
+        self.assertGreater(cell.target.weight.grad.abs().sum(), 0)
+        with self.assertRaises(ValueError):
+            cell(x, h, 0)
+
+    def test_surrogate_and_binary_spikes(self):
+        x = torch.tensor([[0.1, 0.7, -0.8]], requires_grad=True)
+        y, spikes = SpikingGate()(x)
+        self.assertEqual(spikes.tolist(), [[0, 1, 1]])
+        y.sum().backward()
+        self.assertTrue(torch.isfinite(x.grad).all())
+        self.assertNotEqual(x.grad[0, 0].item(), 0)
+
+    def test_hebbian_memory_is_individual_and_bounded(self):
+        layer = PlasticSynapse(4, 2, learning_rate=1, clip=0.1)
+        x = torch.stack([torch.ones(4), torch.zeros(4)])
+        layer(x, torch.ones(2))
+        self.assertGreater(layer.trace[0].abs().sum(), 0)
+        self.assertEqual(layer.trace[1].abs().sum(), 0)
+        self.assertLessEqual(layer.trace.abs().max().item(), 0.100001)
+
+    def test_ttt_updates_without_breaking_backprop(self):
+        layer = TTTLayer(4, 2)
+        x = torch.ones(2, 4, requires_grad=True)
+        layer(x)
+        out = layer(x * 0.5)
+        self.assertGreater(layer.fast.abs().sum(), 0)
+        out.sum().backward()
+        self.assertTrue(torch.isfinite(x.grad).all())
+
+
+class WorldTests(unittest.TestCase):
+    def test_signal_distance_and_self_exclusion(self):
+        positions = torch.tensor([[0., 0.], [1., 0.], [9., 0.]])
+        signals = torch.tensor([[2.], [4.], [20.]])
+        received = SignalBus(2).receive(positions, signals)
+        self.assertEqual(received.tolist(), [[2.], [1.], [0.]])
+
+    def test_resource_not_duplicated_by_competition(self):
+        config = read_yaml(ROOT / "configs/ecosystem_config.yaml")["world"]
+        world = SharedWorld(4, "cpu", dict(config, resource_count=1, resource_regeneration=0, obstacle_count=0))
+        world.positions[:] = 5
+        world.sources[:] = 5
+        harvest, _ = world.step(torch.zeros(4, 2), 0.1)
+        self.assertAlmostEqual(harvest.sum().item(), 1)
+        self.assertAlmostEqual(world.stock.item(), 0)
+
+    def test_boundaries_and_obstacles(self):
+        config = read_yaml(ROOT / "configs/ecosystem_config.yaml")["world"]
+        world = SharedWorld(1, "cpu", dict(config, obstacle_count=1))
+        world.positions[:] = 5
+        world.obstacle_phase[:] = 5
+        before = world.positions.clone()
+        world.step(torch.ones(1, 2), 0.1)
+        self.assertTrue(torch.equal(before, world.positions))
+        self.assertTrue((world.positions >= 0).all())
+
+
+class ExecutorTests(unittest.TestCase):
+    def setUp(self):
+        self.executor = SafeExecutor()
+
+    def test_correct_and_wrong_program(self):
+        cases = [[2, 3, 5], [-9, 4, -5]]
+        good = self.executor.execute("x + y", cases)
+        bad = self.executor.execute("0", cases)
+        self.assertTrue(good.ok, good.message)
+        self.assertTrue(feedback_from_result(good).solved)
+        self.assertFalse(feedback_from_result(bad).solved)
+        self.assertLess(feedback_from_result(bad).reward, feedback_from_result(good).reward)
+        self.assertGreater(good.memory_kb, 0)
+        self.assertLess(good.memory_kb, 256 * 1024)
+
+    def test_rejects_python_escape_and_large_inputs(self):
+        for expression in ["__import__('os').getcwd()", "x.__class__", "open('/tmp/test', 'w')",
+                           "[x for x in range(10)]", "2 ** 99999", "x / 0", "'abc'", "True", "x" * 300]:
+            with self.subTest(expression=expression):
+                result = self.executor.execute(expression, [[1, 2, 3]])
+                self.assertFalse(result.ok)
+                self.assertFalse(feedback_from_result(result).solved)
+
+    def test_timeout_and_empty_output_are_not_success(self):
+        result = SafeExecutor(timeout_seconds=0.000001).execute("x+y", [[1, 2, 3]])
+        self.assertFalse(result.ok)
+        self.assertFalse(feedback_from_result(ExecutionResult(True, error=0)).solved)
+        self.assertFalse(self.executor.execute("x", []).ok)
+
+
+class IntegrationTests(unittest.TestCase):
+    def test_learning_run_outputs_and_reproducibility(self):
+        config = read_yaml(ROOT / "configs/ecosystem_config.yaml")
+        primitives = read_yaml(ROOT / "configs/neuron_primitives.yaml")
+        config.update(steps=12, population=4, hidden_size=8, device="cpu")
+        config["programmer"]["interval"] = 6
+        torch.manual_seed(config["seed"])
+        SharedWorld(config["population"], "cpu", config["world"])
+        initial = SocialAgent(config, primitives, "cpu").brain.state_dict()
+        with tempfile.TemporaryDirectory() as temporary:
+            config["output_dir"] = str(Path(temporary) / "first")
+            first = simulate(config, primitives, ROOT / "data/bootstrap_code/tasks.json", quiet=True)
+            output = Path(config["output_dir"])
+            rows = [json.loads(line) for line in (output / "metrics.jsonl").read_text().splitlines()]
+            self.assertEqual(len(rows), 12)
+            self.assertTrue(all(math.isfinite(row["loss"]) for row in rows))
+            self.assertEqual(first["programmer"]["attempts"], 2)
+            self.assertEqual(len(list((output / "programs").glob("*.py"))), 2)
+            saved = torch.load(output / "ecosystem.pt", weights_only=True)
+            self.assertGreater(saved["brain"]["ttt.fast"].abs().sum(), 0)
+            for weight in ("predictor.weight", "motor.weight", "voice.weight"):
+                self.assertGreater((saved["brain"][weight] - initial[weight]).abs().sum(), 0)
+            self.assertTrue(json.loads((output / "latest.json").read_text())["completed"])
+            with self.assertRaises(ValueError):
+                simulate(config, primitives, ROOT / "data/bootstrap_code/tasks.json", quiet=True)
+            config["output_dir"] = str(Path(temporary) / "second")
+            second = simulate(config, primitives, ROOT / "data/bootstrap_code/tasks.json", quiet=True)
+            for key in ["energy", "loss", "reward", "deaths", "spike_fraction"]:
+                self.assertEqual(first[key], second[key])
+
+    def test_configuration_rejects_invalid_values(self):
+        config = read_yaml(ROOT / "configs/ecosystem_config.yaml")
+        primitives = read_yaml(ROOT / "configs/neuron_primitives.yaml")
+        config["population"] = 0
+        with self.assertRaises(ValueError):
+            validate(config, primitives)
+        if not torch.cuda.is_available():
+            with self.assertRaises(RuntimeError):
+                resolve_device("cuda")
+
+    def test_dashboard_endpoints_waiting_live_and_path_rejection(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            output = Path(temporary)
+            server = ThreadingHTTPServer(("127.0.0.1", 0), handler_for(output))
+            thread = threading.Thread(target=server.serve_forever, daemon=True)
+            thread.start()
+            base = f"http://127.0.0.1:{server.server_port}"
+            try:
+                with urlopen(base) as response:
+                    self.assertIn("Ouroboros", response.read().decode())
+                with self.assertRaises(HTTPError) as error:
+                    urlopen(base + "/api/latest")
+                self.assertEqual(error.exception.code, 503)
+                (output / "latest.json").write_text('{"step": 7}')
+                (output / "metrics.jsonl").write_text('{"energy": 0.9}\n{"partial":')
+                with urlopen(base + "/api/latest") as response:
+                    self.assertEqual(json.load(response)["step"], 7)
+                with urlopen(base + "/api/history") as response:
+                    self.assertEqual(len(json.load(response)), 1)
+                with self.assertRaises(HTTPError) as error:
+                    urlopen(base + "/../pyproject.toml")
+                self.assertEqual(error.exception.code, 404)
+            finally:
+                server.shutdown()
+                server.server_close()
+                thread.join()
+
+
+if __name__ == "__main__":
+    unittest.main()
+
+========================================================================================
+ARQUIVO: validation/demo/programs/attempt_0001.py
+========================================================================================
+# Tarefa: soma | DSL aritmética; gerado pelo seletor de ASTs.
+def solve(x, y):
+    return x + y
+
+========================================================================================
+ARQUIVO: validation/demo/programs/attempt_0002.py
+========================================================================================
+# Tarefa: diferenca | DSL aritmética; gerado pelo seletor de ASTs.
+def solve(x, y):
+    return x - y
+
+========================================================================================
+ARQUIVO: validation/demo/programs/attempt_0003.py
+========================================================================================
+# Tarefa: produto | DSL aritmética; gerado pelo seletor de ASTs.
+def solve(x, y):
+    return x * y
+
+========================================================================================
+ARQUIVO: validation/demo/programs/attempt_0004.py
+========================================================================================
+# Tarefa: quadrado | DSL aritmética; gerado pelo seletor de ASTs.
+def solve(x, y):
+    return x * x
+
+========================================================================================
+ARQUIVO: validation/demo/programs/attempt_0005.py
+========================================================================================
+# Tarefa: media | DSL aritmética; gerado pelo seletor de ASTs.
+def solve(x, y):
+    return (x + y) / 2
+
+========================================================================================
+ARQUIVO: validation/demo/programs/attempt_0006.py
+========================================================================================
+# Tarefa: distancia | DSL aritmética; gerado pelo seletor de ASTs.
+def solve(x, y):
+    return abs(x - y)
+
+========================================================================================
+ARQUIVO: validation/demo/programs/attempt_0007.py
+========================================================================================
+# Tarefa: soma | DSL aritmética; gerado pelo seletor de ASTs.
+def solve(x, y):
+    return x + y
+
+========================================================================================
+ARQUIVO: validation/demo/programs/attempt_0008.py
+========================================================================================
+# Tarefa: diferenca | DSL aritmética; gerado pelo seletor de ASTs.
+def solve(x, y):
+    return x - y
+
+========================================================================================
+ARQUIVO: validation/demo/programs/attempt_0009.py
+========================================================================================
+# Tarefa: produto | DSL aritmética; gerado pelo seletor de ASTs.
+def solve(x, y):
+    return x * y
+
+========================================================================================
+ARQUIVO: validation/demo/programs/attempt_0010.py
+========================================================================================
+# Tarefa: quadrado | DSL aritmética; gerado pelo seletor de ASTs.
+def solve(x, y):
+    return x * x
+
+========================================================================================
+ARQUIVO: validation/demo/programs/attempt_0011.py
+========================================================================================
+# Tarefa: media | DSL aritmética; gerado pelo seletor de ASTs.
+def solve(x, y):
+    return (x + y) / 2
+
+========================================================================================
+ARQUIVO: validation/demo/programs/attempt_0012.py
+========================================================================================
+# Tarefa: distancia | DSL aritmética; gerado pelo seletor de ASTs.
+def solve(x, y):
+    return abs(x - y)

@@ -1,0 +1,13 @@
+liquid:
+  tau_min: 0.1
+  tau_max: 2.0
+plastic:
+  learning_rate: 0.025
+  decay: 0.03
+  clip: 1.0
+spiking:
+  threshold: 0.12
+  surrogate_slope: 5.0
+ttt:
+  learning_rate: 0.03
+  decay: 0.01

@@ -1,0 +1,1 @@
+{"task": "produto", "expression": "x * y", "reward": 1.0, "solved": true, "error": 0.0, "message": "", "elapsed_ms": 0.06656800007931452, "wall_ms": 46.90487499999563, "memory_kb": 9668, "returncode": 0, "energy": 0.8531421422958374, "stress": 0.07897010445594788, "attempts": 3, "solved_total": 3}
