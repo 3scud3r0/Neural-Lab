@@ -1,0 +1,1 @@
+{"task": "media", "expression": "(x + y) / 2", "reward": 1.0, "solved": true, "error": 0.0, "message": "", "elapsed_ms": 0.17922600000019884, "wall_ms": 34.05827399990358, "memory_kb": 9672, "returncode": 0, "energy": 0.9946401119232178, "stress": 0.0528402104973793, "attempts": 11, "solved_total": 11}

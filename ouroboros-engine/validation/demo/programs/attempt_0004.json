@@ -1,0 +1,1 @@
+{"task": "quadrado", "expression": "x * x", "reward": 1.0, "solved": true, "error": 0.0, "message": "", "elapsed_ms": 0.06381499997587525, "wall_ms": 39.39176200003658, "memory_kb": 9664, "returncode": 0, "energy": 0.87090003490448, "stress": 0.08899608254432678, "attempts": 4, "solved_total": 4}

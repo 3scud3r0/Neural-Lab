@@ -1,0 +1,18 @@
+test_correct_and_wrong_program (test_engine.ExecutorTests.test_correct_and_wrong_program) ... ok
+test_rejects_python_escape_and_large_inputs (test_engine.ExecutorTests.test_rejects_python_escape_and_large_inputs) ... ok
+test_timeout_and_empty_output_are_not_success (test_engine.ExecutorTests.test_timeout_and_empty_output_are_not_success) ... ok
+test_configuration_rejects_invalid_values (test_engine.IntegrationTests.test_configuration_rejects_invalid_values) ... ok
+test_dashboard_endpoints_waiting_live_and_path_rejection (test_engine.IntegrationTests.test_dashboard_endpoints_waiting_live_and_path_rejection) ... ok
+test_learning_run_outputs_and_reproducibility (test_engine.IntegrationTests.test_learning_run_outputs_and_reproducibility) ... ok
+test_hebbian_memory_is_individual_and_bounded (test_engine.PrimitiveTests.test_hebbian_memory_is_individual_and_bounded) ... ok
+test_liquid_time_and_gradient (test_engine.PrimitiveTests.test_liquid_time_and_gradient) ... ok
+test_surrogate_and_binary_spikes (test_engine.PrimitiveTests.test_surrogate_and_binary_spikes) ... ok
+test_ttt_updates_without_breaking_backprop (test_engine.PrimitiveTests.test_ttt_updates_without_breaking_backprop) ... ok
+test_boundaries_and_obstacles (test_engine.WorldTests.test_boundaries_and_obstacles) ... ok
+test_resource_not_duplicated_by_competition (test_engine.WorldTests.test_resource_not_duplicated_by_competition) ... ok
+test_signal_distance_and_self_exclusion (test_engine.WorldTests.test_signal_distance_and_self_exclusion) ... ok
+
+----------------------------------------------------------------------
+Ran 13 tests in 1.971s
+
+OK

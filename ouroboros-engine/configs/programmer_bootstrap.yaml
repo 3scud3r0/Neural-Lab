@@ -1,0 +1,7 @@
+seed: 42
+epochs: 150
+learning_rate: 0.03
+context_size: 6
+syntax_penalty: 1.0
+task_file: data/bootstrap_code/tasks.json
+checkpoint: outputs/programmer.pt

@@ -1,0 +1,1 @@
+{"task": "distancia", "expression": "abs(x - y)", "reward": 1.0, "solved": true, "error": 0.0, "message": "", "elapsed_ms": 0.08358399998087407, "wall_ms": 32.480452000072546, "memory_kb": 9672, "returncode": 0, "energy": 1.0, "stress": 0.0422721691429615, "attempts": 12, "solved_total": 12}
