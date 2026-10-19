@@ -1,0 +1,101 @@
+{
+  "main_module_lines": 1642,
+  "main_modules": 16,
+  "modules": [
+    {
+      "lines": 66,
+      "path": "ouroboros/v3/__init__.py",
+      "sha256": "1ab3f5aaaf1ff9e6fa1536fb921a13ee98e48fd34ac3e5cb30df8dabbc01608a"
+    },
+    {
+      "lines": 248,
+      "path": "ouroboros/v3/application.py",
+      "sha256": "2aea93f0502377fc03bbe6871b7988668efba47704a3a85c43b64b16d50f1e41"
+    },
+    {
+      "lines": 144,
+      "path": "ouroboros/v3/architecture.py",
+      "sha256": "61ec10d609499a3021c987c982215aebf44b08d42d3f86aef2f490a06bb43e10"
+    },
+    {
+      "lines": 98,
+      "path": "ouroboros/v3/benchmarks.py",
+      "sha256": "5cdf01da3edd5b0b09477e038e59fa81372304763bcfe4e3b0c7a2174242e4ca"
+    },
+    {
+      "lines": 63,
+      "path": "ouroboros/v3/evaluation.py",
+      "sha256": "c6ad6e5241f7593538e9dc55bf14db4cd7fb7dfaec6b42cfdf4cfc55132a6d49"
+    },
+    {
+      "lines": 104,
+      "path": "ouroboros/v3/experiments.py",
+      "sha256": "6c33d1b5f987c33d78d7d06841fb92bb0f9f530d44f140ca2f46803ccf9af9be"
+    },
+    {
+      "lines": 77,
+      "path": "ouroboros/v3/memory.py",
+      "sha256": "3132f46046220bbf9da594cd640d08817c165412f0723e3ab1a949d5c86c22a4"
+    },
+    {
+      "lines": 106,
+      "path": "ouroboros/v3/neuron_dsl.py",
+      "sha256": "b446d524eed5e8135598da5c986fcf3eefa25b114b6927d047bf2480a6bb8dd4"
+    },
+    {
+      "lines": 85,
+      "path": "ouroboros/v3/neurons.py",
+      "sha256": "0bb29a8a6274e6a3bcd1a502e24242a9f2b68193415967d7cacb0588cc421e47"
+    },
+    {
+      "lines": 47,
+      "path": "ouroboros/v3/plasticity.py",
+      "sha256": "ed4be713bd2583bdf8587316c11f36e69ed61d162ecef2e380bb41154f79f1ef"
+    },
+    {
+      "lines": 91,
+      "path": "ouroboros/v3/programming.py",
+      "sha256": "deeb9d4e41542b1e4b5af8ac7bd35052bb319cab6d4a9745ce53ef69cde603c5"
+    },
+    {
+      "lines": 54,
+      "path": "ouroboros/v3/research.py",
+      "sha256": "4f7a3872045df3815f60632858949478f49bae392918a74ea47c151052e403f2"
+    },
+    {
+      "lines": 164,
+      "path": "ouroboros/v3/search.py",
+      "sha256": "c6eaeeb0aa417e7b253e2a1f394373adb1afca4635dab29cbd68ee691ea18f18"
+    },
+    {
+      "lines": 62,
+      "path": "ouroboros/v3/selfmod.py",
+      "sha256": "766fe0c8a2f94a3debd129cdbc60566de9045c18e4ec567a0a32bfbf58827dcc"
+    },
+    {
+      "lines": 122,
+      "path": "ouroboros/v3/society.py",
+      "sha256": "061c36e7e4926c54f0288b33f9c40279f94030d722eb971e9e8be4db3bf247b1"
+    },
+    {
+      "lines": 111,
+      "path": "ouroboros/v3/world.py",
+      "sha256": "c00a011b36a29e997f05150ed704f1fc9515eae52d81526e7c5ee4e79ffceecd"
+    }
+  ],
+  "observations": {
+    "expression": 2048,
+    "promoted": 12,
+    "screen": 2048
+  },
+  "test_lines": 534,
+  "winner_checkpoint_validation": {
+    "mean": 0.1504873475059867,
+    "tasks": {
+      "delay": 0.2826330363750458,
+      "denoise": 0.038820020854473114,
+      "integrate": 0.059628818184137344,
+      "switch": 0.22086751461029053
+    }
+  }
+}

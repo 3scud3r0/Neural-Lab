@@ -1,0 +1,11 @@
+{
+  "batch": 24,
+  "candidates": 2048,
+  "finalists": 12,
+  "hidden": 12,
+  "length": 12,
+  "max_seconds": 1800,
+  "promotion_steps": 24,
+  "screening_steps": 3,
+  "seed": 42
+}

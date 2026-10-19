@@ -6,5 +6,6 @@ build/
 dist/
 outputs/
 outputs-v2/
+outputs-v3/
 .cache/
 .pytest_cache/

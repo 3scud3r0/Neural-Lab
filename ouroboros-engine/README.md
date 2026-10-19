@@ -1,4 +1,20 @@
-# Ouroboros Engine 2.0
+# Ouroboros Engine 3.0
+
+A v3 acrescenta **16 módulos principais** de pesquisa: linguagem de equações neurais, neurônios com estado, plasticidade local, busca evolutiva, testes reservados, comparação independente, redes heterogêneas, memória, construção, sociedade, ferramentas e revisões reversíveis.
+
+Na execução entregue foram avaliadas **2.048 equações distintas**, com 12 finalistas e cinco sementes independentes na comparação. O candidato escolhido **não superou todos os controles** e sua promoção foi rejeitada. O relatório registra o resultado negativo; quantidade de candidatos não garante descoberta.
+
+```bash
+# Depois da instalação abaixo:
+ouroboros-research run --output outputs-v3/run-01 --candidates 2048 --finalists 12 --seeds 5
+ouroboros-research test --output RESULTADOS_TESTES.txt --report validation-v3/report.json
+ouroboros-research export --output CODIGO_SOMENTE.txt
+ouroboros-research dashboard --output validation-v3 --port 8083
+```
+
+[Ordem e responsabilidades dos 16 arquivos](docs/reproduce_v3.md) · [Evidências v3](validation-v3/report.json) · [TXT somente de código](CODIGO_SOMENTE.txt) · [TXT dos testes](RESULTADOS_TESTES.txt).
+
+Os módulos e resultados da v2 permanecem disponíveis e são descritos abaixo.
 
 Laboratório executável de **programação composicional, comunicação discreta, cooperação multiagente e morfogênese neural**. A versão 2 substitui o classificador de 11 expressões por geração autorregressiva de bytecode, adiciona síntese genética por exemplos, redes com dimensões modificáveis e integra código real de três projetos do GitHub.
 

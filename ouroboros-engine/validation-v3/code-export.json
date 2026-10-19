@@ -1,0 +1,1419 @@
+{
+  "bytes": 1560127,
+  "files": 353,
+  "inventory": [
+    {
+      "path": "data/bootstrap_code/examples.py",
+      "sha256": "cb5c4aaec7016d8786778355b55adc3750eeb1330da49bb4b2fedc013495845e"
+    },
+    {
+      "path": "data/bootstrap_code/sum.c",
+      "sha256": "ab0f54752852cfe55966e1e345da2a72cc6e9d813ee68c71c02d45606fc9c430"
+    },
+    {
+      "path": "data/bootstrap_code/sum_x86_64.s",
+      "sha256": "eb78f5fd2e955506ebb904a2a097c43a0741284c0be5a4699c34d6e2e68c220d"
+    },
+    {
+      "path": "data/v2/examples/heap.ovm",
+      "sha256": "f6106ad0ecf5682ba77f5919ab83f92b20abf090235571e422da733d46058172"
+    },
+    {
+      "path": "data/v2/examples/sum_loop.py",
+      "sha256": "fdb638764cbe95e3578be4bdae1c8d847c9d68fb8c7604877e967fdcafbf3cc2"
+    },
+    {
+      "path": "ouroboros/__init__.py",
+      "sha256": "179419187d29ad8c8f118e74ef9d6a73098ac0a59a1307bbf6fb73d247502654"
+    },
+    {
+      "path": "ouroboros/agents/__init__.py",
+      "sha256": "2c6ae7d331235fd4f8d55753cd8f0b03d281c6800fab00a777f4cf053b83ad9c"
+    },
+    {
+      "path": "ouroboros/agents/base_organism.py",
+      "sha256": "ba3555da2f3d46aa57715b84aee0b7dffc24560c52bbfc882cd4d7fb25b23ec0"
+    },
+    {
+      "path": "ouroboros/agents/programmer_agent.py",
+      "sha256": "5e48be67b8e6f260ee90aea46320f10bc2a73c40c476a81b5a52a77be2334674"
+    },
+    {
+      "path": "ouroboros/agents/social_agent.py",
+      "sha256": "0a8aa91dc3d2978e0c05bf41fdc1db7d7a43ba2996385b90ddbc671c614fbe07"
+    },
+    {
+      "path": "ouroboros/cli.py",
+      "sha256": "5eac8320d95965428bca5de19f5951cf25b9469201d2b0b15ddbe26471890114"
+    },
+    {
+      "path": "ouroboros/config.py",
+      "sha256": "121e2e1d725beae4317c2ce5c17a673d05a5615ab60608701b93a12e1384c869"
+    },
+    {
+      "path": "ouroboros/core/__init__.py",
+      "sha256": "76c7bc2e58d7be324b59a1f947f0de448d54492547ea9407e1ba6591ec0d92dc"
+    },
+    {
+      "path": "ouroboros/core/dynamic_brain.py",
+      "sha256": "0c4a6358fa00fa2ad0c86e6f8c6971e345cabebcbfae402858d9176466a3c4dd"
+    },
+    {
+      "path": "ouroboros/core/meta_plasticity.py",
+      "sha256": "7a326cd3998fe0e217fcc5fab70268d353caf65e475d612763babdf43e67a13c"
+    },
+    {
+      "path": "ouroboros/dashboard.html",
+      "sha256": "b4003675318303ebc3eda429ea33c41c4f371cdd1c8446dc09a10f244bc1b291"
+    },
+    {
+      "path": "ouroboros/dashboard.py",
+      "sha256": "6ade1d359b57839af5406b12218beeb3db3be47c14bf0bc5e088723b6dd0fbfa"
+    },
+    {
+      "path": "ouroboros/environment/__init__.py",
+      "sha256": "838f9491d71ecc7956aeffc4ef3734cba236db5b37aa53df7aec31aad794be49"
+    },
+    {
+      "path": "ouroboros/environment/shared_world.py",
+      "sha256": "45eb3a5a9d0cd622f4f7bd87f70e48552095134cefdc688aac42bb62926ca4be"
+    },
+    {
+      "path": "ouroboros/environment/signal_bus.py",
+      "sha256": "ef3075d71be5aa15ad37f84a72828a5e60ad91925bafb968d78f900953dc2ed2"
+    },
+    {
+      "path": "ouroboros/physiology/__init__.py",
+      "sha256": "37d4d32f227274b75f8fbda004791443183f82299bd7dd186c3daa7e365016ec"
+    },
+    {
+      "path": "ouroboros/physiology/free_energy.py",
+      "sha256": "c3a5b353a43cc7702c313706a8a35bd9df4e5139b54d976cacca8165ec987d29"
+    },
+    {
+      "path": "ouroboros/physiology/homeostasis.py",
+      "sha256": "3a22db52e580189c256eba7e03dcd8d049e260c60dfe2e846caf1ef30941eade"
+    },
+    {
+      "path": "ouroboros/physiology/neuromodulation.py",
+      "sha256": "ae217d930f18cebf3b3376bbf6326caccac4b3c3635d8f5883a6467c66feeda4"
+    },
+    {
+      "path": "ouroboros/primitives/__init__.py",
+      "sha256": "caa5102ea46f071669de1dd6187680769d63960cef3e21a2a03f7ed93903c4d2"
+    },
+    {
+      "path": "ouroboros/primitives/liquid_cell.py",
+      "sha256": "52806b3f7466aac6f2e79377a300102ee36623e0847f81ebc46f41513a3b174b"
+    },
+    {
+      "path": "ouroboros/primitives/plastic_synapse.py",
+      "sha256": "a137068f077b3a06f53de9f25aa8cbc573c5cb840672d5a8d8cb15b5dc4d6154"
+    },
+    {
+      "path": "ouroboros/primitives/spiking_gate.py",
+      "sha256": "1cb34cd1fc4da5233bab4a248f96f5cc956895d88631501805ac2c63e7d7df2f"
+    },
+    {
+      "path": "ouroboros/primitives/ttt_layer.py",
+      "sha256": "cfbefa9b11c35da452177ca16fe57f5d144b1f27cbd270e37989d77ce30e2b38"
+    },
+    {
+      "path": "ouroboros/sandbox/__init__.py",
+      "sha256": "d380065d5de2edb17e0568a50a93f6f2d5c48e49dc1bdd753fc4826abdc66d6d"
+    },
+    {
+      "path": "ouroboros/sandbox/feedback_bridge.py",
+      "sha256": "deb625fd2aa7a87a2620b026e1b73a78e1cd59a40f526de72075f148dcf9e69e"
+    },
+    {
+      "path": "ouroboros/sandbox/safe_executor.py",
+      "sha256": "95d79c09bafcc64603fcbaae5f471f5bd4364b706bc7f947bdc1ebd5b4fd4c8f"
+    },
+    {
+      "path": "ouroboros/sandbox/worker.py",
+      "sha256": "6d6d6d8ffe1d77512ad7b1e7cb8b1afef8370eacc64eec9e3dd93d46de187d8c"
+    },
+    {
+      "path": "ouroboros/simulation.py",
+      "sha256": "ceddda4cf73ff3df6bdff9c6a3b07d4dd170c552a9e77867e3ed4b387e65606f"
+    },
+    {
+      "path": "ouroboros/v2/__init__.py",
+      "sha256": "3dcbe7d3e1c509773ec901609109b943152a4de7b01dba9b947a3327127ed50f"
+    },
+    {
+      "path": "ouroboros/v2/cli.py",
+      "sha256": "16992570b5e70da91b53cf2fa7b70adfeabf6c81bec2963502aceaec416fb2f0"
+    },
+    {
+      "path": "ouroboros/v2/common.py",
+      "sha256": "f954c6c551cc173003a23d5567f54042d3b6fd46d32418dc481e9660dc4ef76b"
+    },
+    {
+      "path": "ouroboros/v2/communication/__init__.py",
+      "sha256": "91318bdf56d0c20ee197d1782ebbdd55f0bd08eda5550aebbe4775ed7b005ee8"
+    },
+    {
+      "path": "ouroboros/v2/communication/game.py",
+      "sha256": "dfba85273b2bc73c6291622f0489b5d8e00d22c2191a9f6a04a22ea1ddb6a4f2"
+    },
+    {
+      "path": "ouroboros/v2/communication/training.py",
+      "sha256": "cbbd283d657f6bcfcbe38c6a5b6bcfcdf72fbb4430a129c5e6adc6b43611cbd2"
+    },
+    {
+      "path": "ouroboros/v2/dashboard.html",
+      "sha256": "0e6d5177b97ee01f817e1b098f4acd5c0e1cc23093a73c6236d203af18ef9795"
+    },
+    {
+      "path": "ouroboros/v2/dashboard.py",
+      "sha256": "673019fada1ba0b7ddf15f5dd0de21c449589621d2519096579afdb752f8f020"
+    },
+    {
+      "path": "ouroboros/v2/evolution/__init__.py",
+      "sha256": "a49d97827eb75ce2b684575674e0954c49f03b19b6eea836da5f2ad65a697829"
+    },
+    {
+      "path": "ouroboros/v2/evolution/morphology.py",
+      "sha256": "5f88a8ea73ab2092af282e92b883cf8223f6c64df96e0e54ae4f898a0c0f6094"
+    },
+    {
+      "path": "ouroboros/v2/evolution/neat_control.py",
+      "sha256": "98e4bf33a0d773a08fcd8dc5f9048bd5ba4c0faaaa62e32b855d038b10208f81"
+    },
+    {
+      "path": "ouroboros/v2/experiment.py",
+      "sha256": "6c990cf49b0678549cebf0fce70cb18f77c5585ae90e99e77161de1b7d4e6e89"
+    },
+    {
+      "path": "ouroboros/v2/integrations.py",
+      "sha256": "1f328c3f6b13a9be0cb317447253face8b906d6646e3dcec71f054650e09f00f"
+    },
+    {
+      "path": "ouroboros/v2/programming/__init__.py",
+      "sha256": "967aeabd41a7617e6ff6911792c61906fdb0f975db7bb48822e98c0a9fb5ec5b"
+    },
+    {
+      "path": "ouroboros/v2/programming/evaluation.py",
+      "sha256": "07d5e22abc7762034675fa03f0e30f35b487c8c057eca9e21c46ef7816639c6d"
+    },
+    {
+      "path": "ouroboros/v2/programming/generation.py",
+      "sha256": "e8c57a8d59ea187a7dabfc799591d34cfb7a4a886bc954f7aed5160726d0803f"
+    },
+    {
+      "path": "ouroboros/v2/programming/genetics.py",
+      "sha256": "540110db108e838551151cc488c2d03c04cf1bdb5b765df1ffd5f788ffe1c6f5"
+    },
+    {
+      "path": "ouroboros/v2/programming/library.py",
+      "sha256": "f95ceb963b8f73669162e4a98b07d6cdbad39720c5a6ceb377606ffee81ec29e"
+    },
+    {
+      "path": "ouroboros/v2/programming/organism.py",
+      "sha256": "932855c98829626118a8501c6d58eadde694a31f14b1b2a9b2fd990cb9f4342b"
+    },
+    {
+      "path": "ouroboros/v2/programming/tasks.py",
+      "sha256": "cd57215cde80cbbce67f56dd8cc4af42feac3007ade24a2c3596b0f59973815b"
+    },
+    {
+      "path": "ouroboros/v2/programming/token_model.py",
+      "sha256": "2f50f830018425018940fa043675359518b30b70eca6fb47bb4fdd89beb0e5ad"
+    },
+    {
+      "path": "ouroboros/v2/vm/__init__.py",
+      "sha256": "f31381d8246de2288cdd752ee78e50484459736cb1487575962a8921b4068fd9"
+    },
+    {
+      "path": "ouroboros/v2/vm/compiler.py",
+      "sha256": "cbd02245f3304c4b6e01bfa8856b1d8356e394ab403067b0424a45127479d771"
+    },
+    {
+      "path": "ouroboros/v2/vm/language.py",
+      "sha256": "ccd47f599c823c30c19e79155c42b1b8468fe5bb508d948b4c33873d631f53c4"
+    },
+    {
+      "path": "ouroboros/v2/vm/machine.py",
+      "sha256": "6604f9bbe137a6a97116652e277ea996eb0e3f1ee40cafe3a69c3b567ec12167"
+    },
+    {
+      "path": "ouroboros/v2/world/__init__.py",
+      "sha256": "e9f2d73421b403b0645aae3e1228f4c30eeabcf5a2ed4487ed8eba7a4e262859"
+    },
+    {
+      "path": "ouroboros/v2/world/arena.py",
+      "sha256": "a07beac3155decc7072767772da9cbdfad6e58c0a1f288449afd045a7968ccc9"
+    },
+    {
+      "path": "ouroboros/v2/world/pettingzoo_env.py",
+      "sha256": "e44ea87c9fd12ab9e035c0475bfe4c1a75c5457c75934e62d7c5b84d0bd30837"
+    },
+    {
+      "path": "ouroboros/v2/world/training.py",
+      "sha256": "8c857c2ebebde1da0394c90ecbd377dd0a5c15e680a8dd22f5f9d9aedb1b37c0"
+    },
+    {
+      "path": "ouroboros/v3/__init__.py",
+      "sha256": "1ab3f5aaaf1ff9e6fa1536fb921a13ee98e48fd34ac3e5cb30df8dabbc01608a"
+    },
+    {
+      "path": "ouroboros/v3/application.py",
+      "sha256": "2aea93f0502377fc03bbe6871b7988668efba47704a3a85c43b64b16d50f1e41"
+    },
+    {
+      "path": "ouroboros/v3/architecture.py",
+      "sha256": "61ec10d609499a3021c987c982215aebf44b08d42d3f86aef2f490a06bb43e10"
+    },
+    {
+      "path": "ouroboros/v3/benchmarks.py",
+      "sha256": "5cdf01da3edd5b0b09477e038e59fa81372304763bcfe4e3b0c7a2174242e4ca"
+    },
+    {
+      "path": "ouroboros/v3/evaluation.py",
+      "sha256": "c6ad6e5241f7593538e9dc55bf14db4cd7fb7dfaec6b42cfdf4cfc55132a6d49"
+    },
+    {
+      "path": "ouroboros/v3/experiments.py",
+      "sha256": "6c33d1b5f987c33d78d7d06841fb92bb0f9f530d44f140ca2f46803ccf9af9be"
+    },
+    {
+      "path": "ouroboros/v3/memory.py",
+      "sha256": "3132f46046220bbf9da594cd640d08817c165412f0723e3ab1a949d5c86c22a4"
+    },
+    {
+      "path": "ouroboros/v3/neuron_dsl.py",
+      "sha256": "b446d524eed5e8135598da5c986fcf3eefa25b114b6927d047bf2480a6bb8dd4"
+    },
+    {
+      "path": "ouroboros/v3/neurons.py",
+      "sha256": "0bb29a8a6274e6a3bcd1a502e24242a9f2b68193415967d7cacb0588cc421e47"
+    },
+    {
+      "path": "ouroboros/v3/plasticity.py",
+      "sha256": "ed4be713bd2583bdf8587316c11f36e69ed61d162ecef2e380bb41154f79f1ef"
+    },
+    {
+      "path": "ouroboros/v3/programming.py",
+      "sha256": "deeb9d4e41542b1e4b5af8ac7bd35052bb319cab6d4a9745ce53ef69cde603c5"
+    },
+    {
+      "path": "ouroboros/v3/research.py",
+      "sha256": "4f7a3872045df3815f60632858949478f49bae392918a74ea47c151052e403f2"
+    },
+    {
+      "path": "ouroboros/v3/search.py",
+      "sha256": "c6eaeeb0aa417e7b253e2a1f394373adb1afca4635dab29cbd68ee691ea18f18"
+    },
+    {
+      "path": "ouroboros/v3/selfmod.py",
+      "sha256": "766fe0c8a2f94a3debd129cdbc60566de9045c18e4ec567a0a32bfbf58827dcc"
+    },
+    {
+      "path": "ouroboros/v3/society.py",
+      "sha256": "061c36e7e4926c54f0288b33f9c40279f94030d722eb971e9e8be4db3bf247b1"
+    },
+    {
+      "path": "ouroboros/v3/world.py",
+      "sha256": "c00a011b36a29e997f05150ed704f1fc9515eae52d81526e7c5ee4e79ffceecd"
+    },
+    {
+      "path": "scripts/bootstrap_programmer.py",
+      "sha256": "a682aca29055ce8e55351638fb3ca0aedf762b38996ebe96d43485edb8126ca8"
+    },
+    {
+      "path": "scripts/dashboard.py",
+      "sha256": "405a5f5d22cb0cc8519d4e1db127d5d9b5b0e021a2bfdcdefde306883b75fc1c"
+    },
+    {
+      "path": "scripts/export_source_txt.py",
+      "sha256": "41335a8d5956fcde576f5ae845bef2fb3cdc7690cccf0afb5f96280495f3a8c8"
+    },
+    {
+      "path": "scripts/install_v2.sh",
+      "sha256": "7fbac3c7212b9d154ccd0c8b3ffe77005b0df5477138993199d7084fca7f5de7"
+    },
+    {
+      "path": "scripts/package_project.py",
+      "sha256": "7b24860ae14d7f97841ffac60d21a2adcf48b68adb111d954b5cf88b61938cf4"
+    },
+    {
+      "path": "scripts/run_ecosystem.py",
+      "sha256": "35c2388d4ace8ceba3c2472dc4726bc495fb22e7c6f5c0dfcbebc515a55a788c"
+    },
+    {
+      "path": "scripts/run_v2.py",
+      "sha256": "06032c19aaea3e2cb26e932b2425e2e0e7bfda0268d32740ac00091e0b312f8e"
+    },
+    {
+      "path": "tests/test_engine.py",
+      "sha256": "ba47c44b89d8cd1966e9a0b54b463f92aad68d1679d0e033a44d2c1b632f0eda"
+    },
+    {
+      "path": "tests/test_v2.py",
+      "sha256": "4e00aa2bfdfa649714b28fa7531ab80ec868287e5b4462b7aebdaa9f07ff9e99"
+    },
+    {
+      "path": "tests/test_v3.py",
+      "sha256": "d772e3c260c4b93f957bcee8c7db1add2513505f6d02664e8156f2e1a731c70d"
+    },
+    {
+      "path": "third_party/ncps/ncps/__init__.py",
+      "sha256": "6aa10ee86433da898c5224852f621e4daa19d3130a5b1095af3d0d275cf30939"
+    },
+    {
+      "path": "third_party/ncps/ncps/datasets/__init__.py",
+      "sha256": "d1cf29ceed94041c294ecc9d751e6a29ce55103242833efc889b26556f715ac7"
+    },
+    {
+      "path": "third_party/ncps/ncps/datasets/icra2020_lidar_collision_avoidance.py",
+      "sha256": "27a3e3ad24b2ae94864d2c257d418194d493334ff7934269f44a5db70e57ce28"
+    },
+    {
+      "path": "third_party/ncps/ncps/datasets/tf/__init__.py",
+      "sha256": "63156d5316caab73737ab18e545b336df769edbfc2507f4a5c2cddc13dfe3b28"
+    },
+    {
+      "path": "third_party/ncps/ncps/datasets/tf/atari_cloning.py",
+      "sha256": "01c6c137c923472e6154c83f5fc6584a4cbbb910fa01bf4b13ded0d3459c0ffd"
+    },
+    {
+      "path": "third_party/ncps/ncps/datasets/torch/__init__.py",
+      "sha256": "92c7c6551a4a87279e939cfce96e3a3f7927bfbbf35c48af72182853fe777ce8"
+    },
+    {
+      "path": "third_party/ncps/ncps/datasets/torch/atari_cloning.py",
+      "sha256": "ab7d8f6ed24fcaf2004b6150b86a4aba3e386f5e9aea818b1ab2e4b659d4d09c"
+    },
+    {
+      "path": "third_party/ncps/ncps/datasets/utils.py",
+      "sha256": "ddc64640c963498725e31f857064b2182e4b7f121a8526d0a890477c7902163e"
+    },
+    {
+      "path": "third_party/ncps/ncps/keras/__init__.py",
+      "sha256": "fa01bb2d150b3b4fef905fa6f4037910063199c6399fee5a92d2ac6a95bb59c2"
+    },
+    {
+      "path": "third_party/ncps/ncps/keras/cfc.py",
+      "sha256": "128e8c79f1dc57c9d8eb50e4ae919637663685c8302d8842d9b5cef2e6b0d78e"
+    },
+    {
+      "path": "third_party/ncps/ncps/keras/cfc_cell.py",
+      "sha256": "d1bf93bd406d0d9e51fafc1e74f3e1090051e799f4250b1f6ef5bb5b1ff83742"
+    },
+    {
+      "path": "third_party/ncps/ncps/keras/ltc.py",
+      "sha256": "8f0e5c7bb571917f611044ebcf056df4f42bc4c724d073558ab6f06c08fd3668"
+    },
+    {
+      "path": "third_party/ncps/ncps/keras/ltc_cell.py",
+      "sha256": "f7ee4409664552030f7290e8ab585b00fc0030d169832edd06f8b5a6ab7e13ee"
+    },
+    {
+      "path": "third_party/ncps/ncps/keras/mm_rnn.py",
+      "sha256": "f4c9acc6f8226a7b75b2dec8517a585c461e2a6a7a76c1e1ecf4ede953a6bd1d"
+    },
+    {
+      "path": "third_party/ncps/ncps/keras/wired_cfc_cell.py",
+      "sha256": "f3a93f7c46dc225b9b228ad98cdb2c39006104e4b2aaf3db5e312e0bd60bfcaf"
+    },
+    {
+      "path": "third_party/ncps/ncps/paddle/__init__.py",
+      "sha256": "3d10af04aa5a71c3dbec56f7dfa9deecb10097b10617b68a188b62c4c46965e3"
+    },
+    {
+      "path": "third_party/ncps/ncps/paddle/ltc_cell.py",
+      "sha256": "1e7102aa06d8ff6c1b9b94b1eee2ce6924872b6a7ec2d84dda9935772d0f23a2"
+    },
+    {
+      "path": "third_party/ncps/ncps/tests/test_keras.py",
+      "sha256": "0f34676744122d31b2a1b79668ef930baea2ab048a4b35b295bcecd8f83f6e2a"
+    },
+    {
+      "path": "third_party/ncps/ncps/tests/test_tf.py",
+      "sha256": "e34732561151490bde9706f18953a99e793cf1334f1de46017081e3606abdad2"
+    },
+    {
+      "path": "third_party/ncps/ncps/tests/test_torch.py",
+      "sha256": "3c518aedd55903d3fb0d62cc53af924eb9cf01a50e9d16bdccf8f48e03542a24"
+    },
+    {
+      "path": "third_party/ncps/ncps/tf/__init__.py",
+      "sha256": "eac505220cddae4464a388ec42814d4bc25f228de9268fb80c813a6bb8b162c7"
+    },
+    {
+      "path": "third_party/ncps/ncps/tf/cfc.py",
+      "sha256": "04ec91a48e18aaf0b95c2981d2cbd5060185878dbd0b97fc7ae15a0b87fe2e7e"
+    },
+    {
+      "path": "third_party/ncps/ncps/tf/cfc_cell.py",
+      "sha256": "85afb0a4a7bef22ca6c31729d041086214a40694e27db0d26880a86ffd20e4c8"
+    },
+    {
+      "path": "third_party/ncps/ncps/tf/ltc.py",
+      "sha256": "56264d55c2088e1b424305b93aaa01acea011598a267e64a50f5e65ba8adf1ad"
+    },
+    {
+      "path": "third_party/ncps/ncps/tf/ltc_cell.py",
+      "sha256": "90b6d98b33049a91875112781be47b5efb185ca3c4944c3e4c27cd7dba68f3ed"
+    },
+    {
+      "path": "third_party/ncps/ncps/tf/mm_rnn.py",
+      "sha256": "c6a828fbc993fc90579b252578ae1bb787306c4bbffb774bba3e39a0f12a73f2"
+    },
+    {
+      "path": "third_party/ncps/ncps/tf/wired_cfc_cell.py",
+      "sha256": "44da5196f502dc41733c6d18adcd6834165eb808d33434479c82ad64f6a4710c"
+    },
+    {
+      "path": "third_party/ncps/ncps/torch/__init__.py",
+      "sha256": "7d04a24260695ac40ce295ac04f38765ee53ec7f3b37c13c38f4518f66033b61"
+    },
+    {
+      "path": "third_party/ncps/ncps/torch/cfc.py",
+      "sha256": "3e5c1ddf4bf0829cfaa9c6415d30b8081fdaf2e1f681d02631c497626b67f0ea"
+    },
+    {
+      "path": "third_party/ncps/ncps/torch/cfc_cell.py",
+      "sha256": "79dcc1cbb3b6898dc2310e9086a2e031e31cbaeb129d69adcbf45eaa16d6b74d"
+    },
+    {
+      "path": "third_party/ncps/ncps/torch/lstm.py",
+      "sha256": "c2e14bd042e4bb4c495669288d3e08d441317e2d8234175dc5b5a29983b757f3"
+    },
+    {
+      "path": "third_party/ncps/ncps/torch/ltc.py",
+      "sha256": "bbf3127013d3969994ecf0debf4eb37b56db750475ee71646a9decdf1aaf3026"
+    },
+    {
+      "path": "third_party/ncps/ncps/torch/ltc_cell.py",
+      "sha256": "167a9d6e1f4dc653ce21420010709e1c995716e53ad0d8bbc2d53c19c40b123f"
+    },
+    {
+      "path": "third_party/ncps/ncps/torch/wired_cfc_cell.py",
+      "sha256": "6163ff6b026c28bf43e9fe6ece5eddfe4360063832901ce641cffd0cfb6dbfb9"
+    },
+    {
+      "path": "third_party/ncps/ncps/wirings/__init__.py",
+      "sha256": "654a6f6947c25654b162310f207abff04d0f24f92fb6ecc8abe326d504d1aefb"
+    },
+    {
+      "path": "third_party/ncps/ncps/wirings/wirings.py",
+      "sha256": "00d08916d3208f44b5bda681427fbc2efcc49bd826096ab8cdf565c28064bc01"
+    },
+    {
+      "path": "third_party/ncps/setup.py",
+      "sha256": "825066366f27ca3884b899f138dccf6549e83d5f1a64cd3fb0c1d341394cbf78"
+    },
+    {
+      "path": "third_party/neat-python/neat/__init__.py",
+      "sha256": "62795e020973c152bc4e6aee35da92c437b9226f0680d86d6436e2a18c17307d"
+    },
+    {
+      "path": "third_party/neat-python/neat/activations.py",
+      "sha256": "2216327eccff384a60be202fa6b24af31b97f4d6bdf4a42f8af66b7610ddf35a"
+    },
+    {
+      "path": "third_party/neat-python/neat/aggregations.py",
+      "sha256": "60ef2aca837ecd4646884fc134497d92cf013fea36bda633c25136db00834aa2"
+    },
+    {
+      "path": "third_party/neat-python/neat/attributes.py",
+      "sha256": "cc3f363c2e6f9a015cfb30f40fa59532179272ede12d561e00c1537ad35d0ca6"
+    },
+    {
+      "path": "third_party/neat-python/neat/checkpoint.py",
+      "sha256": "3e72d551c316e05bed42fe3088ec312ef322028f336a6b7d5450815148c7d1f9"
+    },
+    {
+      "path": "third_party/neat-python/neat/config.py",
+      "sha256": "cf7397e8a11f12e99cd9f09e011ef6bd0075b8893590ee3151881c50593b026b"
+    },
+    {
+      "path": "third_party/neat-python/neat/ctrnn/__init__.py",
+      "sha256": "f5b89d6d7ad9e13ea6817b4a7c8a4e2dda4b44a8cd1da97bc5cbe9b9ebc78dd2"
+    },
+    {
+      "path": "third_party/neat-python/neat/export/__init__.py",
+      "sha256": "d377d5ec6d4d8bc49840ce8f962d06010a8fb01e8ab65d51439e9ca2feae5a36"
+    },
+    {
+      "path": "third_party/neat-python/neat/export/exporters.py",
+      "sha256": "0502a649f979f1b22091333853d7ae133a8c58c12f75df714870c3aeb91b21b8"
+    },
+    {
+      "path": "third_party/neat-python/neat/export/json_format.py",
+      "sha256": "01676d32c25b49f6dc23463c4de63e82debbcfc7802fbcd704dff41306e1701b"
+    },
+    {
+      "path": "third_party/neat-python/neat/genes.py",
+      "sha256": "a5c0b00dfcfea009895e8fa3c59ab55a457e7c1d003f67742ff6389d018e2314"
+    },
+    {
+      "path": "third_party/neat-python/neat/genome.py",
+      "sha256": "cdc0eeee7396ea163ff363b4922199e064a4a110932cff1d26658e512398911f"
+    },
+    {
+      "path": "third_party/neat-python/neat/graphs.py",
+      "sha256": "d34d6a2a7a6db6f6a2ca00bd985a0653d677cb7b827e6e824b16e9bb84c31483"
+    },
+    {
+      "path": "third_party/neat-python/neat/innovation.py",
+      "sha256": "dbea5943d704322b1d2476953e0b9bdbb42106fd6c4c06837b7492b5513a5ad0"
+    },
+    {
+      "path": "third_party/neat-python/neat/iznn/__init__.py",
+      "sha256": "693700a88c4663f3fc072d7aa6902831a6ffe2a84e3a2a9a077fd1baffdba10a"
+    },
+    {
+      "path": "third_party/neat-python/neat/math_util.py",
+      "sha256": "f7f243fc3cb304221b0187fdbed6f1ec2d27d86b2e2114675f232cf71ad8f097"
+    },
+    {
+      "path": "third_party/neat-python/neat/nn/__init__.py",
+      "sha256": "c2101befdc947f40ea0044b2253eb7d9379855bc1c89113345d4836bc65c20d2"
+    },
+    {
+      "path": "third_party/neat-python/neat/nn/feed_forward.py",
+      "sha256": "27f8a7cd16ef694bfdcd3eaa853b022a89fd513585245ccc8ef1041e403fd215"
+    },
+    {
+      "path": "third_party/neat-python/neat/nn/recurrent.py",
+      "sha256": "ca874fb4846b54b87d6cb638a4bf06843c7e24fd42bad235a5cb54297fce3e67"
+    },
+    {
+      "path": "third_party/neat-python/neat/parallel.py",
+      "sha256": "56fd960c462fc5edaa3e3017652e5d506dfb8a311e5fe44305f0f510f3cb3675"
+    },
+    {
+      "path": "third_party/neat-python/neat/population.py",
+      "sha256": "af8730dc2ce8fac044a4ab557c67c3bdb1717e47df2174386beba625ccd1f13b"
+    },
+    {
+      "path": "third_party/neat-python/neat/reporting.py",
+      "sha256": "8c2bf760bf165299014754a0fc296f7e1a48fe1a9ac715688d200d342642c384"
+    },
+    {
+      "path": "third_party/neat-python/neat/reproduction.py",
+      "sha256": "c340f334d7c4642ae8cc5f6b4053ab7d1f98ba651744d5801de2610fb8a8eee8"
+    },
+    {
+      "path": "third_party/neat-python/neat/species.py",
+      "sha256": "8edde60b62dfbed242e64d51cdb375a2842738ca5921ada4e907573e2f16a778"
+    },
+    {
+      "path": "third_party/neat-python/neat/stagnation.py",
+      "sha256": "2f6f6d5dc8b255406b8da09adcdbd3e6bf79702534c7779e71e27a64bb21c54f"
+    },
+    {
+      "path": "third_party/neat-python/neat/statistics.py",
+      "sha256": "0cab9ac7a1bf1ce99e6314a4bbb387b89ec0ff9101ce63e4b5df54f91356b177"
+    },
+    {
+      "path": "third_party/neat-python/setup.py",
+      "sha256": "a84a4903fac03e55b1375c9f5c44159458dd10d9b73da3265cfd5581f96a05ed"
+    },
+    {
+      "path": "third_party/pettingzoo/pettingzoo/__init__.py",
+      "sha256": "e44992f92dd54c5f20be0c7ea071f6c3f39bf0ff7d9db2b2e3b6713f297a6789"
+    },
+    {
+      "path": "third_party/pettingzoo/pettingzoo/atari/__init__.py",
+      "sha256": "252c4be3126e3a46bb68211d4076c5747d641b96c8ebd24a5a18d9fa53b16003"
+    },
+    {
+      "path": "third_party/pettingzoo/pettingzoo/atari/all_modules.py",
+      "sha256": "f4473aa3307e8b716d2e61ccbc8ea3c73c64cb7de337e6b0750cc8c9b53423e4"
+    },
+    {
+      "path": "third_party/pettingzoo/pettingzoo/atari/base_atari_env.py",
+      "sha256": "e45a7b12024d690b86292e1bf6d26c5ba552107ee1cb3ea76d35e462bd652bf4"
+    },
+    {
+      "path": "third_party/pettingzoo/pettingzoo/atari/basketball_pong/basketball_pong.py",
+      "sha256": "9ec897033a57d76c32f875b2cde8af27555a4f5c48846e03df4ddaa0e0a050cc"
+    },
+    {
+      "path": "third_party/pettingzoo/pettingzoo/atari/basketball_pong_v3.py",
+      "sha256": "9c54f4cb5201baa28fdaeda146a80eaedbaa3acf6aaaf1bb5dea445d96b6f34c"
+    },
+    {
+      "path": "third_party/pettingzoo/pettingzoo/atari/boxing/boxing.py",
+      "sha256": "38242366c67cff89c93dde2f4ee4d654cedf12ffe490012b40945f05018685e1"
+    },
+    {
+      "path": "third_party/pettingzoo/pettingzoo/atari/boxing_v2.py",
+      "sha256": "3cc19933221b5e27e055b8a7fa45d9591349e972fac559016d44f18503e29741"
+    },
+    {
+      "path": "third_party/pettingzoo/pettingzoo/atari/combat_plane/combat_plane.py",
+      "sha256": "2a4ca3f0ea5bc465fe36e7fc96996b48696183ac8a0db00eb8cbfae5195f9ead"
+    },
+    {
+      "path": "third_party/pettingzoo/pettingzoo/atari/combat_plane_v2.py",
+      "sha256": "aab04e25f02fe191c62558b3e5a464bdb54b56fbc0dd281d2ee7dc9992b56373"
+    },
+    {
+      "path": "third_party/pettingzoo/pettingzoo/atari/combat_tank/combat_tank.py",
+      "sha256": "35a31ba8aaf90567f7efcbe3bf55b1f912dd82aac4c52cd1b35336e450682fd0"
+    },
+    {
+      "path": "third_party/pettingzoo/pettingzoo/atari/combat_tank_v2.py",
+      "sha256": "0f8fbe059bc5baa6d7226ab05fd3a1054f01bab3528fdf70217587cb038351f5"
+    },
+    {
+      "path": "third_party/pettingzoo/pettingzoo/atari/double_dunk/double_dunk.py",
+      "sha256": "a1663b3264f443983d60486a0c5fddb1028686cf4fcc806bc99f1b3cbd938612"
+    },
+    {
+      "path": "third_party/pettingzoo/pettingzoo/atari/double_dunk_v3.py",
+      "sha256": "ebe7f24f9fcdb5706cb254904ff07a87fa0619e5d131e90ffe2ba95067b25fd4"
+    },
+    {
+      "path": "third_party/pettingzoo/pettingzoo/atari/entombed_competitive/entombed_competitive.py",
+      "sha256": "aabf9f672a16a7ad08f67c0d8fc1561976592404322bea5561957ca6c0abafcb"
+    },
+    {
+      "path": "third_party/pettingzoo/pettingzoo/atari/entombed_competitive_v3.py",
+      "sha256": "4bf3ac5a4d5199f484c77680fcf2cfe93f3ac7657f1c26b2c759a32684b3f0f6"
+    },
+    {
+      "path": "third_party/pettingzoo/pettingzoo/atari/entombed_cooperative/entombed_cooperative.py",
+      "sha256": "6e974a0d6e40b11578e6e0ef801d92c6af60bdfd4ec016c3ac87b3b247ba5592"
+    },
+    {
+      "path": "third_party/pettingzoo/pettingzoo/atari/entombed_cooperative_v3.py",
+      "sha256": "73cbc4423dd9cc6aec9cf5b9112e78ab39ddb4a6cf0271341b34cf63b7a7f191"
+    },
+    {
+      "path": "third_party/pettingzoo/pettingzoo/atari/flag_capture/flag_capture.py",
+      "sha256": "63eb7f52d2f2dcd5f397bd49c36e39971a8af13052c4eaed7492d130c0ac4c1e"
+    },
+    {
+      "path": "third_party/pettingzoo/pettingzoo/atari/flag_capture_v2.py",
+      "sha256": "159dc30688c9349e9032802dade7dc0b89ddf23879cb7db01ecf8459eb1049c7"
+    },
+    {
+      "path": "third_party/pettingzoo/pettingzoo/atari/foozpong/foozpong.py",
+      "sha256": "4bfd2bc1123f0db7725c7523edfc092a1d74c3ab6dd7cea0710ff6f75e33d533"
+    },
+    {
+      "path": "third_party/pettingzoo/pettingzoo/atari/foozpong_v3.py",
+      "sha256": "44c0967876d2b86643c1f6f5bd16e137a633b5d1e5fd33b01f8afcf2538ff1d0"
+    },
+    {
+      "path": "third_party/pettingzoo/pettingzoo/atari/ice_hockey/ice_hockey.py",
+      "sha256": "0169bc8d4f56edc6888897a2b39acfe4b2b463191b1ad5358e06b1ee429a6fba"
+    },
+    {
+      "path": "third_party/pettingzoo/pettingzoo/atari/ice_hockey_v2.py",
+      "sha256": "4401a85bf6ae2a0b1fdafbb081e9ae05c825b72dc7bb8a04ea62c494fab00cfc"
+    },
+    {
+      "path": "third_party/pettingzoo/pettingzoo/atari/joust/joust.py",
+      "sha256": "f7305ec78e89f7843dd9846b850475de3158c19f96d4cc2c376c4c8934232981"
+    },
+    {
+      "path": "third_party/pettingzoo/pettingzoo/atari/joust_v3.py",
+      "sha256": "5312db313ef0620b2b089d94dafaf3075d55dc65abff4dd9a8752eeb651aef0d"
+    },
+    {
+      "path": "third_party/pettingzoo/pettingzoo/atari/mario_bros/mario_bros.py",
+      "sha256": "b8aaa8eab8efd8ef8290d78015b898d9ccf47228429dae027d57f2db0cf55950"
+    },
+    {
+      "path": "third_party/pettingzoo/pettingzoo/atari/mario_bros_v3.py",
+      "sha256": "09521eb9fb535a5e544d6eb1507379b29d3d6af495dcc48ec6156e3dd5bf9b11"
+    },
+    {
+      "path": "third_party/pettingzoo/pettingzoo/atari/maze_craze/maze_craze.py",
+      "sha256": "e64c9aad417c0bf64a16bf4adbae20cb678a1478fe50aaf5dc85e9990ee33b90"
+    },
+    {
+      "path": "third_party/pettingzoo/pettingzoo/atari/maze_craze_v3.py",
+      "sha256": "8ba0e4bdf02d89c6e589eac12e8863b108365babb8accafa9d14e2bc221e4bf2"
+    },
+    {
+      "path": "third_party/pettingzoo/pettingzoo/atari/othello/othello.py",
+      "sha256": "9723acada5ca149c70aa35ee8bf91ebed50a02dfae45cfcba4c6b2a9c2e56930"
+    },
+    {
+      "path": "third_party/pettingzoo/pettingzoo/atari/othello_v3.py",
+      "sha256": "4cfda963458b332230ee81d5cbbce9a5d3157d68a2aed9640fd042b3213f7d07"
+    },
+    {
+      "path": "third_party/pettingzoo/pettingzoo/atari/pong/pong.py",
+      "sha256": "8c1267d4e96126900c9e687978640ddfa1eb74937abd983ade4a684f03e752d4"
+    },
+    {
+      "path": "third_party/pettingzoo/pettingzoo/atari/pong_v3.py",
+      "sha256": "57ddbce0840043e93e619f8e49804462f3f043c5a79fedf59ef3ca180221de2e"
+    },
+    {
+      "path": "third_party/pettingzoo/pettingzoo/atari/quadrapong/quadrapong.py",
+      "sha256": "31e5fe724c93c5e809f152fe7de810685c881aeb13ed0abe6525523b9f3b83d3"
+    },
+    {
+      "path": "third_party/pettingzoo/pettingzoo/atari/quadrapong_v4.py",
+      "sha256": "91165b6a2bc3540156c276c7a413265c116eb81b9ae74abcb4110f1e859fc27b"
+    },
+    {
+      "path": "third_party/pettingzoo/pettingzoo/atari/space_invaders/space_invaders.py",
+      "sha256": "b697845e2428caf7dc66a4df3ea0b380c92e672d9cfcf22df6f1db41fad3c6af"
+    },
+    {
+      "path": "third_party/pettingzoo/pettingzoo/atari/space_invaders_v2.py",
+      "sha256": "b9ea5fe426b5f2ed75cbb7a995b90cf65871ac42427b66f45151fe809af94d8c"
+    },
+    {
+      "path": "third_party/pettingzoo/pettingzoo/atari/space_war/space_war.py",
+      "sha256": "c6e777dcd549b473327257d106c059ade7f7599b545097b9e6cc5317c70ea3e7"
+    },
+    {
+      "path": "third_party/pettingzoo/pettingzoo/atari/space_war_v2.py",
+      "sha256": "9706491295338ea865ba44cf8e3f014a07c327fe3fcc111dbc99810fdfd61490"
+    },
+    {
+      "path": "third_party/pettingzoo/pettingzoo/atari/surround/surround.py",
+      "sha256": "1a7c1f519e8b0d6bcd40b412638664fe71a30393bd8b063b1a45047a5995abcb"
+    },
+    {
+      "path": "third_party/pettingzoo/pettingzoo/atari/surround_v2.py",
+      "sha256": "4b96229ca0d5bc6ef2150a5feb52d4c03136ab1e417aea39bdae2922674498d1"
+    },
+    {
+      "path": "third_party/pettingzoo/pettingzoo/atari/tennis/tennis.py",
+      "sha256": "5f6fe1d38b8a900b1d2070ea38405848bf20a9ee6759f3bca9d568b3b0f480c4"
+    },
+    {
+      "path": "third_party/pettingzoo/pettingzoo/atari/tennis_v3.py",
+      "sha256": "b015944cab65a2d948156fb2d2f0764936252269218a67b0d591b86140c09a3e"
+    },
+    {
+      "path": "third_party/pettingzoo/pettingzoo/atari/video_checkers/video_checkers.py",
+      "sha256": "2148250d3265c7142af0f0ea003bfc91902876b51e5f83f5cf70bdaafc9b1d57"
+    },
+    {
+      "path": "third_party/pettingzoo/pettingzoo/atari/video_checkers_v4.py",
+      "sha256": "14fd0cfc0706e098bb8ad97e2fde99046e969cf48cf2e943e35ac2478c3851af"
+    },
+    {
+      "path": "third_party/pettingzoo/pettingzoo/atari/volleyball_pong/volleyball_pong.py",
+      "sha256": "5df8414049e7ccbd5f2cf626066d3fe0356e6d65d0d8b0b009a12dbd779bf4ba"
+    },
+    {
+      "path": "third_party/pettingzoo/pettingzoo/atari/volleyball_pong_v3.py",
+      "sha256": "70c8f514500baf2ed154cb7480f72da14cffabd60540cafbbf16636e479e8f4f"
+    },
+    {
+      "path": "third_party/pettingzoo/pettingzoo/atari/warlords/warlords.py",
+      "sha256": "bf2251e49feebc250b04985ce8cb372d1202924449fdc51a7c02434414ede7b1"
+    },
+    {
+      "path": "third_party/pettingzoo/pettingzoo/atari/warlords_v3.py",
+      "sha256": "481dcca05e49cbe851b03914c8da80a8c78fb14b0a14950a0e5cf54d528c5d09"
+    },
+    {
+      "path": "third_party/pettingzoo/pettingzoo/atari/wizard_of_wor/wizard_of_wor.py",
+      "sha256": "8fac3b6470ba767793f7b5755fe445c5be1eb9ecef6d3b35c25728efe5e85876"
+    },
+    {
+      "path": "third_party/pettingzoo/pettingzoo/atari/wizard_of_wor_v3.py",
+      "sha256": "9085849152b3d6147326266cbf66c26a59a10064e2586fda7c576d20c0c23b1d"
+    },
+    {
+      "path": "third_party/pettingzoo/pettingzoo/butterfly/__init__.py",
+      "sha256": "252c4be3126e3a46bb68211d4076c5747d641b96c8ebd24a5a18d9fa53b16003"
+    },
+    {
+      "path": "third_party/pettingzoo/pettingzoo/butterfly/all_modules.py",
+      "sha256": "4813c10d79c5e04a472c79de94e915fac7843a4a70ed7535f506e8ee4195f239"
+    },
+    {
+      "path": "third_party/pettingzoo/pettingzoo/butterfly/cooperative_pong/__init__.py",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "third_party/pettingzoo/pettingzoo/butterfly/cooperative_pong/ball.py",
+      "sha256": "734b981f3504e4af084f22889da1a2762689a1ec65c9459e3e6338e9c12df49b"
+    },
+    {
+      "path": "third_party/pettingzoo/pettingzoo/butterfly/cooperative_pong/cake_paddle.py",
+      "sha256": "a4d421620e27e0f69ab40b512240b40f3973482284cc4c965af03a155ea6ce8e"
+    },
+    {
+      "path": "third_party/pettingzoo/pettingzoo/butterfly/cooperative_pong/cooperative_pong.py",
+      "sha256": "98105dd0837562dedcfb167d42ac9882c46fba71fc17c69102daa96741626448"
+    },
+    {
+      "path": "third_party/pettingzoo/pettingzoo/butterfly/cooperative_pong/manual_policy.py",
+      "sha256": "4c6414530c8f917dbee715aa826fc1060d5f48d6a5117371651d3dd030776cc6"
+    },
+    {
+      "path": "third_party/pettingzoo/pettingzoo/butterfly/cooperative_pong/paddle.py",
+      "sha256": "c73235300b231f86a76252e37b4780bb00e4c19f3f26c04d6b58f4b6f2caa835"
+    },
+    {
+      "path": "third_party/pettingzoo/pettingzoo/butterfly/cooperative_pong_v5.py",
+      "sha256": "cb826de0eddff7a82643744f13e79d0df36ce5c2dc3176bb445a92ccf767a8ae"
+    },
+    {
+      "path": "third_party/pettingzoo/pettingzoo/butterfly/knights_archers_zombies/__init__.py",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "third_party/pettingzoo/pettingzoo/butterfly/knights_archers_zombies/knights_archers_zombies.py",
+      "sha256": "c237c5675b40a48529832e835c89b4cf58183447d7d6c755c6d976d48ac6f01d"
+    },
+    {
+      "path": "third_party/pettingzoo/pettingzoo/butterfly/knights_archers_zombies/manual_policy.py",
+      "sha256": "90cdf35dc7672ca90319ae3826408af41de3ee1542bcffe592825ef62482298a"
+    },
+    {
+      "path": "third_party/pettingzoo/pettingzoo/butterfly/knights_archers_zombies/src/__init__.py",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "third_party/pettingzoo/pettingzoo/butterfly/knights_archers_zombies/src/constants.py",
+      "sha256": "9467e0b1698c6441c5e3ff54739a7f209ba0e9aed9ab29ed7bc1393348dbc541"
+    },
+    {
+      "path": "third_party/pettingzoo/pettingzoo/butterfly/knights_archers_zombies/src/img.py",
+      "sha256": "eee38882e893a67985cd5df4431e8aedf18dd03b27771d67d7764ad97828fd0c"
+    },
+    {
+      "path": "third_party/pettingzoo/pettingzoo/butterfly/knights_archers_zombies/src/players.py",
+      "sha256": "7bdaee2f611f0e2ba5f1e8a9a3276471fff103e9e0b38f971bdae53faff93b64"
+    },
+    {
+      "path": "third_party/pettingzoo/pettingzoo/butterfly/knights_archers_zombies/src/weapons.py",
+      "sha256": "fb831a8a252aa07dd2b95f3f8c2c435b380d86deeea16fca4c76505f257f4657"
+    },
+    {
+      "path": "third_party/pettingzoo/pettingzoo/butterfly/knights_archers_zombies/src/zombie.py",
+      "sha256": "6989f08f46e0a792be0d925dd367a756b669a9a31eccddb3ba1e78505b78d4a6"
+    },
+    {
+      "path": "third_party/pettingzoo/pettingzoo/butterfly/knights_archers_zombies_v10.py",
+      "sha256": "b669a9dc86a074af7a9c17e897e47db0f55681d3d1a153118d7dc2ab08424fe3"
+    },
+    {
+      "path": "third_party/pettingzoo/pettingzoo/butterfly/pistonball/__init__.py",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "third_party/pettingzoo/pettingzoo/butterfly/pistonball/manual_policy.py",
+      "sha256": "f6d331626dffe9f1d41276acf42cf34bd90c786dbf25ec9e6661e93bdfcc6caf"
+    },
+    {
+      "path": "third_party/pettingzoo/pettingzoo/butterfly/pistonball/pistonball.py",
+      "sha256": "e92da64461cbae048f14fb18288a6cfeab1cbbf56c37da78bc4ae192b2d89da8"
+    },
+    {
+      "path": "third_party/pettingzoo/pettingzoo/butterfly/pistonball_v6.py",
+      "sha256": "93e45f363cea0f9fd20ccc29067852e895f8ea98e37add1ae82071cf4cdac8fa"
+    },
+    {
+      "path": "third_party/pettingzoo/pettingzoo/classic/__init__.py",
+      "sha256": "252c4be3126e3a46bb68211d4076c5747d641b96c8ebd24a5a18d9fa53b16003"
+    },
+    {
+      "path": "third_party/pettingzoo/pettingzoo/classic/all_modules.py",
+      "sha256": "deeb4274bb483c8dce948811093fc980717d1e774e3a5562e44a79e66332760f"
+    },
+    {
+      "path": "third_party/pettingzoo/pettingzoo/classic/chess/__init__.py",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "third_party/pettingzoo/pettingzoo/classic/chess/chess.py",
+      "sha256": "e83914550104d6b7af1c2362293f2281d15e143b8db5153d111b3398084a41da"
+    },
+    {
+      "path": "third_party/pettingzoo/pettingzoo/classic/chess/chess_utils.py",
+      "sha256": "b3d81cab2c4f2686475b95f93eeabefb4ca11aff981adf7889c2a99c3199f75c"
+    },
+    {
+      "path": "third_party/pettingzoo/pettingzoo/classic/chess/test_chess.py",
+      "sha256": "8cfeb5737cb4ad3e4b8ef35c5a737cb793eea39925697b4cf6c008ce22429570"
+    },
+    {
+      "path": "third_party/pettingzoo/pettingzoo/classic/chess_v6.py",
+      "sha256": "35a8833085933c27de102d112c9cf8be58c370ee3aa813d5935ed3449667bdba"
+    },
+    {
+      "path": "third_party/pettingzoo/pettingzoo/classic/connect_four/__init__.py",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "third_party/pettingzoo/pettingzoo/classic/connect_four/connect_four.py",
+      "sha256": "5f7de621352c409d4b11c0b0184798dab41edd005f9c5b75dfd9a3c02ec816b6"
+    },
+    {
+      "path": "third_party/pettingzoo/pettingzoo/classic/connect_four_v3.py",
+      "sha256": "0c32c8130cf72479b62be08a54510599364a264b6512c039f058b3b249bd4213"
+    },
+    {
+      "path": "third_party/pettingzoo/pettingzoo/classic/gin_rummy_v4.py",
+      "sha256": "2fd27eb57a8010840513a9a7f442c096de2f1cff73dc1d1b0df867a564fae109"
+    },
+    {
+      "path": "third_party/pettingzoo/pettingzoo/classic/go/__init__.py",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "third_party/pettingzoo/pettingzoo/classic/go/coords.py",
+      "sha256": "97ff39013cf4692171eeb441f7947276a13114b8d433fb38ccb9353a5a2c80ef"
+    },
+    {
+      "path": "third_party/pettingzoo/pettingzoo/classic/go/go.py",
+      "sha256": "2dc8b3d7f9c6a344697c34eede5e5b49d45324c92187ed01685cac4f3ac62c33"
+    },
+    {
+      "path": "third_party/pettingzoo/pettingzoo/classic/go/go_base.py",
+      "sha256": "525d1f5344396c94455ee2ede2b049de72ea448e82b93dadd2a88a01445eb7a2"
+    },
+    {
+      "path": "third_party/pettingzoo/pettingzoo/classic/go_v5.py",
+      "sha256": "8cc7d025d7c8d61e121d05e31049b748a2edfb00000517d6bbea42daa1408264"
+    },
+    {
+      "path": "third_party/pettingzoo/pettingzoo/classic/hanabi/__init__.py",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "third_party/pettingzoo/pettingzoo/classic/hanabi/hanabi.py",
+      "sha256": "479bbecc5bb7b69fc3d5360fd2fabb914821661687182886135f789001390b49"
+    },
+    {
+      "path": "third_party/pettingzoo/pettingzoo/classic/hanabi_v5.py",
+      "sha256": "0bfd7ccb3fecbc64016164e8cfacc824e1bfa33c9503acf41bf65a5e5094dfe0"
+    },
+    {
+      "path": "third_party/pettingzoo/pettingzoo/classic/leduc_holdem_v4.py",
+      "sha256": "0f922961b4c547cab66c0825100cf8f133500bc8fb7cdb232447ee70372a8097"
+    },
+    {
+      "path": "third_party/pettingzoo/pettingzoo/classic/rlcard_envs/__init__.py",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "third_party/pettingzoo/pettingzoo/classic/rlcard_envs/gin_rummy.py",
+      "sha256": "ef363df170ab0e33fc1271ac8e6713cd6d3df84718affecee5938729edb06f0a"
+    },
+    {
+      "path": "third_party/pettingzoo/pettingzoo/classic/rlcard_envs/leduc_holdem.py",
+      "sha256": "1003aae6ebc46822b04d2937f8ad326bcfaab9181c341f4002c8734ccb97b032"
+    },
+    {
+      "path": "third_party/pettingzoo/pettingzoo/classic/rlcard_envs/rlcard_base.py",
+      "sha256": "20febd45bb223a7ac888823119a3997c8fb8e727c7fec5990db07c898b8f829e"
+    },
+    {
+      "path": "third_party/pettingzoo/pettingzoo/classic/rlcard_envs/rlcard_utils.py",
+      "sha256": "409967bdf41b3888b7b92d8e6eb3a786c18dd8f493465271e0b18435a27429be"
+    },
+    {
+      "path": "third_party/pettingzoo/pettingzoo/classic/rlcard_envs/texas_holdem.py",
+      "sha256": "cd0f52761027694a4ba508dec1749c99208a57e8bec3c88240d2e59425ef82d0"
+    },
+    {
+      "path": "third_party/pettingzoo/pettingzoo/classic/rlcard_envs/texas_holdem_no_limit.py",
+      "sha256": "62fec6bfee82404ac77852a13f54668ecc75a85bb12fdb97c46b090469b8b138"
+    },
+    {
+      "path": "third_party/pettingzoo/pettingzoo/classic/rps/__init__.py",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "third_party/pettingzoo/pettingzoo/classic/rps/rps.py",
+      "sha256": "bd69169675a18351e6087bbd38e44a5d7d456f0a2eaf7309948c1740b66a609a"
+    },
+    {
+      "path": "third_party/pettingzoo/pettingzoo/classic/rps_v2.py",
+      "sha256": "71d66c49d35395895eb260ddfe838d70c9bf91a6e543f9a512fee2e76c7d9974"
+    },
+    {
+      "path": "third_party/pettingzoo/pettingzoo/classic/texas_holdem_no_limit_v6.py",
+      "sha256": "f40c08259c0ee403e52832e9e8e52bcdeef201d462aae884c98238ca0e706c56"
+    },
+    {
+      "path": "third_party/pettingzoo/pettingzoo/classic/texas_holdem_v4.py",
+      "sha256": "1146e37a9f9398f55e974edebf15db9950fa383f2aa938b46eb9683ec8298570"
+    },
+    {
+      "path": "third_party/pettingzoo/pettingzoo/classic/tictactoe/__init__.py",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "third_party/pettingzoo/pettingzoo/classic/tictactoe/board.py",
+      "sha256": "7704a475dd40df9cefef388eaf17af27d2b1cc73ff2e1e75977e8f12ca15a98a"
+    },
+    {
+      "path": "third_party/pettingzoo/pettingzoo/classic/tictactoe/test_board.py",
+      "sha256": "442caaa22572f54f85a6585f95e1281dda0779da0e57ee7853caacfdfcb131b9"
+    },
+    {
+      "path": "third_party/pettingzoo/pettingzoo/classic/tictactoe/tictactoe.py",
+      "sha256": "c8d724ce398add585304f99de06d4bc2607ae47a3368241b35bb1c8dc6f7e30d"
+    },
+    {
+      "path": "third_party/pettingzoo/pettingzoo/classic/tictactoe_v3.py",
+      "sha256": "b3d379396478f5030272b565ea2189c4ce2980237ce30f7ccab51fd3672ba1c2"
+    },
+    {
+      "path": "third_party/pettingzoo/pettingzoo/magent/__init__.py",
+      "sha256": "eee7716e73323fdabda4024c839593ca32df0fdd83facb04255f34b65a3bd870"
+    },
+    {
+      "path": "third_party/pettingzoo/pettingzoo/mpe/__init__.py",
+      "sha256": "eec50c71fe5b40101a8d0bcd41396ac813db7a2a6a2c27ea458ce2283c2f73ed"
+    },
+    {
+      "path": "third_party/pettingzoo/pettingzoo/mpe/_mpe_utils/__init__.py",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "third_party/pettingzoo/pettingzoo/mpe/_mpe_utils/core.py",
+      "sha256": "091f7853fcfb1e9bcd9c98d223dbdacf88cb338d6123ce385180364d6039570e"
+    },
+    {
+      "path": "third_party/pettingzoo/pettingzoo/mpe/_mpe_utils/scenario.py",
+      "sha256": "4842b733f70ffaad109b62ba5a1d91a38a8fd6a03e35c91dafe9a9fde24528ca"
+    },
+    {
+      "path": "third_party/pettingzoo/pettingzoo/mpe/_mpe_utils/simple_env.py",
+      "sha256": "1a17d4033b3c57364a44d0b91a7ed0039a54cb32210df950d5de7ead0e4de9e5"
+    },
+    {
+      "path": "third_party/pettingzoo/pettingzoo/mpe/all_modules.py",
+      "sha256": "5dbb907f369a726b82b70b62bfa305b0b6fc066d5ab449d96c53ae7f899a9252"
+    },
+    {
+      "path": "third_party/pettingzoo/pettingzoo/mpe/simple/simple.py",
+      "sha256": "ecfdf8776656b8fe519c5e43228d96703ae0e5e8b58c7651f787bdd2ac28e90f"
+    },
+    {
+      "path": "third_party/pettingzoo/pettingzoo/mpe/simple_adversary/simple_adversary.py",
+      "sha256": "64e0938d33284f34d073d70fc2d28d8cccc089ffbc4b0a3b7ee7e7d980d67965"
+    },
+    {
+      "path": "third_party/pettingzoo/pettingzoo/mpe/simple_adversary_v3.py",
+      "sha256": "3168267344a449a5215cfd1b81f4c3cfb011805d45bccb87112de5ac8d650f6e"
+    },
+    {
+      "path": "third_party/pettingzoo/pettingzoo/mpe/simple_crypto/simple_crypto.py",
+      "sha256": "c51ef3669fda0f3f054a5b60a3ea4de7920a9ff2242d2015bff5f22e0a086635"
+    },
+    {
+      "path": "third_party/pettingzoo/pettingzoo/mpe/simple_crypto_v3.py",
+      "sha256": "95dc62e1812482a0f1c9d076d75fba29cb73213300c6264e7fdcd02fb6eec8d5"
+    },
+    {
+      "path": "third_party/pettingzoo/pettingzoo/mpe/simple_push/simple_push.py",
+      "sha256": "7509715c426528c3586ada948e3ed4cc9188a7819ec4ff96c314b78efc2985bb"
+    },
+    {
+      "path": "third_party/pettingzoo/pettingzoo/mpe/simple_push_v3.py",
+      "sha256": "677d54ea7c713e1d54a8b829c25d2788f14a525758cef5d24a28d11503c0a43e"
+    },
+    {
+      "path": "third_party/pettingzoo/pettingzoo/mpe/simple_reference/simple_reference.py",
+      "sha256": "e6966cb184f050b52f35ede297f2f4e429b316f56104bbede1f098444a824a2d"
+    },
+    {
+      "path": "third_party/pettingzoo/pettingzoo/mpe/simple_reference_v3.py",
+      "sha256": "b9073fe7cb0b1b1d95c3e4d104e9c577388f385c95be76afeda31450384b6c9e"
+    },
+    {
+      "path": "third_party/pettingzoo/pettingzoo/mpe/simple_speaker_listener/simple_speaker_listener.py",
+      "sha256": "9e7c03b00d299ad797e5a0b0ac7d9e6df0414bfd7d7cb98ba3dae17b65483c8d"
+    },
+    {
+      "path": "third_party/pettingzoo/pettingzoo/mpe/simple_speaker_listener_v4.py",
+      "sha256": "76430c8131c450fc4cfb4f1e8d0b59e2ad3a1a3a7d20bcfe7b4e3005e6b823fa"
+    },
+    {
+      "path": "third_party/pettingzoo/pettingzoo/mpe/simple_spread/simple_spread.py",
+      "sha256": "7b0099d864c2e6e4e8183608ee79c08d56cfc254a9d4c886e3d0f8bb4dfa1ce5"
+    },
+    {
+      "path": "third_party/pettingzoo/pettingzoo/mpe/simple_spread_v3.py",
+      "sha256": "4cb28acd0fefabfaf03c34d1b5df6f1da6c861c6fc686067f61034ffeca7869c"
+    },
+    {
+      "path": "third_party/pettingzoo/pettingzoo/mpe/simple_tag/simple_tag.py",
+      "sha256": "9a9ed6023b5cfd8eb648cf0576ac68cd0d237f38f7ddaa174f37a79eb74292b3"
+    },
+    {
+      "path": "third_party/pettingzoo/pettingzoo/mpe/simple_tag_v3.py",
+      "sha256": "c8fffb9150131c4a8a2620f8e712ed5df6f49ad6fb955a18aee4dec1d90403d2"
+    },
+    {
+      "path": "third_party/pettingzoo/pettingzoo/mpe/simple_v3.py",
+      "sha256": "857b5d97d0bc8c195c0f7c214a75277edd7d009707e5384aef5319c3b2ee732c"
+    },
+    {
+      "path": "third_party/pettingzoo/pettingzoo/mpe/simple_world_comm/simple_world_comm.py",
+      "sha256": "ade6e5d34778616451ae374f1af7644facf5806759fddfab10d4a0163e22be96"
+    },
+    {
+      "path": "third_party/pettingzoo/pettingzoo/mpe/simple_world_comm_v3.py",
+      "sha256": "dc4d6acbf706dea737008fa89c54c6b7c20a5423e945c2125c5100b57da8598f"
+    },
+    {
+      "path": "third_party/pettingzoo/pettingzoo/sisl/__init__.py",
+      "sha256": "252c4be3126e3a46bb68211d4076c5747d641b96c8ebd24a5a18d9fa53b16003"
+    },
+    {
+      "path": "third_party/pettingzoo/pettingzoo/sisl/_utils.py",
+      "sha256": "2598da3c8f232e3b736f942e7cb430ac0bfc9b61f3997ef7debe6a298aafab71"
+    },
+    {
+      "path": "third_party/pettingzoo/pettingzoo/sisl/all_modules.py",
+      "sha256": "a1ceb08166d24a64f25bbda25953ae489e88eb4635bb27fa9771c0411a32ce4e"
+    },
+    {
+      "path": "third_party/pettingzoo/pettingzoo/sisl/multiwalker/__init__.py",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "third_party/pettingzoo/pettingzoo/sisl/multiwalker/multiwalker.py",
+      "sha256": "067453029bcb3149005f6aedad1510735db5554cba7b288c06901e24865be0b2"
+    },
+    {
+      "path": "third_party/pettingzoo/pettingzoo/sisl/multiwalker/multiwalker_base.py",
+      "sha256": "5e5ec639fa71295daf991ab762e9adf45f95b72d6848911e3b8ea98ae1dd3f7e"
+    },
+    {
+      "path": "third_party/pettingzoo/pettingzoo/sisl/multiwalker_v9.py",
+      "sha256": "1137bf70127d136b5590d634a7457576cbcc54eeeff695c1341b1c8ad1271d97"
+    },
+    {
+      "path": "third_party/pettingzoo/pettingzoo/sisl/pursuit/__init__.py",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "third_party/pettingzoo/pettingzoo/sisl/pursuit/manual_policy.py",
+      "sha256": "cfa66fa266139cd128150a1cbb77229b70cb7f2295aa7c67e146ad12254a0064"
+    },
+    {
+      "path": "third_party/pettingzoo/pettingzoo/sisl/pursuit/pursuit.py",
+      "sha256": "1a5ffede4d7d61941c6f5c46d2451874b55d7b102c072758c1be99d9565feaf9"
+    },
+    {
+      "path": "third_party/pettingzoo/pettingzoo/sisl/pursuit/pursuit_base.py",
+      "sha256": "0612396489b00069b0ed43314ce3899dd451886660b8fe7fc71478e3277be819"
+    },
+    {
+      "path": "third_party/pettingzoo/pettingzoo/sisl/pursuit/utils/__init__.py",
+      "sha256": "02e041586b58d3282d60de9b84b2a15fda6087ac3b607fe2c2fc01185432789f"
+    },
+    {
+      "path": "third_party/pettingzoo/pettingzoo/sisl/pursuit/utils/agent_layer.py",
+      "sha256": "ba1404612f25ca66ea7decfc7efff8fd49afe78f316fc2fe2d69078b3908a0bc"
+    },
+    {
+      "path": "third_party/pettingzoo/pettingzoo/sisl/pursuit/utils/agent_utils.py",
+      "sha256": "65d31977a289aa83fafd57e970b8d421561a17b135542716d9252c5b9bc56208"
+    },
+    {
+      "path": "third_party/pettingzoo/pettingzoo/sisl/pursuit/utils/controllers.py",
+      "sha256": "c2b02a21b51b08847154abf3801abd73a8596fb2da11c05948134ec144066053"
+    },
+    {
+      "path": "third_party/pettingzoo/pettingzoo/sisl/pursuit/utils/discrete_agent.py",
+      "sha256": "f3d75e82bcc4b0e83c49b5e35fbd7abab0cd14ba5696a320bfcbfc3f36e8a0e1"
+    },
+    {
+      "path": "third_party/pettingzoo/pettingzoo/sisl/pursuit/utils/two_d_maps.py",
+      "sha256": "bcbeda24f0961da76c2fc30450d7e64477672321ef72317971df3f10d2e80a75"
+    },
+    {
+      "path": "third_party/pettingzoo/pettingzoo/sisl/pursuit_v4.py",
+      "sha256": "672dcd355869c1b6026e48cbe78c39bd8f753edce2327e9e787c4358823407b1"
+    },
+    {
+      "path": "third_party/pettingzoo/pettingzoo/sisl/waterworld/__init__.py",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "third_party/pettingzoo/pettingzoo/sisl/waterworld/waterworld.py",
+      "sha256": "86f740777fe301921393df4df96d900f7ef029b83ba5afb5f1732505f59d1469"
+    },
+    {
+      "path": "third_party/pettingzoo/pettingzoo/sisl/waterworld/waterworld_base.py",
+      "sha256": "e94f4d5bc8c887a10f7d48adbce306cef71b9a1220861d24b2b8b0bae8e3c2d0"
+    },
+    {
+      "path": "third_party/pettingzoo/pettingzoo/sisl/waterworld/waterworld_models.py",
+      "sha256": "8b9cb4662ecba679334b6b260da88c5d413d0195761e9b1997bbaa66c77254c8"
+    },
+    {
+      "path": "third_party/pettingzoo/pettingzoo/sisl/waterworld_v4.py",
+      "sha256": "eef323d528f37259a35f62bec0b1e5e4829f2d16cecf8fecbe7407a7f40f010c"
+    },
+    {
+      "path": "third_party/pettingzoo/pettingzoo/test/__init__.py",
+      "sha256": "0e1593cc3bf0cd7eefffe2b9a690e46a796dcc93ddd4492d0161155b63186065"
+    },
+    {
+      "path": "third_party/pettingzoo/pettingzoo/test/api_test.py",
+      "sha256": "53d51c394f23b2d883aa0a356814bf73cd23b74f09fb53af4fda5e87f0045ced"
+    },
+    {
+      "path": "third_party/pettingzoo/pettingzoo/test/bombardment_test.py",
+      "sha256": "6b706c1b7cce633c914fd4c2d69f89c3421edc4c1b8423b809bfd484de5ad0a7"
+    },
+    {
+      "path": "third_party/pettingzoo/pettingzoo/test/example_envs/__init__.py",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "third_party/pettingzoo/pettingzoo/test/example_envs/generated_agents_env_action_mask_info_v0.py",
+      "sha256": "6a3df92f9ebe53d34b95ddf21fbffb0430b088c360d4050c73443885b90d267b"
+    },
+    {
+      "path": "third_party/pettingzoo/pettingzoo/test/example_envs/generated_agents_env_action_mask_obs_v0.py",
+      "sha256": "d680385b6923515293078d73b97bf7ca2ae2cefe6500427d0838db3aee4ebcce"
+    },
+    {
+      "path": "third_party/pettingzoo/pettingzoo/test/example_envs/generated_agents_env_cust_agentid_v0.py",
+      "sha256": "4a72c7420177f1ec700cecf7636c3be2d9a90df4842e1225167f094b40642a03"
+    },
+    {
+      "path": "third_party/pettingzoo/pettingzoo/test/example_envs/generated_agents_env_v0.py",
+      "sha256": "713200ee470c92e540cba6deddbbc755148314675f494cecb01bc8e8f148c703"
+    },
+    {
+      "path": "third_party/pettingzoo/pettingzoo/test/example_envs/generated_agents_parallel_cust_agentid_v0.py",
+      "sha256": "a1134e6e0e2f23a5e4db1c998512ef19e3eecad1983f4e3fbfdfca11c34d71d6"
+    },
+    {
+      "path": "third_party/pettingzoo/pettingzoo/test/example_envs/generated_agents_parallel_v0.py",
+      "sha256": "000f34bc5e29d40a00cb2ff78f69985ba68bf2240d2ed594b41a99b7bdb4acb9"
+    },
+    {
+      "path": "third_party/pettingzoo/pettingzoo/test/manual_control_test.py",
+      "sha256": "281d9619a6a3dc10f79da83e69628db16550cea1620974a69f4d00c0e694010a"
+    },
+    {
+      "path": "third_party/pettingzoo/pettingzoo/test/max_cycles_test.py",
+      "sha256": "1648970636dffc1d2b931466fdbdbe2a5553332c8b1121a8bed3c6b15fac1e5f"
+    },
+    {
+      "path": "third_party/pettingzoo/pettingzoo/test/parallel_test.py",
+      "sha256": "5b8b4a00aadd44d2495a4f2ee27dfc7d3d8c298cd368e6da50c1dd9c048277bf"
+    },
+    {
+      "path": "third_party/pettingzoo/pettingzoo/test/performance_benchmark.py",
+      "sha256": "3f856b189ed35b552da4de597ada833bcb6236c5e368178fcd0545d0ee8e9eba"
+    },
+    {
+      "path": "third_party/pettingzoo/pettingzoo/test/render_test.py",
+      "sha256": "4633624d6ec5ebe5d2741ca1b8b7eac5a62713f69c19d142ea2052699182a777"
+    },
+    {
+      "path": "third_party/pettingzoo/pettingzoo/test/save_obs_test.py",
+      "sha256": "9444eada0229da84c78f7872ff3d0210b418c4a6222c8f66f0151479ec8da07f"
+    },
+    {
+      "path": "third_party/pettingzoo/pettingzoo/test/seed_test.py",
+      "sha256": "32139fee5daf1745256c809ad41c0d10391f560088497ee9bd2393e78b5b25b1"
+    },
+    {
+      "path": "third_party/pettingzoo/pettingzoo/test/state_test.py",
+      "sha256": "1be04a357b54bb432369e726b72694eb27f4de7fc78ff967e0435e221214cddc"
+    },
+    {
+      "path": "third_party/pettingzoo/pettingzoo/utils/__init__.py",
+      "sha256": "dacbd6e5ff649328305c92e7c6e6d8fe267cfad86fb5b744dd12d8c794f942be"
+    },
+    {
+      "path": "third_party/pettingzoo/pettingzoo/utils/agent_selector.py",
+      "sha256": "14ccc68b9eae7724d139c39b991c485f41c55b87068b761ee38f57d6894251e8"
+    },
+    {
+      "path": "third_party/pettingzoo/pettingzoo/utils/all_modules.py",
+      "sha256": "4dda6d3de33c0c6911bf35546d6988bc0894cfe1a64633e528a88f422de20186"
+    },
+    {
+      "path": "third_party/pettingzoo/pettingzoo/utils/average_total_reward.py",
+      "sha256": "a64f4ae0b452049c4e3f84d1c3f0373e96d2edad6f64320ba71a2ffa85b790d8"
+    },
+    {
+      "path": "third_party/pettingzoo/pettingzoo/utils/capture_stdout.py",
+      "sha256": "c7dd2a4a4ebf48c537d57d0bab64e29c238f8b74e43dae084a13f7ed6b057c66"
+    },
+    {
+      "path": "third_party/pettingzoo/pettingzoo/utils/conversions.py",
+      "sha256": "6122a802d0723c559d9c4423b82710270f9794ccd2d9ad97ded5ef7ef7c3f2be"
+    },
+    {
+      "path": "third_party/pettingzoo/pettingzoo/utils/deprecated_module.py",
+      "sha256": "0b2654903f345d1d41ea4a32bc0fd7be86afbac26aed367288ca144f7f88cd6d"
+    },
+    {
+      "path": "third_party/pettingzoo/pettingzoo/utils/env.py",
+      "sha256": "54f2fe63b33c05ab53da8ccf228b2571543b286e7588897afb9b6fc730892b3e"
+    },
+    {
+      "path": "third_party/pettingzoo/pettingzoo/utils/env_logger.py",
+      "sha256": "a9967b3ea86c18397096f7c3d18c4fcc5102e13b3849ea6653b142bc18b0828f"
+    },
+    {
+      "path": "third_party/pettingzoo/pettingzoo/utils/random_demo.py",
+      "sha256": "9f9a6d53c88fac23a9d9941aaa89a6e1eb77f38c27f14868dfd2872d1d50a592"
+    },
+    {
+      "path": "third_party/pettingzoo/pettingzoo/utils/save_observation.py",
+      "sha256": "64db3796db7dc7cf94f2e9a295c07771697f7c22f4d78e62fdcfd31cd938bf95"
+    },
+    {
+      "path": "third_party/pettingzoo/pettingzoo/utils/wrappers/__init__.py",
+      "sha256": "09d2fadbf65f51973bb8307ab4df90cd44dbcf47508237a2c8c455e388b28bde"
+    },
+    {
+      "path": "third_party/pettingzoo/pettingzoo/utils/wrappers/assert_out_of_bounds.py",
+      "sha256": "36a6340ee30c4999e9ac0e2638949c4321e75d901e874d70adc8874ace8ea4b9"
+    },
+    {
+      "path": "third_party/pettingzoo/pettingzoo/utils/wrappers/base.py",
+      "sha256": "715e63249fe5aa0f955c4a2842d22895f5c9f0c8234fa772bce54098fd0a7d3e"
+    },
+    {
+      "path": "third_party/pettingzoo/pettingzoo/utils/wrappers/base_parallel.py",
+      "sha256": "478e0134912a17f21261be96077027f233baf3dc82ed6f84f55a128f1e5b5b92"
+    },
+    {
+      "path": "third_party/pettingzoo/pettingzoo/utils/wrappers/capture_stdout.py",
+      "sha256": "ba63eae73ace1e2dbd1185c983e1220093f65ca4908729cad7b35a7bb10200e0"
+    },
+    {
+      "path": "third_party/pettingzoo/pettingzoo/utils/wrappers/clip_out_of_bounds.py",
+      "sha256": "6900b021ccc02004774277ea7ccdf8f01032dd48719c42f0a8756bf7193a4919"
+    },
+    {
+      "path": "third_party/pettingzoo/pettingzoo/utils/wrappers/multi_episode_env.py",
+      "sha256": "469015a208ad84648336ec4a7fb64422258368b51bff5d1cd3090e1302d47e8e"
+    },
+    {
+      "path": "third_party/pettingzoo/pettingzoo/utils/wrappers/multi_episode_parallel_env.py",
+      "sha256": "fd4a85794a20b08626c4e468b40a601952bb3c2f091b1579ea68486635e201c4"
+    },
+    {
+      "path": "third_party/pettingzoo/pettingzoo/utils/wrappers/order_enforcing.py",
+      "sha256": "675855c7c05077d94b00c09d777a4b02e855df25109e7a942d2c3c07351835b3"
+    },
+    {
+      "path": "third_party/pettingzoo/pettingzoo/utils/wrappers/terminate_illegal.py",
+      "sha256": "180114c8c6afcb5bdd45217a9dd881fb856a920cb1537aee6d59b39d54fe7d16"
+    },
+    {
+      "path": "third_party/pettingzoo/setup.py",
+      "sha256": "0669e4cbbad8f0dc9b3576f0690f06b8a40f43d891ea2881d0121f0235de80db"
+    }
+  ],
+  "sha256": "3e74994e152a282a559e136ac52bafc58db99e53a0b2d5d9cb2909ffeae9128b"
+}

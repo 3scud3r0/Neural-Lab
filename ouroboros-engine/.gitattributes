@@ -3,5 +3,8 @@ third_party/** linguist-vendored whitespace=-blank-at-eol,-blank-at-eof,-space-b
 # Exportações/evidências são derivadas e não devem duplicar a revisão dos fontes.
 CODIGO_COMPLETO.txt linguist-generated whitespace=-blank-at-eol,-blank-at-eof,-space-before-tab
 validation-v2/** linguist-generated
+CODIGO_SOMENTE.txt linguist-generated whitespace=-blank-at-eol,-blank-at-eof,-space-before-tab
+RESULTADOS_TESTES.txt linguist-generated
+validation-v3/** linguist-generated
 *.pt binary
 *.png binary
