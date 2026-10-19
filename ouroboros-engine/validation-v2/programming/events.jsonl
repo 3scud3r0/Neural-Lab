@@ -1,0 +1,13 @@
+{"event": "program_bootstrap", "elapsed": 1.3745857390003948, "epoch": 1, "loss": 5.7700066566467285, "validation_families_solved": 0}
+{"event": "program_bootstrap", "elapsed": 2.7191882280003483, "epoch": 25, "loss": 1.0315515995025635, "validation_families_solved": 0}
+{"event": "program_bootstrap", "elapsed": 3.5040733670002737, "epoch": 50, "loss": 0.38054969906806946, "validation_families_solved": 1}
+{"event": "program_bootstrap", "elapsed": 4.264704572000028, "epoch": 75, "loss": 0.148473858833313, "validation_families_solved": 2}
+{"event": "program_bootstrap", "elapsed": 4.913180270000339, "epoch": 100, "loss": 0.08624027669429779, "validation_families_solved": 3}
+{"event": "program_bootstrap", "elapsed": 5.611849080000411, "epoch": 125, "loss": 0.06331879645586014, "validation_families_solved": 5}
+{"event": "program_bootstrap", "elapsed": 6.23915571400039, "epoch": 150, "loss": 0.05389956757426262, "validation_families_solved": 8}
+{"event": "program_bootstrap", "elapsed": 6.869202009000219, "epoch": 175, "loss": 0.03927788883447647, "validation_families_solved": 7}
+{"event": "program_bootstrap", "elapsed": 7.474960732999989, "epoch": 200, "loss": 0.025228824466466904, "validation_families_solved": 9}
+{"event": "program_bootstrap", "elapsed": 8.077263510000193, "epoch": 225, "loss": 0.03381894528865814, "validation_families_solved": 6}
+{"event": "program_bootstrap", "elapsed": 8.708864885000366, "epoch": 250, "loss": 0.016930976882576942, "validation_families_solved": 9}
+{"event": "program_bootstrap", "elapsed": 9.332199907000359, "epoch": 275, "loss": 0.018290771171450615, "validation_families_solved": 9}
+{"event": "program_bootstrap", "elapsed": 9.952993917000185, "epoch": 300, "loss": 0.012914715334773064, "validation_families_solved": 11}

@@ -1,0 +1,9 @@
+{
+  "version": "2.0.0",
+  "new_v2_python_modules": 28,
+  "new_v2_python_lines": 2844,
+  "test_python_lines": 502,
+  "upstream_original_files": 390,
+  "upstream_python_lines": 32484,
+  "note": "Contagens distinguem o código local das bibliotecas de terceiros."
+}

@@ -1,0 +1,46 @@
+test_correct_and_wrong_program (test_engine.ExecutorTests.test_correct_and_wrong_program) ... ok
+test_rejects_python_escape_and_large_inputs (test_engine.ExecutorTests.test_rejects_python_escape_and_large_inputs) ... ok
+test_timeout_and_empty_output_are_not_success (test_engine.ExecutorTests.test_timeout_and_empty_output_are_not_success) ... ok
+test_configuration_rejects_invalid_values (test_engine.IntegrationTests.test_configuration_rejects_invalid_values) ... ok
+test_dashboard_endpoints_waiting_live_and_path_rejection (test_engine.IntegrationTests.test_dashboard_endpoints_waiting_live_and_path_rejection) ... ok
+test_learning_run_outputs_and_reproducibility (test_engine.IntegrationTests.test_learning_run_outputs_and_reproducibility) ... ok
+test_hebbian_memory_is_individual_and_bounded (test_engine.PrimitiveTests.test_hebbian_memory_is_individual_and_bounded) ... ok
+test_liquid_time_and_gradient (test_engine.PrimitiveTests.test_liquid_time_and_gradient) ... ok
+test_surrogate_and_binary_spikes (test_engine.PrimitiveTests.test_surrogate_and_binary_spikes) ... ok
+test_ttt_updates_without_breaking_backprop (test_engine.PrimitiveTests.test_ttt_updates_without_breaking_backprop) ... ok
+test_boundaries_and_obstacles (test_engine.WorldTests.test_boundaries_and_obstacles) ... ok
+test_resource_not_duplicated_by_competition (test_engine.WorldTests.test_resource_not_duplicated_by_competition) ... ok
+test_signal_distance_and_self_exclusion (test_engine.WorldTests.test_signal_distance_and_self_exclusion) ... ok
+test_discrete_channel_has_causal_effect_and_composes (test_v2.CommunicationTests.test_discrete_channel_has_causal_effect_and_composes) ... ok
+test_private_referent_and_candidate_shuffle (test_v2.CommunicationTests.test_private_referent_and_candidate_shuffle) ... ok
+test_resume_reproduces_continuous_training (test_v2.CommunicationTests.test_resume_reproduces_continuous_training) ... ok
+test_confidence_intervals_bound_estimates (test_v2.IntegrationTests.test_confidence_intervals_bound_estimates) ... ok
+test_upstream_sources_are_unchanged (test_v2.IntegrationTests.test_upstream_sources_are_unchanged) ... ok
+test_vm_dashboard_request_and_path_rejection (test_v2.IntegrationTests.test_vm_dashboard_request_and_path_rejection) ... ok
+test_old_state_rejected_and_checkpoint_restored (test_v2.MorphologyTests.test_old_state_rejected_and_checkpoint_restored) ... ok
+test_true_growth_pruning_preservation_and_gradients (test_v2.MorphologyTests.test_true_growth_pruning_preservation_and_gradients) ... ok
+test_all_task_splits_are_disjoint (test_v2.ProgrammingTests.test_all_task_splits_are_disjoint) ... ok
+test_examples_encoder_is_order_invariant (test_v2.ProgrammingTests.test_examples_encoder_is_order_invariant) ... ok
+test_genetic_search_constructs_unseeded_composition (test_v2.ProgrammingTests.test_genetic_search_constructs_unseeded_composition) ... ok
+test_new_specification_needs_no_reference_source (test_v2.ProgrammingTests.test_new_specification_needs_no_reference_source) ... ok
+test_token_programs_are_instruction_sequences (test_v2.ProgrammingTests.test_token_programs_are_instruction_sequences) ... ok
+test_tool_revision_validation_rollback_and_runtime (test_v2.ProgrammingTests.test_tool_revision_validation_rollback_and_runtime) ... ok
+test_assembly_roundtrip_and_serialization (test_v2.VMTests.test_assembly_roundtrip_and_serialization) ... ok
+test_calls_share_stack_and_respect_depth (test_v2.VMTests.test_calls_share_stack_and_respect_depth) ... ok
+test_control_flow_and_unseen_numeric_inputs (test_v2.VMTests.test_control_flow_and_unseen_numeric_inputs) ... ok
+test_empty_output_is_failure (test_v2.VMTests.test_empty_output_is_failure) ... ok
+test_fuel_covers_infinite_control_flow (test_v2.VMTests.test_fuel_covers_infinite_control_flow) ... ok
+test_heap_allocation_and_dynamic_index (test_v2.VMTests.test_heap_allocation_and_dynamic_index) ... ok
+test_rejects_host_operations_and_invalid_jumps (test_v2.VMTests.test_rejects_host_operations_and_invalid_jumps) ... ok
+test_stack_heap_input_and_number_limits (test_v2.VMTests.test_stack_heap_input_and_number_limits) ... ok
+test_while_cannot_escape_fuel_limit (test_v2.VMTests.test_while_cannot_escape_fuel_limit) ... ok
+test_both_grips_and_correct_keys_are_required (test_v2.WorldTests.test_both_grips_and_correct_keys_are_required) ... ok
+test_momentum_decay_and_boundary_constraints (test_v2.WorldTests.test_momentum_decay_and_boundary_constraints) ... ok
+test_official_pettingzoo_parallel_api (test_v2.WorldTests.test_official_pettingzoo_parallel_api) ... ok
+test_receiver_has_no_private_target_observation (test_v2.WorldTests.test_receiver_has_no_private_target_observation) ... ok
+test_wrong_initial_choice_cannot_be_repaired_by_following (test_v2.WorldTests.test_wrong_initial_choice_cannot_be_repaired_by_following) ... ok
+
+----------------------------------------------------------------------
+Ran 41 tests in 3.493s
+
+OK

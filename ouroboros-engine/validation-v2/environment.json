@@ -1,0 +1,52 @@
+{
+  "packages": {
+    "torch": "2.6.0+cpu",
+    "numpy": "2.3.5",
+    "PyYAML": "6.0.3",
+    "ncps": "1.0.1",
+    "neat-python": "1.0.0",
+    "pettingzoo": "1.25.0",
+    "gymnasium": "1.1.1"
+  },
+  "cuda_available": false,
+  "upstream": [
+    {
+      "name": "neat-python",
+      "version": "1.0.0",
+      "commit": "536985ab1d6b50973e9e9e11a0f8303a7754aecf",
+      "repository": "https://github.com/CodeReclaimers/neat-python",
+      "license": "BSD-3-Clause",
+      "files": 30,
+      "missing": [],
+      "mismatched": [],
+      "ok": true
+    },
+    {
+      "name": "ncps",
+      "version": "1.0.1",
+      "commit": "695ec22d7d1831f2ced67346ef7d2f08c525bd47",
+      "repository": "https://github.com/mlech26l/ncps",
+      "license": "Apache-2.0",
+      "files": 39,
+      "missing": [],
+      "mismatched": [],
+      "ok": true
+    },
+    {
+      "name": "pettingzoo",
+      "version": "1.25.0",
+      "commit": "4467a6e73ab587751942d6efc311268f094fdc5f",
+      "repository": "https://github.com/Farama-Foundation/PettingZoo",
+      "license": "MIT",
+      "files": 321,
+      "missing": [],
+      "mismatched": [],
+      "ok": true
+    }
+  ],
+  "integrations": {
+    "CfCCell": "ncps.torch.cfc_cell",
+    "NEAT": "/workspace/.venvs/ouroboros/lib/python3.12/site-packages/neat/__init__.py",
+    "ParallelEnv": "pettingzoo.utils.env"
+  }
+}

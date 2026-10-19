@@ -4,12 +4,13 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "ouroboros-engine"
-version = "0.1.0"
+version = "2.0.0"
 description = "Laboratório experimental de agentes adaptativos em PyTorch"
-requires-python = ">=3.10"
-dependencies = ["torch>=2.6,<3", "PyYAML>=6,<7"]
+requires-python = ">=3.11,<3.13"
+dependencies = ["torch==2.6.0", "PyYAML==6.0.3", "numpy==2.3.5", "gymnasium==1.1.1", "pettingzoo==1.25.0", "neat-python==1.0.0", "ncps==1.0.1"]
 
 [project.scripts]
+ouroboros = "ouroboros.v2.cli:main"
 ouroboros-run = "ouroboros.cli:run"
 ouroboros-bootstrap = "ouroboros.cli:bootstrap"
 ouroboros-dashboard = "ouroboros.cli:dashboard"
@@ -19,3 +20,4 @@ include = ["ouroboros*"]
 
 [tool.setuptools.package-data]
 ouroboros = ["dashboard.html"]
+"ouroboros.v2" = ["dashboard.html"]

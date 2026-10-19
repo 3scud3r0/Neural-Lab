@@ -5,4 +5,6 @@ __pycache__/
 build/
 dist/
 outputs/
+outputs-v2/
+.cache/
 .pytest_cache/

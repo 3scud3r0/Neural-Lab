@@ -1,0 +1,9 @@
+{
+  "event": "genetics",
+  "elapsed": 0.10953061700001854,
+  "generation": 10,
+  "error": 0.0,
+  "solved_training": true,
+  "nodes": 11,
+  "expression": "((-1 + (x + (y + (y + x)))) + x)"
+}

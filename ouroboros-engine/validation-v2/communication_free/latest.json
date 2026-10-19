@@ -1,0 +1,8 @@
+{
+  "event": "communication",
+  "elapsed": 8.159739757999887,
+  "step": 1500,
+  "loss": 0.13728488981723785,
+  "accuracy": 0.921875,
+  "temperature": 0.4
+}

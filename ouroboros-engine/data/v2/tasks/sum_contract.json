@@ -1,0 +1,234 @@
+{
+  "name": "sum_contract",
+  "description": "Novos exemplos p\u00fablicos sem fonte de refer\u00eancia.",
+  "train": [
+    {
+      "inputs": [
+        2,
+        -5
+      ],
+      "expected": -3.0,
+      "array": []
+    },
+    {
+      "inputs": [
+        4,
+        2
+      ],
+      "expected": 6.0,
+      "array": []
+    },
+    {
+      "inputs": [
+        -2,
+        3
+      ],
+      "expected": 1.0,
+      "array": []
+    },
+    {
+      "inputs": [
+        4,
+        -4
+      ],
+      "expected": 0.0,
+      "array": []
+    },
+    {
+      "inputs": [
+        3,
+        1
+      ],
+      "expected": 4.0,
+      "array": []
+    },
+    {
+      "inputs": [
+        -4,
+        -1
+      ],
+      "expected": -5.0,
+      "array": []
+    },
+    {
+      "inputs": [
+        -1,
+        -1
+      ],
+      "expected": -2.0,
+      "array": []
+    },
+    {
+      "inputs": [
+        -3,
+        3
+      ],
+      "expected": 0.0,
+      "array": []
+    }
+  ],
+  "validation": [
+    {
+      "inputs": [
+        18,
+        13
+      ],
+      "expected": 31.0,
+      "array": []
+    },
+    {
+      "inputs": [
+        13,
+        7
+      ],
+      "expected": 20.0,
+      "array": []
+    },
+    {
+      "inputs": [
+        16,
+        20
+      ],
+      "expected": 36.0,
+      "array": []
+    },
+    {
+      "inputs": [
+        17,
+        16
+      ],
+      "expected": 33.0,
+      "array": []
+    },
+    {
+      "inputs": [
+        9,
+        10
+      ],
+      "expected": 19.0,
+      "array": []
+    },
+    {
+      "inputs": [
+        16,
+        14
+      ],
+      "expected": 30.0,
+      "array": []
+    },
+    {
+      "inputs": [
+        7,
+        19
+      ],
+      "expected": 26.0,
+      "array": []
+    },
+    {
+      "inputs": [
+        9,
+        15
+      ],
+      "expected": 24.0,
+      "array": []
+    }
+  ],
+  "test": [
+    {
+      "inputs": [
+        17,
+        10
+      ],
+      "expected": 27.0,
+      "array": []
+    },
+    {
+      "inputs": [
+        15,
+        6
+      ],
+      "expected": 21.0,
+      "array": []
+    },
+    {
+      "inputs": [
+        7,
+        13
+      ],
+      "expected": 20.0,
+      "array": []
+    },
+    {
+      "inputs": [
+        20,
+        18
+      ],
+      "expected": 38.0,
+      "array": []
+    },
+    {
+      "inputs": [
+        17,
+        19
+      ],
+      "expected": 36.0,
+      "array": []
+    },
+    {
+      "inputs": [
+        12,
+        19
+      ],
+      "expected": 31.0,
+      "array": []
+    },
+    {
+      "inputs": [
+        7,
+        16
+      ],
+      "expected": 23.0,
+      "array": []
+    },
+    {
+      "inputs": [
+        12,
+        6
+      ],
+      "expected": 18.0,
+      "array": []
+    },
+    {
+      "inputs": [
+        7,
+        17
+      ],
+      "expected": 24.0,
+      "array": []
+    },
+    {
+      "inputs": [
+        6,
+        11
+      ],
+      "expected": 17.0,
+      "array": []
+    },
+    {
+      "inputs": [
+        19,
+        15
+      ],
+      "expected": 34.0,
+      "array": []
+    },
+    {
+      "inputs": [
+        13,
+        12
+      ],
+      "expected": 25.0,
+      "array": []
+    }
+  ]
+}

@@ -1,0 +1,9 @@
+{
+  "archive_crc": "passed",
+  "vendored_original_files": 390,
+  "upstream_integrity": "passed",
+  "compiled_loop_result": 55,
+  "delivered_factorial_result": 3628800,
+  "checkpoint_generated_gcd": "passed",
+  "consolidated_utf8_source": "passed"
+}

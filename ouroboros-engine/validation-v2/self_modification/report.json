@@ -1,0 +1,120 @@
+{
+  "initial_promotion": {
+    "accepted": true,
+    "revision": 1,
+    "fingerprint": "8588826854b7415c3a20cad00fb6e620f87a7ee3e7fab3c0c2129b3c62e1cd43"
+  },
+  "neural_revision": {
+    "accepted": true,
+    "revision": 2,
+    "fingerprint": "e68d6bdb74a05a60e2abc0ce28fd2b71b888765aab7c63fa96341d3c135e85fb"
+  },
+  "runtime_call": {
+    "ok": true,
+    "outputs": [
+      8.0
+    ],
+    "fault": null,
+    "message": "",
+    "steps": 7,
+    "max_stack": 2,
+    "allocated": 16,
+    "elapsed_ms": 0.016555000001972076,
+    "trace": []
+  },
+  "runtime_expected": 8,
+  "metabolism": {
+    "energy": 1.0,
+    "stress": 0.0,
+    "failures": 0,
+    "successes": 4,
+    "resets": 0
+  },
+  "online_attempts": [
+    {
+      "attempt": 1,
+      "task": "sum",
+      "reward": 1.0,
+      "valid": true,
+      "metabolism": {
+        "energy": 1.0,
+        "stress": 0.0,
+        "failures": 0,
+        "successes": 1,
+        "resets": 0
+      },
+      "training_evaluation": {
+        "passed": 8,
+        "total": 8,
+        "error": 0.0,
+        "faults": {},
+        "mean_steps": 5.0
+      },
+      "token_count": 10
+    },
+    {
+      "attempt": 2,
+      "task": "array_sum",
+      "reward": 1.0,
+      "valid": true,
+      "metabolism": {
+        "energy": 1.0,
+        "stress": 0.0,
+        "failures": 0,
+        "successes": 2,
+        "resets": 0
+      },
+      "training_evaluation": {
+        "passed": 8,
+        "total": 8,
+        "error": 0.0,
+        "faults": {},
+        "mean_steps": 55.0
+      },
+      "token_count": 42
+    },
+    {
+      "attempt": 3,
+      "task": "gcd",
+      "reward": 1.0,
+      "valid": true,
+      "metabolism": {
+        "energy": 1.0,
+        "stress": 0.0,
+        "failures": 0,
+        "successes": 3,
+        "resets": 0
+      },
+      "training_evaluation": {
+        "passed": 8,
+        "total": 8,
+        "error": 0.0,
+        "faults": {},
+        "mean_steps": 30.5
+      },
+      "token_count": 39
+    },
+    {
+      "attempt": 4,
+      "task": "factorial",
+      "reward": 1.0,
+      "valid": true,
+      "metabolism": {
+        "energy": 1.0,
+        "stress": 0.0,
+        "failures": 0,
+        "successes": 4,
+        "resets": 0
+      },
+      "training_evaluation": {
+        "passed": 6,
+        "total": 6,
+        "error": 0.0,
+        "faults": {},
+        "mean_steps": 47.5
+      },
+      "token_count": 45
+    }
+  ],
+  "scope": "O agente revisa ferramentas em bytecode; não altera a VM, testes ou Python do host"
+}

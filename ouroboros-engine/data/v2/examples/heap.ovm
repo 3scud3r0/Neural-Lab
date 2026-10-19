@@ -1,0 +1,8 @@
+# Aloca duas células, guarda 77 no endereço devolvido e lê o mesmo valor.
+ALLOC 2
+DUP
+PUSH 77
+WRITE
+READ
+OUTPUT
+HALT

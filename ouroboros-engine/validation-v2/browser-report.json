@@ -1,0 +1,9 @@
+{
+  "desktop": "passed",
+  "mobile": "passed",
+  "javascript_errors": [],
+  "vm_gcd": 6,
+  "vm_compiled_loop_sum": 55,
+  "infinite_loop": "fuel fault",
+  "integration_checks_visible": 7
+}

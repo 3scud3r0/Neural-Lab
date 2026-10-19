@@ -1,0 +1,239 @@
+{
+  "train_domain": {
+    "intact": {
+      "correct": 958,
+      "total": 1024,
+      "accuracy": 0.935546875,
+      "ci95": [
+        0.9188186811494565,
+        0.9490193203480506
+      ]
+    },
+    "shuffled": {
+      "correct": 288,
+      "total": 1024,
+      "accuracy": 0.28125,
+      "ci95": [
+        0.25456837802546667,
+        0.3095667961103145
+      ]
+    },
+    "muted": {
+      "correct": 287,
+      "total": 1024,
+      "accuracy": 0.2802734375,
+      "ci95": [
+        0.25362447128132326,
+        0.30856487773899266
+      ]
+    },
+    "random": {
+      "correct": 292,
+      "total": 1024,
+      "accuracy": 0.28515625,
+      "ci95": [
+        0.25834559562360226,
+        0.31357287897403996
+      ]
+    },
+    "causal_drop_muted": 0.6552734375,
+    "causal_drop_shuffled": 0.654296875,
+    "chance": 0.25,
+    "partition": "train",
+    "statistics": {
+      "mutual_information_bits": 2.912116070854604,
+      "message_entropy_bits": 2.912116070854604,
+      "unique_messages": 8,
+      "lexicon": {
+        "1": {
+          "symbols": [
+            1,
+            6,
+            6
+          ],
+          "frequency": 1.0
+        },
+        "2": {
+          "symbols": [
+            1,
+            6,
+            6
+          ],
+          "frequency": 1.0
+        },
+        "3": {
+          "symbols": [
+            6,
+            6,
+            6
+          ],
+          "frequency": 1.0
+        },
+        "4": {
+          "symbols": [
+            3,
+            3,
+            3
+          ],
+          "frequency": 1.0
+        },
+        "6": {
+          "symbols": [
+            7,
+            3,
+            3
+          ],
+          "frequency": 1.0
+        },
+        "7": {
+          "symbols": [
+            7,
+            3,
+            3
+          ],
+          "frequency": 1.0
+        },
+        "8": {
+          "symbols": [
+            1,
+            3,
+            3
+          ],
+          "frequency": 1.0
+        },
+        "9": {
+          "symbols": [
+            1,
+            1,
+            3
+          ],
+          "frequency": 1.0
+        },
+        "11": {
+          "symbols": [
+            7,
+            7,
+            3
+          ],
+          "frequency": 1.0
+        },
+        "12": {
+          "symbols": [
+            1,
+            1,
+            3
+          ],
+          "frequency": 1.0
+        },
+        "13": {
+          "symbols": [
+            1,
+            1,
+            1
+          ],
+          "frequency": 1.0
+        },
+        "14": {
+          "symbols": [
+            1,
+            1,
+            1
+          ],
+          "frequency": 1.0
+        }
+      }
+    }
+  },
+  "heldout_combinations": {
+    "intact": {
+      "correct": 210,
+      "total": 1024,
+      "accuracy": 0.205078125,
+      "ci95": [
+        0.18147184616339215,
+        0.2308889689660986
+      ]
+    },
+    "shuffled": {
+      "correct": 154,
+      "total": 1024,
+      "accuracy": 0.150390625,
+      "ci95": [
+        0.12980517590995427,
+        0.17358943275348176
+      ]
+    },
+    "muted": {
+      "correct": 146,
+      "total": 1024,
+      "accuracy": 0.142578125,
+      "ci95": [
+        0.12249678037183598,
+        0.16533122736787798
+      ]
+    },
+    "random": {
+      "correct": 137,
+      "total": 1024,
+      "accuracy": 0.1337890625,
+      "ci95": [
+        0.11430076936083489,
+        0.15601481233969172
+      ]
+    },
+    "causal_drop_muted": 0.0625,
+    "causal_drop_shuffled": 0.0546875,
+    "chance": 0.25,
+    "partition": "heldout",
+    "statistics": {
+      "mutual_information_bits": 1.9994044763971885,
+      "message_entropy_bits": 1.9994044763971885,
+      "unique_messages": 4,
+      "lexicon": {
+        "0": {
+          "symbols": [
+            1,
+            1,
+            1
+          ],
+          "frequency": 1.0
+        },
+        "5": {
+          "symbols": [
+            7,
+            3,
+            3
+          ],
+          "frequency": 1.0
+        },
+        "10": {
+          "symbols": [
+            1,
+            1,
+            3
+          ],
+          "frequency": 1.0
+        },
+        "15": {
+          "symbols": [
+            1,
+            7,
+            7
+          ],
+          "frequency": 1.0
+        }
+      }
+    }
+  },
+  "config": {
+    "colors": 4,
+    "shapes": 4,
+    "candidates": 4,
+    "vocabulary": 8,
+    "message_length": 3,
+    "hidden": 64,
+    "protocol": "free"
+  },
+  "steps": 1500,
+  "training": "Straight-through Gumbel-Softmax; discreto em avaliação; sem rótulos dos símbolos"
+}

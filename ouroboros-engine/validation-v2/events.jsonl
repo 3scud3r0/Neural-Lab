@@ -1,0 +1,9 @@
+{"event": "stage", "elapsed": 0.033470749000116484, "stage": "programming", "completed": false}
+{"event": "stage", "elapsed": 10.829221847000099, "stage": "genetic_synthesis", "completed": false}
+{"event": "stage", "elapsed": 10.908932225000171, "stage": "tool_self_modification", "completed": false}
+{"event": "stage", "elapsed": 11.07416064500012, "stage": "communication_free", "completed": false}
+{"event": "stage", "elapsed": 19.287367079999967, "stage": "communication_factorized", "completed": false}
+{"event": "stage", "elapsed": 22.427177561000008, "stage": "structural_morphology", "completed": false}
+{"event": "stage", "elapsed": 22.435086930000125, "stage": "neat_evolution", "completed": false}
+{"event": "stage", "elapsed": 22.86348572299994, "stage": "cooperative_world", "completed": false}
+{"event": "completed", "elapsed": 34.25257857399993, "stage": "completed", "completed": true, "checks": {"all_demonstrated_program_families": true, "unseen_affine_composition": true, "tool_revision_accepted": true, "communication_causal_effect": true, "actual_growth_and_pruning": true, "neat_structural_evolution": true, "world_cooperation": true}, "all_checks_passed": true}

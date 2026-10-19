@@ -1,0 +1,209 @@
+{
+  "history": [
+    {
+      "generation": 0,
+      "fitness": 0.48955953131550256,
+      "winner_nodes": 2,
+      "winner_edges": 24,
+      "population_max_nodes": 2,
+      "population_min_nodes": 2
+    },
+    {
+      "generation": 1,
+      "fitness": 0.5408020106312671,
+      "winner_nodes": 2,
+      "winner_edges": 24,
+      "population_max_nodes": 3,
+      "population_min_nodes": 2
+    },
+    {
+      "generation": 2,
+      "fitness": 0.5511288762210591,
+      "winner_nodes": 3,
+      "winner_edges": 23,
+      "population_max_nodes": 4,
+      "population_min_nodes": 2
+    },
+    {
+      "generation": 3,
+      "fitness": 0.6200305505336884,
+      "winner_nodes": 3,
+      "winner_edges": 21,
+      "population_max_nodes": 4,
+      "population_min_nodes": 2
+    },
+    {
+      "generation": 4,
+      "fitness": 0.6200305505336884,
+      "winner_nodes": 3,
+      "winner_edges": 21,
+      "population_max_nodes": 4,
+      "population_min_nodes": 2
+    },
+    {
+      "generation": 5,
+      "fitness": 0.6517319321905943,
+      "winner_nodes": 4,
+      "winner_edges": 21,
+      "population_max_nodes": 5,
+      "population_min_nodes": 3
+    },
+    {
+      "generation": 6,
+      "fitness": 0.6517319321905943,
+      "winner_nodes": 4,
+      "winner_edges": 21,
+      "population_max_nodes": 6,
+      "population_min_nodes": 2
+    },
+    {
+      "generation": 7,
+      "fitness": 0.6668576184613451,
+      "winner_nodes": 4,
+      "winner_edges": 20,
+      "population_max_nodes": 5,
+      "population_min_nodes": 2
+    },
+    {
+      "generation": 8,
+      "fitness": 0.6924379840292197,
+      "winner_nodes": 5,
+      "winner_edges": 19,
+      "population_max_nodes": 6,
+      "population_min_nodes": 3
+    },
+    {
+      "generation": 9,
+      "fitness": 0.7227859764501164,
+      "winner_nodes": 4,
+      "winner_edges": 15,
+      "population_max_nodes": 6,
+      "population_min_nodes": 4
+    },
+    {
+      "generation": 10,
+      "fitness": 0.7405334754517634,
+      "winner_nodes": 7,
+      "winner_edges": 19,
+      "population_max_nodes": 7,
+      "population_min_nodes": 3
+    },
+    {
+      "generation": 11,
+      "fitness": 0.7619137876199771,
+      "winner_nodes": 8,
+      "winner_edges": 20,
+      "population_max_nodes": 8,
+      "population_min_nodes": 4
+    },
+    {
+      "generation": 12,
+      "fitness": 0.791896721225008,
+      "winner_nodes": 5,
+      "winner_edges": 13,
+      "population_max_nodes": 9,
+      "population_min_nodes": 4
+    },
+    {
+      "generation": 13,
+      "fitness": 0.8389815284816862,
+      "winner_nodes": 5,
+      "winner_edges": 13,
+      "population_max_nodes": 10,
+      "population_min_nodes": 4
+    },
+    {
+      "generation": 14,
+      "fitness": 0.8389815284816862,
+      "winner_nodes": 5,
+      "winner_edges": 13,
+      "population_max_nodes": 9,
+      "population_min_nodes": 4
+    },
+    {
+      "generation": 15,
+      "fitness": 0.8389815284816862,
+      "winner_nodes": 5,
+      "winner_edges": 13,
+      "population_max_nodes": 7,
+      "population_min_nodes": 4
+    },
+    {
+      "generation": 16,
+      "fitness": 0.8389815284816862,
+      "winner_nodes": 5,
+      "winner_edges": 13,
+      "population_max_nodes": 7,
+      "population_min_nodes": 4
+    },
+    {
+      "generation": 17,
+      "fitness": 0.8389815284816862,
+      "winner_nodes": 5,
+      "winner_edges": 13,
+      "population_max_nodes": 7,
+      "population_min_nodes": 4
+    },
+    {
+      "generation": 18,
+      "fitness": 0.8389815284816862,
+      "winner_nodes": 5,
+      "winner_edges": 13,
+      "population_max_nodes": 7,
+      "population_min_nodes": 5
+    },
+    {
+      "generation": 19,
+      "fitness": 0.8389815284816862,
+      "winner_nodes": 5,
+      "winner_edges": 13,
+      "population_max_nodes": 8,
+      "population_min_nodes": 5
+    },
+    {
+      "generation": 20,
+      "fitness": 0.8389815284816862,
+      "winner_nodes": 5,
+      "winner_edges": 13,
+      "population_max_nodes": 9,
+      "population_min_nodes": 5
+    },
+    {
+      "generation": 21,
+      "fitness": 0.8389815284816862,
+      "winner_nodes": 5,
+      "winner_edges": 13,
+      "population_max_nodes": 9,
+      "population_min_nodes": 5
+    },
+    {
+      "generation": 22,
+      "fitness": 0.8389815284816862,
+      "winner_nodes": 5,
+      "winner_edges": 13,
+      "population_max_nodes": 7,
+      "population_min_nodes": 5
+    },
+    {
+      "generation": 23,
+      "fitness": 0.8389815284816862,
+      "winner_nodes": 5,
+      "winner_edges": 13,
+      "population_max_nodes": 7,
+      "population_min_nodes": 4
+    },
+    {
+      "generation": 24,
+      "fitness": 0.8389815284816862,
+      "winner_nodes": 5,
+      "winner_edges": 13,
+      "population_max_nodes": 8,
+      "population_min_nodes": 5
+    }
+  ],
+  "validation_mse": 0.2820086816035585,
+  "nodes": 5,
+  "connections": 13,
+  "structural_variation_observed": true,
+  "task": "Imitação de controle de navegação; não mede inteligência geral"
+}

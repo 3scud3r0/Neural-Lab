@@ -1,0 +1,126 @@
+{
+  "program": {
+    "name": "neural_generated",
+    "code": [
+      [
+        "PUSH",
+        1
+      ],
+      [
+        "STORE",
+        0
+      ],
+      [
+        "PUSH",
+        1
+      ],
+      [
+        "STORE",
+        1
+      ],
+      [
+        "INPUT",
+        0
+      ],
+      [
+        "PUSH",
+        1
+      ],
+      [
+        "ADD",
+        null
+      ],
+      [
+        "STORE",
+        2
+      ],
+      [
+        "LOAD",
+        1
+      ],
+      [
+        "LOAD",
+        2
+      ],
+      [
+        "LT",
+        null
+      ],
+      [
+        "JZ",
+        21
+      ],
+      [
+        "LOAD",
+        0
+      ],
+      [
+        "LOAD",
+        1
+      ],
+      [
+        "MUL",
+        null
+      ],
+      [
+        "STORE",
+        0
+      ],
+      [
+        "LOAD",
+        1
+      ],
+      [
+        "PUSH",
+        1
+      ],
+      [
+        "ADD",
+        null
+      ],
+      [
+        "STORE",
+        1
+      ],
+      [
+        "JMP",
+        8
+      ],
+      [
+        "LOAD",
+        0
+      ],
+      [
+        "OUTPUT",
+        null
+      ],
+      [
+        "HALT",
+        null
+      ],
+      [
+        "HALT",
+        null
+      ]
+    ]
+  },
+  "attempt": 4,
+  "task": "factorial",
+  "reward": 1.0,
+  "valid": true,
+  "metabolism": {
+    "energy": 1.0,
+    "stress": 0.0,
+    "failures": 0,
+    "successes": 4,
+    "resets": 0
+  },
+  "training_evaluation": {
+    "passed": 6,
+    "total": 6,
+    "error": 0.0,
+    "faults": {},
+    "mean_steps": 47.5
+  },
+  "token_count": 45
+}

@@ -1,130 +1,161 @@
-# Ouroboros Engine
+# Ouroboros Engine 2.0
 
-Laboratório experimental de agentes adaptativos em **PyTorch**, baseado na arquitetura da conversa fornecida. Inclui ecossistema 2D, recorrência temporal, plasticidade local, memória rápida inspirada em TTT, homeostase numérica, comunicação e uma programadora de expressões aritméticas com feedback de execução.
+Laboratório executável de **programação composicional, comunicação discreta, cooperação multiagente e morfogênese neural**. A versão 2 substitui o classificador de 11 expressões por geração autorregressiva de bytecode, adiciona síntese genética por exemplos, redes com dimensões modificáveis e integra código real de três projetos do GitHub.
 
-**É um protótipo funcional de pesquisa.** Não é uma inteligência geral, não demonstra consciência, não inventa linguagens e não promete superar Rust ou acelerar ray tracing. A implementação e suas medições permitem investigar hipóteses concretas antes de ampliar o projeto.
+O ZIP inclui fontes, bibliotecas upstream e suas licenças, modelos treinados, programas gerados, relatórios, testes e um TXT consolidado. A execução padrão usa CPU; os modelos PyTorch também aceitam CUDA quando disponível. Não utiliza APIs de LLM ou chaves pagas.
 
-## Começar no Linux
+## Começar
 
-Requisitos: Python 3.10 ou superior, `venv`, acesso aos índices oficiais de pacotes. Testado com Python 3.12.14, PyTorch 2.6.0+cpu e PyYAML 6.0.3. CUDA é opcional. O executor utiliza `resource` do Linux; Windows nativo não é suportado. Use WSL2 no Windows.
-
-Na pasta `ouroboros-engine`:
+Use **Linux ou WSL2, Python 3.11/3.12**. Na pasta `ouroboros-engine` extraída do ZIP:
 
 ```bash
-python3 -m venv .venv
+bash scripts/install_v2.sh
 source .venv/bin/activate
-python -m pip install --upgrade pip
-python -m pip install 'torch==2.6.0' --index-url https://download.pytorch.org/whl/cpu
-python -m pip install -e .
+ouroboros doctor
+
+# Abrir o painel com os resultados e pesos já entregues:
+ouroboros dashboard --output validation-v2 --port 8080
+```
+
+O servidor atende a interface local na porta 8080. Em uma máquina própria, abra essa porta no navegador; em serviços de nuvem, utilize o mecanismo de acesso a portas fornecido pela plataforma. O painel permite executar assembly da VM ou a DSL imperativa, inspecionar programas gerados e comparar os experimentos. Não depende de CDN, WebSockets externos ou serviços pagos.
+
+A instalação usa os fontes incluídos em `third_party/`. Internet é necessária para PyTorch, NumPy e as demais dependências de distribuição. Os binários desses pacotes não foram embutidos no ZIP. O projeto é instalado em modo editável: mantenha a pasta completa, pois datasets, configurações e fontes verificáveis fazem parte do laboratório.
+
+Para CUDA, configure uma distribuição PyTorch 2.6.0 compatível com seu driver pelo seletor oficial em <https://pytorch.org/get-started/locally/>. O instalador também aceita `OUROBOROS_TORCH_INDEX` apontando para o índice oficial correspondente. CUDA não estava disponível na máquina de validação desta entrega.
+
+## O que mudou
+
+| Abismo da versão anterior | Implementação 2.0 |
+|---|---|
+| Classificador de programas prontos | Decoder GRU emite opcodes e operandos; recebe exemplos numéricos, sem um ID de solução. Suporta comprimentos e fluxos de controle diferentes. |
+| Sem composição aberta | Busca genética combina árvores por mutação/cruzamento. Um arquivo JSON pode especificar novas tarefas sem incluir a solução. |
+| Sem loops e memória operacional | VM com `INPUT`, `LOAD`, `STORE`, `ALLOC`, `READ`, `WRITE`, aritmética, condições, saltos, `CALL`, `RET` e saída explícita. |
+| Comunicação contínua sem tarefa informativa | Jogo referencial com alvo privado, candidatos embaralhados e símbolos discretos; avaliações com silêncio, ruído e mensagens embaralhadas. |
+| Topologia fixa | Crescimento e poda alocam Parameters de dimensões diferentes; conexões são removidas/adicionadas, com preservação dos pesos sobreviventes. |
+| Mundo sem cooperação necessária | Chaves iniciais irreversíveis e colheita que exige dois papéis segurando o recurso correto, com inércia, atrito, obstáculos, predador e energia. |
+| Ferramentas imutáveis | Biblioteca executável de bytecode com revisão, validação, exigência opcional de melhoria e rollback. |
+| Peças externas apenas sugeridas | NCPS, NEAT-Python e PettingZoo incluídos por commit, com licenças e manifesto SHA-256, e usados pelos experimentos. |
+
+## Resultados entregues
+
+Estes valores estão em `validation-v2/report.json`, semente **42**, CPU, perfil completo. Os checkpoints podem ser usados sem repetir o treino.
+
+| Avaliação | Resultado registrado |
+|---|---|
+| Programas neurais | **11/11 famílias**, 112/112 casos finais corretos; incluem fatorial, soma em loop, arrays, contagem condicional e MDC. São algoritmos demonstrados no bootstrap, avaliados em novas entradas. |
+| Novos conjuntos de exemplos públicos | **53/55** contextos novos interpretados corretamente nas famílias treinadas; duas falhas ficam registradas. |
+| Síntese genética | Composição de `3*x + 2*y - 1` construída sem programa inicial de solução, correta nos 12 testes finais. |
+| Nova especificação JSON | Busca sobre `data/v2/tasks/novel_affine.json`, sem fonte de referência, correta em 4/4 casos finais. |
+| Revisão executável | Ferramenta de soma passou à revisão 2; a chamada real de `17 + (-9)` produziu `8`. |
+| Comunicação livre | 93,6% nos conceitos treinados e **20,5%** nas combinações reservadas: não houve boa generalização composicional. |
+| Comunicação com estrutura por atributo | **100%** nos 1.024 testes de combinações reservadas; **24,7%** quando silenciada. A posição dos atributos é um viés explícito; os símbolos são aprendidos. |
+| Cooperação física | **97/128 (75,8%)** com canal íntegro; **25/128 (19,5%)** silenciado; **0/128** com um agente sem cooperar. |
+| Morfogênese | No experimento estrutural: **12 → 15 → 18 → 15** neurônios, incluindo adição e remoção reais de parâmetros. |
+| NEAT upstream | Variação estrutural observada; vencedor com 5 nós e 13 conexões habilitadas. MSE reservado de controle: 0,282. |
+| Testes automatizados | **41 testes passaram**, incluindo a API oficial ParallelEnv, limites da VM, isolamento de informação, gradientes e retomada da comunicação. |
+
+A comparação da arena usa os mesmos 128 episódios por intervenção. Os JSONs incluem intervalos de Wilson de 95%. Esses intervalos descrevem a avaliação da política treinada; não substituem replicação do treinamento em múltiplas sementes. O experimento integrado desta entrega levou aproximadamente 30 segundos na CPU disponível, sem incluir instalação e inspeção no navegador.
+
+O protocolo livre e o fatorado permanecem separados para tornar visível a diferença entre código aprendido sem posições semânticas fixas e uma composição auxiliada por estrutura. Os resultados não comprovam consciência, inteligência geral, gramática humana emergente, descoberta científica inédita ou otimizações de ray tracing.
+
+## Executar novamente
+
+```bash
+# Pipeline completo; retorna erro se um dos critérios de integração falhar:
+ouroboros experiment --output outputs-v2/run-01 --profile full --require-success
+
+# Em outro terminal, para acompanhar:
+ouroboros dashboard --output outputs-v2/run-01 --port 8080
+
+# Passagem curta pelo pipeline; pode não haver convergência dos modelos:
+ouroboros experiment --output outputs-v2/quick-01 --profile quick
+
+# Todos os testes do projeto:
 python -m unittest discover -s tests -v
 ```
 
-O índice de CPU evita baixar bibliotecas CUDA desnecessárias. Para GPU, instale primeiro a distribuição PyTorch compatível com seu driver, seguindo o seletor oficial em <https://pytorch.org/get-started/locally/>, e depois execute `pip install -e .`. Este projeto não contém extensões CUDA próprias. `--device auto` usa CUDA quando disponível; `--device cuda` falha explicitamente se não houver GPU utilizável.
+Sempre use uma pasta de saída nova. A CLI recusa pastas não vazias para preservar resultados. Os perfis têm orçamentos finitos. O bootstrap neural encerra cedo quando todas as famílias passam na validação; o teste final é usado depois da seleção. A execução em CPU com a mesma configuração e semente é reproduzível; CUDA pode ter diferenças numéricas.
 
-### Treinar e executar
+Cada tarefa na nuvem já possui seu checkout isolado. Use o checkout existente; não é necessário criar um Git worktree.
+
+## Programação por exemplos e execução
 
 ```bash
-# Ensina seis tarefas ao seletor de expressões; grava pesos e relatório.
-python scripts/bootstrap_programmer.py
+# Uma nova especificação pública, sem fonte da solução:
+ouroboros synthesize --examples data/v2/tasks/novel_affine.json \
+  --output outputs-v2/my-search --generations 120
 
-# Executa 300 passos. --pace torna a observação ao vivo mais confortável.
-python scripts/run_ecosystem.py --steps 300 --checkpoint outputs/programmer.pt --output outputs/demo --pace 0.05
+# Decoder neural emite candidatos a partir dos exemplos:
+ouroboros generate --checkpoint validation-v2/programming/token_programmer.pt \
+  --examples data/v2/tasks/novel_affine.json --output outputs-v2/my-generation --samples 16
 
-# Em outro terminal, com o mesmo ambiente virtual ativado:
-python scripts/dashboard.py --output outputs/demo --port 8080
+# Executar um algoritmo realmente gerado pelo decoder:
+ouroboros vm validation-v2/programming/generated/factorial.ovm --inputs 10 --trace
+
+# Compilar a DSL imperativa para bytecode e executá-la:
+ouroboros vm data/v2/examples/sum_loop.py --compile --inputs 10
+
+# Alocar, escrever e ler heap na VM:
+ouroboros vm data/v2/examples/heap.ovm
 ```
 
-O painel atende na porta 8080, na interface local por padrão. Em uma máquina própria, abra essa porta no navegador; em um serviço de nuvem, utilize o mecanismo de acesso a portas da plataforma, quando disponível. O painel também consegue apresentar uma execução já concluída. Não exige Streamlit, CDN, APIs pagas ou chaves de acesso.
+O JSON de especificação usa `train`, `validation` e `test`, cada qual com exemplos `{ "inputs": [...], "array": [...], "expected": número }`. Os splits devem ser separados e não contêm código da solução. A busca genética de árvores usa dois escalares; a geração de bytecode e a VM também suportam arrays e loops. **Resolver uma especificação arbitrária não é garantido.** Os relatórios preservam os candidatos inválidos e resultados incorretos.
 
-Para repetir a simulação, escolha uma nova pasta, por exemplo `--output outputs/demo-2`, e aponte o painel para ela. A simulação **recusa diretórios não vazios**, para preservar resultados anteriores. Sem `--checkpoint`, a programadora começa com pesos aleatórios e recebe reforço durante a execução. Com bootstrap, começa já treinada nas seis tarefas.
+A DSL aceita uma função `solve`, atribuições locais, operações numéricas, `if`, `while`, `for range`, `arr[i]`, `len(arr)`, `min`, `max`, `abs` e retorno. Ela é compilada para a VM; não é executada pelo interpretador Python. A VM possui combustível, limites de pilha/heap/chamadas, valores finitos e magnitude limitada. Não expõe imports, arquivos, rede ou chamadas livres. Não é um sandbox para código Python/C/ASM arbitrário.
 
-Os mesmos comandos estão disponíveis como `ouroboros-bootstrap`, `ouroboros-run` e `ouroboros-dashboard` após a instalação editável. Execute os comandos de exemplo na raiz desta pasta. Em tarefas na nuvem, use o checkout existente: não é necessário criar um Git worktree.
+## Componentes independentes
 
-## O que está implementado
+```bash
+ouroboros bootstrap --output outputs-v2/programming --epochs 400
+ouroboros communication --output outputs-v2/language --protocol factorized --steps 1500
+ouroboros communication --output outputs-v2/language-free --protocol free --steps 1500
+ouroboros morphology --output outputs-v2/structure
+ouroboros neat --output outputs-v2/neat --generations 25
+ouroboros world --language validation-v2/communication_factorized/communication.pt \
+  --output outputs-v2/world --episodes 24
 
-| Componente | Funcionamento real |
-|---|---|
-| `primitives/liquid_cell.py` | Relaxação exponencial em tempo contínuo com constante de tempo aprendida; inspirada em células líquidas, não implementação canônica de CfC. |
-| `primitives/plastic_synapse.py` | Pesos treináveis mais traço Hebbiano individual, com decaimento, modulação e limites. |
-| `primitives/spiking_gate.py` | Gate de limiar com gradiente substituto; fração de disparos medida. |
-| `primitives/ttt_layer.py` | Atualização analítica por SGD de preditor linear rápido, separado por organismo. |
-| `physiology/` | Energia, custos de movimento/sinal, estresse, entropia de ativações e modulação da plasticidade. |
-| `core/dynamic_brain.py` | Integração recorrente das primitivas, previsão sensorial, ação e emissão de sinais. |
-| `core/meta_plasticity.py` | Operações PyTorch em lote, compatíveis com CPU/CUDA; sem kernels personalizados. |
-| `agents/social_agent.py` | Organismos sociais vetorizados: pesos lentos compartilhados e memórias rápidas individuais. |
-| `agents/programmer_agent.py` | Organismo individual com decoder de ASTs aritméticas, seleção estocástica e REINFORCE. |
-| `environment/` | Recursos limitados, competição, reposição de estoque, atrito, obstáculos móveis e sinais atenuados por distância. |
-| `sandbox/` | Interpretação de DSL restrita em subprocesso, limites de CPU/RAM/tempo e retorno de correção. |
-| `scripts/` | Bootstrap supervisionado, simulação com aprendizado online e painel HTTP de métricas reais. |
+# Retomar o treinamento da comunicação em uma nova pasta:
+ouroboros communication --protocol factorized --steps 2000 \
+  --resume validation-v2/communication_factorized/communication.pt \
+  --output outputs-v2/language-resumed
+```
 
-O loop do ecossistema é sequencial e determinístico na CPU com a mesma semente; o painel pode rodar em um processo independente e consultar snapshots atômicos. CUDA pode introduzir diferenças numéricas. A interface usa HTTP com atualização periódica, não WebSockets.
+A navegação usa imitação explícita e actor-critic. O emissor/receptor é treinado antes no jogo referencial. A morfogênese segue regras de energia/estresse; ela não é organogênese espontânea. O teste estrutural aplica fases controladas de estresse e baixa energia para demonstrar o mecanismo; na execução da arena entregue o córtex permaneceu com 24 neurônios e alterou conexões, pois a regra de aumento de capacidade não foi acionada.
 
-### Aprendizado
+NEAT é um baseline de imitação de controle, com evolução estrutural real e avaliação em observações reservadas. Seu MSE não é a taxa de sucesso da arena. CfC é a implementação upstream de NCPS e participa do controlador físico. PettingZoo expõe a arena a outros algoritmos multiagente através de uma API testada.
 
-1. Os agentes observam sua posição, direção/distância ao recurso mais próximo, energia, estresse e mensagens recebidas.
-2. O cérebro produz previsão da próxima observação, ações estocásticas e sinais contínuos.
-3. O mundo recompensa colheita e aproximação dos recursos; movimento e colisões têm custo.
-4. Adam otimiza previsão, política motora com REINFORCE, política de comunicação com recompensa coletiva imediata e regularização metabólica. Não há garantia de que essa recompensa ensine comunicação útil.
-5. A plasticidade Hebbiana e a memória rápida TTT atualizam estados locais durante cada passo.
-6. Quando a energia acaba, o organismo é contado como perdido e reposto, com memória rápida limpa. Os pesos lentos compartilhados permanecem.
-
-As perdas estão explícitas em `ouroboros/simulation.py`. O módulo `free_energy.py` calcula erro preditivo com regularização; **não implementa uma ELBO nem comprova o Princípio da Energia Livre**. A entropia mostrada é das ativações, não uma medida validada de entropia sináptica. Energia/estresse são variáveis numéricas, sem alegação de sentimentos.
-
-### Escopo da programadora
-
-O bootstrap treina um classificador de **11 expressões predefinidas** para seis tarefas identificadas por vetores de contexto. O estado do cérebro modula a entrada desse decoder; o feedback altera a política e a homeostase. Não há modelo de linguagem pré-treinado, geração livre de tokens, compreensão de instruções em linguagem natural nem autoalteração do código do projeto.
-
-O dataset em `data/bootstrap_code/tasks.json` separa casos de treino e de validação numérica. A avaliação verifica novos números nas mesmas tarefas conhecidas: **não testa generalização para algoritmos inéditos**. A execução online usa os casos de validação para recompensa, portanto esses casos deixam de ser um conjunto independente de avaliação após o aprendizado online.
-
-Cada tentativa gera um pequeno arquivo `solve(x, y)` e um JSON com expressão, recompensa, correção, tempo e memória. A correção tem prioridade: uma saída vazia, erro ou função constante incorreta não ganha recompensa por ser rápida. Ainda não há objetivo de otimização de tempo de execução nem comparação de desempenho entre algoritmos.
-
-### Limites do executor
-
-A DSL aceita somente números limitados, `x`, `y`, `+`, `-`, `*`, `/`, sinais unários e chamadas `abs`, `min`, `max` com aridade fixa. Não utiliza `eval` ou `exec`. Imports, atributos, arquivos, rede, loops, comprehensions e potência são rejeitados. Há limites de tamanho da AST, profundidade e quantidade de casos.
-
-O subprocesso recebe um ambiente mínimo sem credenciais herdadas e limites Linux de memória, CPU e arquivos. O tempo total é limitado pelo processo pai. `elapsed_ms` mede interpretação; `wall_ms` inclui inicialização do processo; `memory_kb` é o pico RSS pós-exec do worker, medido por `VmHWM` em `/proc/self/status` (e não pelo pico eventualmente herdado do processo pai). Esses valores não são benchmarks de algoritmos.
-
-**Isto não é um sandbox para Python arbitrário, C ou assembly.** Não use o executor como serviço público para código livre. Para ampliar esse escopo, será preciso isolamento de SO apropriado, como contêineres com seccomp, filesystem e rede restritos. Os exemplos C/ASM são apenas referências e não são executados pelo sistema.
-
-## Resultados gravados
+## Arquivos e documentação
 
 ```text
-outputs/
-  programmer.pt             # Pesos do bootstrap
-  programmer.json           # Avaliação das seis tarefas
-  demo/
-    config.json             # Configuração efetiva e versões
-    metrics.jsonl           # Um registro por passo
-    latest.json             # Snapshot atômico para o painel
-    summary.json            # Métricas finais
-    ecosystem.pt            # Pesos/estados finais para análise
-    programs/
-      attempt_0001.py        # Função gerada a partir da DSL
-      attempt_0001.json      # Resultado da tentativa
+ouroboros/v2/
+  vm/                # Assembly, DSL, memória, controle de fluxo e execução
+  programming/       # Decoder, exemplos, genética, organismo e ferramentas
+  communication/     # Jogo assimétrico, protocolos e ablações
+  evolution/         # CfC/morfogênese e integração NEAT
+  world/             # Arena vetorizada, treino e API PettingZoo
+  experiment.py      # Pipeline e critérios de integração
+  dashboard.*        # Painel e console interativo
+third_party/         # Fontes upstream + licenças + hashes
+validation-v2/       # Pesos, programas, testes, métricas e capturas reais
+configs/v2/          # Configuração do controlador NEAT
+scripts/             # Instalação, execução, exportação TXT e ZIP
 ```
 
-`ecosystem.pt` é um snapshot de análise, **não um checkpoint de retomada exata**: não inclui todos os estados do mundo, RNGs e otimizadores. A retomada de simulação não está implementada. Carregue checkpoints locais confiáveis com `weights_only=True`, como fazem os scripts.
+- [Arquitetura e limites de cada mecanismo](docs/architecture_v2.md)
+- [Origem, commits, licenças e uso das peças do GitHub](THIRD_PARTY_NOTICES.md)
+- [Relatório completo da execução](validation-v2/report.json)
+- [Resultados dos testes](validation-v2/tests.txt)
+- [Documentação da versão 1 preservada](docs/legacy_v1.md)
 
-O ZIP inclui `validation/` com resultados de uma execução real em CPU, relatório de testes, bootstrap treinado e amostras de programas. A pasta `outputs/` não é necessária para começar. Os pesos de bootstrap entregues podem ser utilizados com `--checkpoint validation/programmer.pt`.
+O checkpoint da comunicação inclui otimizador e RNGs e tem um teste de retomada exata em CPU. O checkpoint do mundo serve para inferência/análise e inclui as dimensões atuais do cérebro; a CLI não oferece retomada exata da simulação física. Checkpoints são carregados com `weights_only=True`.
 
-Para visualizar a execução entregue, use `python scripts/dashboard.py --output validation/demo`. Para criar novamente o ZIP com os fontes e as evidências, use `python scripts/package_project.py`.
+A versão 1 continua disponível nos módulos e scripts legados; o comando principal `ouroboros` e `scripts/run_v2.py` executam a versão 2.
 
-## Configuração e extensão
-
-- `configs/ecosystem_config.yaml`: população, dispositivo, passos, geometria, recursos, metabolismo e frequência da programadora.
-- `configs/neuron_primitives.yaml`: constantes de tempo, limiar de disparo, taxas e decaimento das memórias rápidas.
-- `configs/programmer_bootstrap.yaml`: semente, épocas, taxa e dataset de bootstrap. O contexto de seis dimensões é fixo neste protótipo; `syntax_penalty` documenta a penalidade padrão de falha do executor.
-
-Para mudar a gramática, atualize `EXPRESSIONS`, os exemplos e os testes e treine um novo checkpoint. Para avaliar emergência ou desempenho, defina baselines, tarefas não vistas, métricas independentes e várias sementes. A topologia atual é fixa: as conexões mudam de peso, mas a rede não cria/remove neurônios. O gate esparso continua usando operações densas e não garante economia de GPU ou 90% de esparsidade.
-
-## Testes
+## TXT e ZIP
 
 ```bash
-python -m unittest discover -s tests -v
+python scripts/export_source_txt.py
+python scripts/package_project.py --output ../ouroboros-engine-v2.0.zip
 ```
 
-A suíte verifica gradientes e dinâmica temporal, memórias individuais, comunicação por distância, conservação de recursos, obstáculos, rejeição de construções proibidas, timeout, feedback, repetibilidade e artefatos do ciclo integrado, além dos endpoints HTTP do painel. A validação CUDA depende de hardware disponível e não foi realizada no ambiente de entrega.
-
-## Exportação de código-fonte
-
-`CODIGO_COMPLETO.txt` contém as fontes, configurações e documentação reunidas num único arquivo UTF-8. Gere novamente com `python scripts/export_source_txt.py`. Os pesos PyTorch e as capturas PNG são binários separados incluídos na distribuição ZIP e nos artefatos de validação.
+`CODIGO_COMPLETO.txt` reúne fontes locais, configurações, documentação, exemplos gerados e fontes upstream com suas licenças. Pesos `.pt`, capturas PNG e assets binários acompanham o ZIP separadamente. O TXT contém código-fonte concatenado, não um binário compilado.
